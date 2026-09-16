@@ -1,0 +1,612 @@
+\chapter{Arquitectura y Desarrollo}
+\label{ch:arquitecturaydesarrollo}
+\section{Solución propuesta}
+
+La propuesta que ofrece este proyecto para un sistema descentralizado basado en la red ethereum reúne todas las tecnologías anteriormente mencionadas creando una \gls{dapp} con funciones básicas como la creación, ejecución y control de préstamos de cripto activos.
+
+Este proyecto controla el pago de los préstamos en curso que pueda tener nuestro sistema cubre gracias a la inmutabilidad de la red junto con un algoritmo basado en semáforos:
+Cada préstamo tiene en cada momento un estado el cual cambia cuando se da la orden de \textbf{chequeo de mensualidad}, esta orden se produce mensualmente y transforma el estado de cada contrato dependiendo de si ha sido pagado o no.
+
+El funcionamiento de este algoritmo se ve reflejado en la figura 3.1
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{figures/semaforos.jpg}
+    \caption{Diagrama algoritmo semaforos que asegura el control de estados de los contratos del sistema.}
+    \label{fig:semaforos}
+\end{figure}
+
+\section{Limitaciones del proyecto}
+
+Durante este proceso de desarrollo, en diciembre de 2024, la Unión Europea aprueba el Reglamento Europeo de Criptoactivos \cite{[24]}, el objetivo de este reglamento es establecer normas para las entidades emisoras y proveedoras de servicios relacionados con la criptoactividad.
+
+En el nuevo reglamento se  tratan distintas cuestiones entre las que se encuentran:
+\begin{enumerate}
+    \item Requisitos de transparencia absoluta a las plataformas de negociación de criptoactivos.
+    \item Necesidad de autorización europea para lea emisión y provisionamiento de criptoactivos.
+    \item Protección del valor monetario en euros de los clientes.
+    \item Creación de medidas de control de las operaciones con información privilegiada y manipulación de mercado.
+\end{enumerate}
+
+En esta normativa se especifican acciones obligatorias para entidades financieras que pueden adoptar este proyecto. Dentro de estas acciones se definen elementos comunes a cualquier empresa como definirse como persona jurídica o actuar de forma honesta, justa y profesional.
+
+Las acciones que pueden llegar limitar el proyecto es la obligatoriedad de ofrecer la capacidad de convertir en Euros, los criptoactivos proporcionados por este proyecto. Específicamente se obliga a mantener:
+\begin{enumerate}
+    \item Un fondo propio de 350.000E
+    \item El 2\% del importe medio de los activos de reserva
+    \item Una cuarta parte de los gastos generales fijos del año anterior
+    \item Establecimiento de planes de recuperación y reembolso en caso de no cumplir las obligaciones de la normativa 
+\end{enumerate}
+
+Estas acciones obligan a cualquier entidad que quiera hacer uso de este proyecto a aprovisionar las cantidades definidas en la normativa.
+
+\section{Actores del sistema}
+Los posibles actores que participan en el sistema son:
+\begin{itemize}
+    \item \textbf{Usuario prestatario (User)} Usuario que accede al servicio de préstamos.
+    \item \textbf{Entidad prestamista (Owner)} Entidad que ofrece los distintos tipos de préstamos.
+\end{itemize}
+
+\subsection{Diagrama UML}
+Un diagrama UML (Unified Modeling Language) es una representación gráfica utilizada para modelar, visualizar, documentar y diseñar sistemas de software. 
+En este caso relaciona los actores con los Casos de uso que pueden realizar y está representado en la figura 3.2.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/uml.jpg}
+    \caption{Diagrama UML representando los actores del sistema relacionados con los casos de uso a los que tienen acceso.}
+    \label{fig:uml}
+\end{figure}
+
+\subsection{Diagrama de secuencia}
+Un diagrama de secuencia UML muestra cómo interactúan los objetos de un sistema en un orden temporal, representando el intercambio de mensajes entre ellos.
+
+En este caso el diagrama de secuencia es de gran ayuda para comprender la cohesión del proyecto y la inmutabilidad de la información gracias a los registros en la blockchain tal y como se puede ver en la figura 3.3
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/diagramasecuencia.jpg}
+    \caption{Diagrama Secuencia que representa como la información vital del sistema queda registrada en la red aportando la inmutabilidad y confianza propia del proyecto}
+    \label{fig:etiqueta}
+\end{figure}
+
+\section{Casos de uso}
+
+En el marco del desarrollo del presente proyecto, se ha priorizado la definición de un conjunto de casos de uso que representan los escenarios esenciales para cumplir con los objetivos fundamentales del sistema ya que este proyecto debe de ser 'finito' y no 'infinito'.
+
+La selección de los casos de uso  no pretende abarcar una totalidad de posibles funcionalidades del sistema sino un conjunto operativo sólido y funcional. Comentando también un posible desarrollo futuro.
+
+Estos casos de uso se definen en las tablas 3.1 y 3.2
+\subsection{Pantallas del sistema}
+Para un mayor entendimiento de los casos de uso se realiza una declaración las posibles pantallas que participan en el sistema son:
+\begin{itemize}
+    \item \textbf{Pantalla principal común} Pantalla de incio comun a todos los usuarios, principalmente para hacer log in.
+    \item \textbf{Pantalla principal de prestamista.} 
+    \item \textbf{Pantalla principal de prestatario.} 
+\end{itemize}
+
+\subsection{Casos de uso}
+\begin{table}[H]
+\centering
+\caption{Casos de uso del sistema}
+\begin{tabular}{|c|l|c|c|}
+    \hline
+    \rowcolor[HTML]{D0E7FF}
+    Código  & Descripción   & Prioridad & Dependencia  \\ \hline
+    CU1     & Login usuario        & 10   &   \\ \hline
+    CU2     & Creación nuevo tipo de préstamo     & 9   &   \\ \hline
+    CU3     & Contratación nuevo préstamo        & 8   &  CU2 \\ \hline
+    CU4     & Consulta estado préstamos contratados        & 7   & CU3   \\ \hline
+    CU5     & Pago cuota préstamo       & 6   & CU3 \\ \hline
+    CU6     & Consulta préstamos en curso (Entidad financiera)        & 5   & CU3 \\ \hline
+    CU7     & Chequeo mensual de estado de contratos        & 4   &   \\ \hline
+    CU8     & Penalización por impago de cuota mensual       & 3   &CU7   \\ \hline
+    CU9     & Cálculo de importe de próxima cuota mensual         & 2   &  CU3  \\ \hline
+    CU10     & Recoger fondos del prestatario        & 1   &   \\ \hline
+    CU11     & Transferir fondos al prestamista        & 1   &   \\ \hline
+\end{tabular}
+\end{table}
+
+
+\subsection{Casos de uso para posteriores desarrollos}
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|l|}
+    \hline
+    \rowcolor[HTML]{D0E7FF}
+    Código  & Descripción   \\ \hline
+    CU12     & Garantía de dvolución en caso de impago\\ \hline
+    CU13    & Consulta de valor de \gls{euribor}\\ \hline
+    CU14    &Validación de solvencia económica de usuarios\\ \hline
+\end{tabular}
+\caption{Casos de uso para desarrollos posteriores}
+\end{table}
+
+\begin{itemize}
+    \item Para el caso de uso de la garantía se podría:
+        \begin{itemize}
+            \item Bloquear fondos de otra cuenta a través de un \gls{smartcontract} la cual tuviera un balance mínimo
+            \item Bloquear un \gls{nft} dentro del \gls{smartcontract} tipo préstamo el cual se libera cuando se acabe la deuda.
+            \item Podría externalizarse esta responsabilidad a otra \gls{dapp}
+        \end{itemize}
+    \item La consulta del valor del \gls{euribor} se realizaría a través de un  y serviría para el cálculo de la cuota mensual del préstamo.
+    \item La validación de solvencia también se realizaría a través de un oráculo y se podría utlizar para personalizar los tipos de contrato al cliente.
+\end{itemize}
+
+\subsection{Casos de uso detallados}
+
+\begin{table}[!h]
+\centering
+\begin{tabular}{|c|p{12cm}|}
+    \hline
+    \rowcolor[HTML]{D0E7FF}
+    CU1 & Log in usuario. \\ \hline
+    Descripción   & Los usuarios accederán al sistema a través de Metamask  \\ \hline
+    Pantalla     & Pantalla inicial. (Se redirecciona a esta página si no se ha realizado el log in)   \\ \hline
+    Rol     & Cualquier usuario \\ \hline
+    Flujo     &    - El usuario accede a nuestra página web está le pedirá                           autenticarse con Metamask para poder acceder al                             servicio \newline
+                   - La extensión de Metamask permite la autenticación del          usuario y la página se redirige a la respectiva página       principal dependiendo de si es la entidad prestamista o no.
+                 \\ \hline
+\end{tabular}
+\caption{Casos de uso 1}
+\end{table}
+
+\begin{table}[!h]
+\centering
+\begin{tabular}{|c|p{12cm}|}
+    \hline
+    \rowcolor[HTML]{D0E7FF}
+    CU2 & Creación nuevo tipo de préstamo. \\ \hline
+    Descripción   & La entidad prestamista puede crear nuevos productos tipo “préstamo”  \\ \hline
+    Pantalla     & Pantalla principal de la entidad prestamista.  \\ \hline
+    Rol     & Owner \\ \hline
+    Flujo     &    - El usuario owner tiene un formulario en su página principal para
+rellenar la información necesaria para la creación de un nuevo tipo de
+préstamo.\newline
+                   - Este contrato se le mostrará al usuario prestatario en su página principal
+                 \\ \hline
+\end{tabular}
+\caption{Casos de uso 2}
+\end{table}
+
+\begin{table}[!h]
+\centering
+\begin{tabular}{|c|p{12cm}|}
+    \hline
+    \rowcolor[HTML]{D0E7FF}
+    CU3 & Contratación nuevo préstamo. \\ \hline
+    Descripción   & Los usuarios prestatarios pueden seleccionar el préstamo que desean contratar  \\ \hline
+    Pantalla     & Pantalla principal de usuarios prestatarios.   \\ \hline
+    Rol     & User \\ \hline
+    Flujo     &    - En la página principal el usuario podrá visualizar los posibles préstamos que
+puede contratar. \newline
+                   - El usuario contrata un nuevo préstamo pinchando en el botón de
+“Contratar”.
+                 \newline
+                                 Tan pronto como se procese la transacción, web 3 llamará al smart contract correspondiente y generará otro contrato el cual reflejará el estado del prestamo en
+cada momento.
+                 \newline
+                                  También las unidades solicitadas en el préstamo serán transferidas
+automáticamente desde los fondos del \gls{smartcontract} de préstamos a la dirección del
+usuario.
+                  \\ \hline
+\end{tabular}
+\caption{Casos de uso 3}
+\end{table}
+
+\begin{table}[!h]
+\centering
+\begin{tabular}{|c|p{12cm}|}
+    \hline
+    \rowcolor[HTML]{D0E7FF}
+    CU4 & Consulta estado préstamos contratados \\ \hline
+    Descripción   & Los usuarios del servicio podrán consultar el estado de sus préstamos contratados
+visualizándolos en su página principal  \\ \hline
+    Pantalla     & Pantalla principal usuario   \\ \hline
+    Rol     & User \\ \hline
+    Flujo     &    En el momento que el usuario hace log in ya puede visualizar los contratos
+que tiene contratados \\ \hline
+                 
+\end{tabular}
+\caption{Casos de uso 4}
+\end{table}
+
+\begin{table}[!h]
+\centering
+\begin{tabular}{|c|p{12cm}|}
+    \hline
+    \rowcolor[HTML]{D0E7FF}
+    CU5 & Pago cuota préstamo. \\ \hline
+    Descripción   & Los usuarios del servicio de préstamo realizan el pago de sus mensualidades a través
+de la DApp del proyecto  \\ \hline
+    Pantalla     & Pantalla principal de usuarios prestatarios   \\ \hline
+    Rol     & User \\ \hline
+    Flujo     &    -En la página principal del usuario aparecen los distintos prestamos que
+tiene contratados y su respectivos estados, junto a esto, existe un botón para
+cada contrato que transfiere la mensualidad calculada previamente desde la
+cuenta del usuario a la cuenta del \gls{smartcontract} de préstamo.
+                 \\ \hline
+\end{tabular}
+\caption{Casos de uso 5}
+\end{table}
+
+\begin{table}[!h]
+\centering
+\begin{tabular}{|c|p{12cm}|}
+    \hline
+    \rowcolor[HTML]{D0E7FF}
+    CU6 & Consulta préstamos en curso (Entidad financiera). \\ \hline
+    Descripción   & La entidad financiera puede consultar el estado de cada préstamo en
+curso \\ \hline
+    Pantalla     &Pantalla principal de la entidad financiera  \\ \hline
+    Rol     & Owner \\ \hline
+    Flujo     &    -En la página principal del propietario aparecen los contratos en curso
+                 \\ \hline
+\end{tabular}
+\caption{Casos de uso 6}
+\end{table}
+
+\begin{table}[!h]
+\centering
+\begin{tabular}{|c|p{12cm}|}
+    \hline
+    \rowcolor[HTML]{D0E7FF}
+    CU7 & Chequeo mensual de estado de contratos. \\ \hline
+    Descripción   & La entidad financiera ejecuta la orden de comprobar que mensualidades no
+han sido pagadas ese mes.  \\ \hline
+    Pantalla     & Pantalla principal de entidad financiera \\ \hline
+    Rol     & Owner \\ \hline
+    Flujo     &    Desde la página principal del propietario se tiene acceso al botón que lanza
+esa orden siempre y cuando hayan pasado 30 días desde la última orden.
+                 \\ \hline
+\end{tabular}
+\caption{Casos de uso 7}
+\end{table}
+
+\begin{table}[!h]
+\centering
+\begin{tabular}{|c|p{12cm}|}
+    \hline
+    \rowcolor[HTML]{D0E7FF}
+    CU8 & Penalización por impago de cuota mensual \\ \hline
+    Descripción   & Los contratos en estado de impago generan una penalización de deuda, esta
+penalización solo puede suceder una vez por cada chequeo mensual de contratos  \\ \hline
+    Pantalla     & Pantalla principal de entidad financiera  \\ \hline
+    Rol     & Owner \\ \hline
+    Flujo     &    Cuando el propietario genera la orden de chequeo mensual los contratos
+que tengan estado de “impago” aumentaran su valor de deuda
+                 \\ \hline
+\end{tabular}
+\caption{Casos de uso 8}
+\end{table}
+
+\begin{table}[!h]
+\centering
+\begin{tabular}{|c|p{12cm}|}
+    \hline
+    \rowcolor[HTML]{D0E7FF}
+    CU9 & Cálculo de importe de próxima cuota mensua \\ \hline
+    Descripción   & El importe de la próxima cuota mensual es un valor dinámico sujeto a
+penalizaciones  \\ \hline
+    Pantalla     & Pantalla principal usuario  \\ \hline
+    Rol     & User \\ \hline
+    Flujo     &    - Tras el chequeo el mensual la cuota del próximo pago se podrá ver
+modificada en caso de penalización \newline
+                   - En la información de los préstamos contratados aparecerá la cantidad de la
+cuota del mes en curso
+                 \\ \hline
+\end{tabular}
+\caption{Casos de uso 9}
+\end{table}
+
+\begin{table}[!h]
+\centering
+\begin{tabular}{|c|p{12cm}|}
+    \hline
+    \rowcolor[HTML]{D0E7FF}
+    CU10 & Recoger fondos del contrato de prestamos \\ \hline
+    Descripción   & La entidad bancaria propietaria  del sistema de prestámos puede disponer de los fondos almacenados en el sistmea
+cuando desee  \\ \hline
+    Pantalla     & Pantalla principal de Owner   \\ \hline
+    Rol     & Owner \\ \hline
+    Flujo     &    La entidad bancarai tendrá una casilla en su página principal para escribir y recibir el
+importe desde la dirección del contract factory a su dirección de la red
+                 \\ \hline
+\end{tabular}
+\caption{Casos de uso 10}
+\end{table}
+
+\begin{table}
+\centering
+\begin{tabular}{|c|p{12cm}|}
+    \hline
+    \rowcolor[HTML]{D0E7FF}
+    CU11 & Transferir fondos al sistema de préstamos \\ \hline
+    Descripción   & La entidad bancaria  puede transferir cualquier cantidad de unidades al sistema de prestamos para mantener
+ un saldo positivo y poder realizar estos préstamos\\ \hline
+    Pantalla     & Pantalla principal Owner   \\ \hline
+    Rol     & Owner \\ \hline
+    Flujo     &    La entidad tendrá una casilla en su página principal para escribir y transferir el
+importe deseado a la dirección del sistema de préstamos.
+                 \\ \hline
+\end{tabular}
+\caption{Casos de uso 11}
+\end{table}
+
+\section{Entidades del sistema}
+A continuación se definen las entidades cuyas relaciones compondrán y habilitarán las funciones del sistema propuesto
+
+\begin{table}[!h]
+\centering
+\begin{tabular}{|c|p{12cm}|}
+    \hline
+    \rowcolor[HTML]{D0E7FF}
+    1 & Usuario. \\ \hline
+    Descripción   & Usuario que accede al servicio de préstamos.  \\ \hline
+    Atributos     & Dirección pública de la red.   \\ \hline
+    Acciones     & - Pedir préstamo  \newline
+                    - Pagar préstamo\\ \hline   
+
+    \hline
+    \rowcolor[HTML]{D0E7FF}
+    2 & Propietario. \\ \hline
+    Descripción   & Propietario del sistema, único capaz de recolectar los fondos del sistema. Normalmente una entidad financiera  \\ \hline
+    Atributos     & Dirección pública de la red.   \\ \hline
+    Acciones     & - Transferir unidades al sistema \newline
+                    - Recoger unidades del sistema\\ \hline
+   
+
+    \hline
+    \rowcolor[HTML]{D0E7FF}
+    3 & Sistema de préstamos     \\ \hline
+    Descripción   & Conjunto de smart contract que definen los elementos del sistema y cuya ejecución valida las transacciones del sistema  \\ \hline
+    Atributos     & - Dirección de propietario \newline
+                    - Lista de préstamos contratables
+                    - Lista de usuarios y sus préstamos en curso\\ \hline
+    Acciones     & - Ejecutar las transacciones ordenadas por los usuarios dle sistema  \newline
+                    - Registrar en la red blockchain la informacion del sistema.\\ \hline
+   
+\end{tabular}
+\caption{Definción de entidades del sistema}
+\end{table}
+
+\subsection{Diagrama entidad relación}
+El  diagrama  representado en la figura 3.4 pretende definir mediante relaciones entre las entidades las funciones que definen el sistema.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{figures/E-R.jpg}
+    \caption{Diagrama entidad relación que representa la relaciones entre las entidades del sistema definiendo las funciones de este}
+    \label{fig:er}
+\end{figure}
+
+\section{Smart Contracts implicados}
+En esta sección se define el diseño de implementación utilizado para los smart contract, así como los atributos(Tablas 3.17 y 3.19) y funciones(Tablas 3.18 y 3.20) de cada uno de ellos.
+\subsection{Contract Factory}
+El lenguaje utilizado para el desarrollo de los \glspl{smartcontract} es \gls{solidity}
+El patrón de diseño en el que se basa el desarrollo de los \glspl{smartcontract} de este proyecto se llama 'Contract Factory', este se utiliza para crear instancias dinámicas de contratos inteligentes en la blockchain.
+
+En esta arquitectura, un contrato principal (el Factory) actúa como intermediario, generando nuevos contratos según las necesidades de los usuarios o la aplicación.
+
+De esta forma se puede registrar las direcciones de los contratos creados, proporcionando un mecanismo centralizado para su administración y acceso. 
+
+\subsection{Diagrama Entidad - Relación de Smart Contracts}
+Aunque no sean entidades del sistema, para explicar detalladamente la arquitectura de de diseño se define otro diagrama entidad - relación en la figura 3.5:
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{figures/E-R-smartcontracts.jpg}
+    \caption{Diagrama entidad relación que representa las relaciones y funciones entre los Smart contracts.}
+    \label{fig:etiqueta}
+\end{figure}
+
+\subsection{Descripción de Smart Contracts}
+\subsubsection{Contract Factory } 
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|p{5cm}|p{6cm}|}
+    \hline
+    \rowcolor[HTML]{D0E7FF}
+    Nombre & Tipo de dato & Descripción\\ \hline
+    Owner&\gls{addresstype}&Dirección propietaria del sistema.\\ \hline
+    Tipos de préstamo&Mapping ((Uint => Struct) “tipo prestamo” )&Mapping que guarda los distintipos tipos
+de préstamo contratables por el usuario. \newline
+Esta variable solo puede ser editada por la
+dirección de Owner.\\ \hline
+TipoPréstamo&Struct&Conjunto de variables que definen un tipo de préstamo(Importe, intereses, deuda total, penalización de impago y  cuotas)\\ \hline
+Préstamos en curso&Mapping
+(Address => Address[])&Mapping que relaciona el address de un
+usuario con las direcciones de sus
+préstamos en curso. \newline
+Esta variable solo puede ser editada por la
+dirección de Owner.\\ \hline
+\end{tabular}
+\caption{Descripción de atributos del Contrato Contract Factory}
+\end{table}
+
+
+\textbf{Funciones:}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|p{3cm}|p{3cm}|p{4cm}|}
+    \hline
+    \rowcolor[HTML]{D0E7FF}
+    Nombre & Parámetro entrada & Parámetro salida & Descripcion\\ \hline
+    
+    crearTipoPrestamo   & Importe,\newline interesTotal,\newline penalización impago, \newline número cuotas & & Añade un nuevo tipo de préstamo al mapping tipos de préstamo.\\ \hline
+    
+    crearPrestamo&Tipo de préstamo\newline address de usuario&&Añade un nuevo tipo de préstamo al mapping tipos de préstamo \\ \hline
+    
+    chequeoMensual & & & Actualiza los estados de los contratos y calcula la nueva
+    cuota mensual \\ \hline
+
+    consultarContratos& & Mapping de préstamos en curso & Devuelve la listado de
+    préstamos en curso \\ \hline
+    recuperarFondos &Cantidad &&Transfiere unidades desde este contrato al Owner \\ \hline
+    invertirFondos & Cantidad &&Transfiere unidades
+a este contrato. \\ \hline
+    consultarPrestamosUsuario&Dirección de usuario a consultar&Conjunto de de Direcciones
+de contrato de
+préstamo asociados
+a un mismo usuario& \\ \hline
+
+\end{tabular}
+\caption{Descripción de funciones del Contrato Contract Factory}
+\end{table}
+
+
+\subsubsection{Préstamo Contract } 
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|p{3cm}|p{4cm}|}
+    \hline
+    \rowcolor[HTML]{D0E7FF}
+    Nombre & Tipo de dato & Descripcion\\ \hline
+    ID & Int & Identificador único \\ \hline
+    Estado&ENUMERADO& {CUOTA PAGADA, PLAZO ABIERTO, FINALIZADO}
+\\ \hline
+   CuotasRestantes &Int&Informa el tiempo límite acordado para devolver el
+préstamo\\ \hline
+    Prestatario&\gls{addresstype}&Cuenta que ha contratado el préstamo\\ \hline
+    Deuda Restante&Float&Deuda restante del préstamo\\ \hline
+    Cuota Mensual&Float&Cantidad de la deuda a pagar mensualmente\\ \hline
+    Porcentaje penalización&Int& Porcentaje de penalización a la deuda en caso de impago\\ \hline
+\end{tabular}
+\caption{Descripción de atributos del Contrato Préstamo Contract }
+\end{table}
+
+\textbf{Funciones:}
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|p{3cm}|p{3cm}|p{4cm}|}
+    \hline
+    \rowcolor[HTML]{D0E7FF}
+    Nombre & Parámetro entrada & Parámetro salida & Descripcion\\ \hline
+    
+    pagoCuota   & & & Transfiere al contrato la cuota
+previamente calculada, este importe es
+transferido directamente al contract
+factory después de dejar reflejado que
+se ha pagado la cuota.\\ \hline
+    
+    aplicarPenalización&&Nuevo valor de
+deuda&Añade el porcentaje de penalización del
+contrato a la deuda total \\ \hline
+    
+    calculoCuotaMensua & &Valor de la cuota
+mensual & A partir de la deuda restante y el
+numero de cuotas restantes calcula el
+la cuota. \\ \hline
+
+  
+
+\end{tabular}\caption{Descripción de funciones del Contrato Préstamo Contract }
+\end{table}
+
+\section{Validación de resultados}
+Tras el desarrollo del sistema de préstamos descentralizado, es necesario comprobar si cumple con los objetivos planteados y cubre los casos de uso definidos. Para ello, se presentan pruebas mediante capturas de pantalla de la interfaz y registros en Etherscan, validando la ejecución de transacciones y el correcto funcionamiento de los contratos inteligentes en la blockchain de Ethereum.
+
+El \gls{op} 2 consiste en la unificación de las distintas funcionalidades del proyecto en una interfaz accesible a cualquier sujeto independiente de la formación.
+Los resultados se podrán ver a lo largo de la sección y se puedrá apreciar que la interfaz aunque si reúne todas las funcionalidades del sistema, finalmente no se ha recalcado en la accesibilidad e intuitividad. Durante el desarrollo del proyecto se ha decidido aportar más esfuerzo en la funcionalidad dejando la optimización de la interfaz de usuario para un posible trabajo futuro.
+
+Para la validación de resultados del \gls{op} 1 se pueden evalúar los distintos objetivos secundarios:
+\begin{enumerate}
+    \item \textbf{\gls{os} 1:} Una de las preocupaciones que puede suponer el desarrollo de un sistema de préstamos en una blockchain es la naturaleza anónima de este tipo de red. Por ello se ve en la figura 3.6 el uso de la plataforma Metamask como agente identificador externo para acceder a la aplicación.
+    \begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{figures/resultados/metamask.jpg}
+    \caption{Ejemplo de login con Metmask}
+    \label{fig:metamask}
+\end{figure}
+
+
+    \item La utilización de Metamask no solo nos sirve para delegar la identificación sino también para delegar en una empresa externa la información que identifica a nuestros clientes de forma que  no hace falta grabarla en la red, esto nos ayuda con el el \gls{os} 5 el cual busca la optimización de información en la red para no revelar información sensible.
+
+    \item En el \gls{os} 2 se busca la eficiencia en la información y las funciones del sistema para evitar el alto consumo de energía a la hora de ejcutar las ordendes:
+Todas las funciones que tienen relación con la red son funciones muy atómicas y sencillas evitando los grandes procesamientos de datos en la red aunque es posible que la función que se encarga de comprobar los pagos de los contratos de forma mensual, para actualizar el estado o aplicar penalización, puede suponer una alta inversión por parte de la entidad financiera en caso de que tengo un volumen alto de préstamos, lo cual nos lleva a una posible decisión futura que sea la de limitar el número de préstamos en curso para mantener la rentabilidad el proyecto.
+
+    \item Haciendo referencia al \gls{os} 3 se adjuntan las siguientes imágenes del panel de control de la entidad financiera en el que se muestran 3 contratos de un usuario en curso  antes y después de  la comprobación mensual de los pagos de las cutoas. En ellas se pueden observar los distintos detalles:
+    
+    \begin{enumerate}
+        \item El balance de la entidad posterior al pago aumenta debido al corecto funcionamiento del pago.
+        \item Uno de los contratos no ha sido pagado y se le ha aplicado auomáticamente la penalización por impago
+        \item Uno de los contratos correctamente pagado ha reducido su deuda restante y el número de cuotas restantes.
+        \item En el caso de contrato que solo tenía una cuota restante se ha dejado de mostrar en la aplicación ya que no es necesario replicar más esta información pudiendose acceder mas adelante a ella ya que en la red todo queda grabado.
+    \end{enumerate}
+
+Es importante para comprender las siguientes imagenes es importante conocer los siguientes conceptos:
+
+\begin{enumerate}
+    \item \textbf{Wei:} En la red Ethereum es la unidad más pequeña de valor. Un \gls{ether} (ETH) está compuesto por un total de $10^18$ wei.
+    Debido a que la última versión estable del lenguaje para los \glspl{smartcontract}
+    'solidity' puede tener ciertos errores a la hora de tratar decimales, la mejor decisión es tratar todas las cifras monetarias como enteros de la únidad mínima evitando así los distintos problemas que puedan surgir con los decimales.
+    \item Las cadenas de caracteres que comienzan por '0x' en la red ethereum están reservadas como direcciones en la red que pueden apuntar a usuarios, entidades o \glspl{smartcontract}.
+    Estas propiedades de nuestro sistema se pueden ver reflejadas en la figura 3.7 y tras la comprobación mensual del sistema en la figura 3.8 
+\end{enumerate}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{figures/resultados/prechequeo.jpg}
+    \caption{Información de contratos previa a la comprobación mensual en el recuadro amarillo y balance de la entidad financiera en el recuadro blanco.}
+    \label{fig:prechequeo}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{figures/resultados/postchequeo.jpg}
+    \caption{Información de contratos posterior a la comprobación mensual en el recuadro amarillo y balance de la entidad financiera en el recuadro blanco.}
+    \label{fig:postchequeo}
+\end{figure}
+
+
+
+Las últimas características declaradas junto con la posibilidad de que el dueño del sistema pueda recibir los wei del balance del sistema a través de la función "Recoger Fondos" nos llevan al alcance del \gls{os} 6 el cuál busca encontrar la liquidez en este sistema.
+También es cierto que, de momento, este proyecto no cubre la opción en el que un usuario no pague sus cuotas indefinidamente aunque para ello se definió el Caso de Uso 11 en el que se define la posibilidad de añadir distintos tipos de colaterales como puede ser un \gls{nft} el cual sea transferido al sistema en caso de que el impago sea recurrente.
+
+
+\item En el \gls{os} 5  se contempla la posibilidad de personalizar los contratos accesibles para distintos usuarios, esto, se puede clasificar como inalcanzable para este proyecto debido a la necesidad existente en procesar grandes cantidades de datos de clientes para poder crear un algoritmo y un sistema que cubra esta necesidad.
+De momento existe la posibildad de Definir nuevos préstamos contratables en el panel de control de la entidad financiera
+
+\end{enumerate}
+
+Para terminar de validar el \gls{op} 2 se adjunta captura de pantalla del panel de control del usuario en la figura 3.9.
+        \begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{figures/resultados/paneluser.jpg}
+    \caption{Panel de control usuario.}
+    \label{fig:paneluser}
+\end{figure}
+
+
+Como última prueba de validación de este proyecto se realiza un ejemplo de contratación de préstamo adjuntado distintas capturas de la web \href{https://sepolia.etherscan.io/}{Etherscan Sepolia} en las que se puede comprobar distintos items que corroboran la veracidad del préstamo a través de la red. \href{https://sepolia.dev/}{ Sepolia}.
+
+Se realiza la petición de un prestamo por parte de un usuario con una cantidad de 1000 wei:
+ \textbf{Contrato principal:} En la anterior figura 3.8 se puede comprobar que el balance del contrato principal es de 2585 wei.
+ Después de la contratación del usuario,  se puede ver a través de \href{https://sepolia.etherscan.io/}{Etherscan Sepolia}, y tal y como se muestra en la figura 3.10, que:
+
+    \begin{itemize}
+        \item El balance del contrato ha disminuido 1000 wei
+        \item Se ha creado una nueva transacción relacionada con el contrato principal tipo 'Contract Creation' el cual es el contrato generado para el préstamo.
+        \item Aunque debido al redondeo de la página aparezca otra transacción de 0 ETH, viendo el balance se puede comprobar que es de 1000 wei transferidos a la dirección del usuario de la figura 3.9   
+    \end{itemize}
+
+            \begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{figures/resultados/createcontract.jpg}
+    \caption{Información Etherscan del registro en la red SepoliaETH del SmartContract principal}
+    \label{fig:Etherscan smart contract principal}
+\end{figure}
+
+Se adjunta también otra captura de pantalla en la figura 3.11 de la información del contrato generado con el pago de una cuota realizado cuyo valor coincide con las cuotas definidas del préstamo contratado. Con esta comprobación de función de pago en \href{https://sepolia.etherscan.io/}{Etherscan Sepolia} se da por validado que todas las funciones del proyecto se reflejan en la red otorgando veracidad al proyecto.
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{figures/resultados/pagoprestamo.jpg}
+    \caption{Registro en Sepolia en el que se puede ver una transacción o comprobante de pago Etherscan}
+    \label{fig:Etherscan comprobante de pago}
+\end{figure}
+
+    
+
+
+    
+
+
