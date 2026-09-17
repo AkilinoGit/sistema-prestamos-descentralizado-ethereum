@@ -11,6 +11,7 @@
             ]
         }
     ],
+    "latex-workshop.latex.recipe.default": "latexmk (XeLaTeX)",
 
     "latex-workshop.latex.tools": [
         {
@@ -21,6 +22,7 @@
                 "-interaction=nonstopmode",
                 "-file-line-error",
                 "-xelatex",
+                //"-gg",
                 "-outdir=%OUTDIR%",
                 "%DOC%"
             ]
