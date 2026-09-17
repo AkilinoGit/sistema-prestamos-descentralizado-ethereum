@@ -422,15 +422,177 @@ El  diagrama  representado en la figura 3.4 pretende definir mediante relaciones
     \label{fig:er}
 \end{figure}
 
-\section{Smart Contracts implicados}
+\section{Decisines de diseño de Smart Contracts}
 En esta sección se define el diseño de implementación utilizado para los smart contract, así como los atributos(Tablas 3.17 y 3.19) y funciones(Tablas 3.18 y 3.20) de cada uno de ellos.
 \subsection{Contract Factory}
 El lenguaje utilizado para el desarrollo de los \glspl{smartcontract} es \gls{solidity}
-El patrón de diseño en el que se basa el desarrollo de los \glspl{smartcontract} de este proyecto se llama 'Contract Factory', este se utiliza para crear instancias dinámicas de contratos inteligentes en la blockchain.
+El patrón de diseño en el que se basa el desarrollo de los \glspl{smartcontract} de este proyecto se llama 'Contract Factory'.
+Este patrón de diseño encaja perfectamente en el desarrollo de este proyecto ya que nos permite crear los distintos contratos de préstamo
+de forma dinámica y automática.
+En esta arquitectura, un contrato principal (el \textit{Factory}) actúa como intermediario recibiendo las solicitudes y generando nuevos contratos (\textit{contratos préstamo}) según
+las necesidades de los usuarios o la aplicación. Dentro de este contrato se definen los distintos tipos de préstamos que pueden ser contratados por los usuarios,
+asi como las distintas funcionalidades de gestión y monitorización.
+Para ello este contrato cuenta con varibles como:
+\begin{lstlisting}[language=Solidity, caption={Variable que contiene los prestamos producto}]
+    mapping(address => PrestamoCursando[])  prestamosCursando;
+    address[] clientes;
+\end{lstlisting}
 
-En esta arquitectura, un contrato principal (el Factory) actúa como intermediario, generando nuevos contratos según las necesidades de los usuarios o la aplicación.
+En un sistema basado en \gls{ethereum} no es necesario generar un identificador centralizado para identificar a un usuario. La dirección pública de su cartera constituye un identificador único dentro de la red.
+Cada solicitud de producto solicitada al \gls{smartcontract} factory genera un nuevo contrato préstamo en la red, el cual queda registrado en la variable \textit{prestamosCursando},
+Esta variable  que relaciona la dirección del usuario solicitante con un array de direcciones de los contratos de préstamo que tiene en curso.
+De esta forma se puede registrar las direcciones de los contratos creados, proporcionando un mecanismo centralizado para su administración, por ejemplo a través
+de la función \ref{lst:funcionvercontratos}
+\begin{lstlisting}[language=Solidity, caption={Función que devuelve los contratos de un usuario},label={lst:funcionvercontratos}]
+     function verContratos(address _prestatario) public view returns (PrestamoCursando[] memory){
+        require((msg.sender == owner)||(msg.sender == _prestatario), "Top Secret");
+        return (prestamosCursando[_prestatario]);
+    }
+\end{lstlisting}
 
-De esta forma se puede registrar las direcciones de los contratos creados, proporcionando un mecanismo centralizado para su administración y acceso. 
+Por otra parte, cada \textit{contrato préstamo} mantiene información específica como el prestatario, la deuda restante, el número de cuotas pendientes, el estado del préstamo y el porcentaje de penalización aplicable
+como podemos comprobar en la definición de las variables de este prestamo en \ref{lst:prestamovariables}
+\begin{lstlisting}[language=Solidity, caption={Variables contrato préstamo},label={lst:prestamovariables}]
+    uint index;
+    enum State { PAGADO, ABIERTO, FINALIZADO }
+    State state;
+    address prestatario;
+    address entidadFinanciera;
+    address payable prestamosFactory;
+    uint256 cuotasRestantes;
+    uint256 cantidadPrestada;
+    uint256 deudaRestante;
+    uint256 cuotaMensual;
+    uint256 penalizacion;
+    uint256 ultimoCheckeo;
+\end{lstlisting}
+
+Al contar cada contrato préstamo con su propia información, se garantiza que cada préstamo es independiente y puede ser gestionado de manera autónoma, mientras que el contrato factory centraliza la creación y supervisión de todos los préstamos.
+Tal y como se puede ver en la función \ref{lst:funcionpagarmensualidad} del \textit{contrato préstamo}
+
+
+\begin{lstlisting}[language=Solidity, caption={Función para pagar mensualidad},label={lst:funcionpagarmensualidad}]
+    function pagarMensualidad() payable public {
+        require(msg.sender == prestatario, "Only borrower");
+        require(msg.value == cuotaMensual, "Send exact debt value");
+        require(state == State.ABIERTO, "Payment period not open");
+       
+        state = State.PAGADO;
+        deudaRestante -= cuotaMensual;
+        cuotasRestantes--;
+
+       
+        if(cuotasRestantes == 1){
+            cuotaMensual = calculoCuotaMensual();
+         }
+
+        if(cuotasRestantes == 0){
+         state = State.FINALIZADO;
+        }
+        transferirFondosAFactory(msg.value);
+        
+    }
+\end{lstlisting}
+A través de las lineas \begin{lstlisting}[language=Solidity] require \end{lstlisting} aseguramos que el prestatario es el único que puede realizar el pago de la mensualidad, que el importe enviado es exactamente el valor de la cuota mensual y que el estado del préstamo permite realizar el pago.
+
+Para evitar la creación de varios tipos de \textit{contrato prestamo} para distintos tipos de préstamo, se ha optado por crear un único contrato que pueda ser parametrizado en el momento de su creación.
+En el contrato \textit{factory} se define un \textit{struct} que contiene los parámetros de cada tipo de préstamo, como el importe, los intereses, la penalización por impago y el número de cuotas. 
+\begin{lstlisting}[language=Solidity, caption={struct TipoContrato},label={lst:structtipocontrato}] 
+    struct TipoContrato {
+        uint256 index;
+        uint256 porcentajeInteres; 
+        uint256 cantidad; 
+        uint256 deudaTotal;
+        uint256 cuotas;
+        uint256 penalizacionImpago;
+    }
+\end{lstlisting}
+Cuando un usuario solicita un préstamo, se pasa el tipo de préstamo seleccionado al constructor del contrato préstamo \ref{lst:constructorprestamo}, que inicializa sus variables con los valores correspondientes.
+\begin{lstlisting}[language=Solidity, caption={struct TipoContrato},label={lst:constructorprestamo}] 
+    constructor(uint256 _index, address _prestatario, address _entidad, uint256 _cuotasRestantes, uint256 _cantidad, uint256 _deudaTotal, uint256 _penalizacion){
+        index = _index;
+        state = State.ABIERTO;
+        prestatario = _prestatario;
+        entidadFinanciera = _entidad;
+        prestamosFactory = payable(msg.sender);
+        cuotasRestantes = _cuotasRestantes;
+        cantidadPrestada = _cantidad;
+        deudaRestante = _deudaTotal;
+        penalizacion = _penalizacion;
+        cuotaMensual = calculoCuotaMensual();
+        ultimoCheckeo = block.timestamp;
+    }
+\end{lstlisting}
+\subsection{Decisiones de implementación}
+\begin{enumerate}
+    \item Representación de cantidades monetarias: Debido a que la  versión
+estable del lenguaje \textit{solidity} para los Smart Contractsen el momento del desarrollo del proyecto puede tener ciertos
+errores a la hora de tratar decimales, la mejor decisión es tratar todas las cifras monetarias como enteros de la únidad mínima (\gls{wei}) evitando así los distintos
+problemas que puedan surgir con los decimales
+    \item Reducción del consumo de gas:Siempre que una operación no requiere necesariamente modificar el estado de la blockchain,
+    esta se ejecuta en la aplicación web del cliente. De esta manera se evita utilizar Gas para operaciones puramente relacionadas con la visualización de información,
+    como el recorrido de los contratos de un usuario para mostrar su estado. En este sistema se recupera la información de todos los contratos y es la aplicación web la que filtra y muestra la información de cada contrato,
+    tal y como se puede ver en las siguientes lineas de código \ref{lst:funcionvercontratos} y \ref{lst:funcionvercontratosweb}, la primera recupera la infromación de la red y la segunda muestra por pantalla
+    \begin{lstlisting}[language=TypeScript, caption={Recuperacion de informacion de contratos},label={lst:funcionvercontratos}] 
+        async iniciarVistaContratados(){
+    this.direccionesContratados = await this.factoryContract.methods
+        .verContratos(localStorage.getItem('userAddress'))
+            .call({ from: localStorage.getItem('userAddress')});
+
+        this.direccionesContratados.forEach(async (direccion: any) => {
+        var prestamoCursando = new this.web3.eth.Contract(PRESTAMOCURSANDO.abi, direccion);
+        var contratado = await prestamoCursando.methods.mostrarInfo().call({from: localStorage.getItem('userAddress')});
+        contratado._ultimoCheckeo = this.secondsToDateString(contratado._ultimoCheckeo);
+        contratado._state = this.contratoStateToString(contratado._state);
+        this.listaContratados.push(contratado);
+        });
+  }
+\end{lstlisting}
+    \begin{lstlisting}[language=HTML, caption={Muestra de informacion de contratos},label={lst:funcionvercontratosweb}] 
+ <ion-col *ngFor="let prestamo of listaContratados;" size="3.1"  >
+      <ion-card >
+        <ion-card-content >
+          <ion-list >
+  
+            <ion-item >
+              <ion-label  class = "ion-text-center" >Estado: {{ prestamo._state.toString() }}</ion-label>
+            </ion-item>
+
+            <ion-item >
+              <ion-label  class = "ion-text-center" >Deuda Restante: {{ prestamo._deudaRestante.toString() }}</ion-label>
+            </ion-item>
+    
+            <ion-item >
+              <ion-label class = "ion-text-center" >Cuotas Restantes: {{ prestamo._cuotasRestantes.toString() }} </ion-label>
+            </ion-item>
+
+            <ion-item >
+              <ion-label class = "ion-text-center" >Cantidad Próxima Cuota: {{ prestamo._cuotaMensual.toString() }} </ion-label>
+            </ion-item>
+
+            <ion-item >
+              <ion-label class = "ion-text-center">Fin plazo acutal: {{ prestamo._ultimoCheckeo }}</ion-label>
+            </ion-item>
+
+            <ion-item>
+              <ion-label class = "ion-text-center">Penalización por Impago: {{ prestamo._penalizacionImpago.toString() }}%</ion-label>
+            </ion-item>
+              
+            
+          </ion-list>
+          <ion-button (click)="pagarCuota(prestamo._direccion, prestamo._cuotaMensual)">PAGAR CUOTA ({{prestamo._cuotaMensual.toString()}})</ion-button>
+        </ion-card-content>
+        
+      </ion-card>
+    </ion-col>
+\end{lstlisting}
+    \item Registro del estado antes de realizar transferencias: En solidity es una buena práctica actualizar el estado de las variables antes de realizar transferencias de fondos, ya que esto ayuda a prevenir ataques  en los que se 
+    reutiliza la misma transacción mas de una vez debido a la reentrada y garantiza que el estado del contrato refleje la situación actual antes de cualquier movimiento de fondos.
+    Esto se puede ver en ref{lst:funcionpagarmensualidad} donde se actualiza el estado del contrato antes de transferir los fondos al contrato \textit{factory}
+    \item 
+
+
+\end{enumerate}
 
 \subsection{Diagrama Entidad - Relación de Smart Contracts}
 Aunque no sean entidades del sistema, para explicar detalladamente la arquitectura de de diseño se define otro diagrama entidad - relación en la figura 3.5:
@@ -583,9 +745,7 @@ Es importante para comprender las siguientes imagenes es importante conocer los 
 
 \begin{enumerate}
     \item \textbf{Wei:} En la red Ethereum es la unidad más pequeña de valor. Un \gls{ether} (ETH) está compuesto por un total de $10^18$ wei.
-    Debido a que la última versión estable del lenguaje para los \glspl{smartcontract}
-    'solidity' puede tener ciertos errores a la hora de tratar decimales, la mejor decisión es tratar todas las cifras monetarias como enteros de la únidad mínima evitando así los distintos problemas que puedan surgir con los decimales.
-    \item Las cadenas de caracteres que comienzan por '0x' en la red ethereum están reservadas como direcciones en la red que pueden apuntar a usuarios, entidades o \glspl{smartcontract}.
+    \item Las cadenas de caracteres que comienzan por \texttt{'0x'} en la red ethereum están reservadas como direcciones en la red que pueden apuntar a usuarios, entidades o \glspl{smartcontract}.
     Estas propiedades de nuestro sistema se pueden ver reflejadas en la figura 3.7 y tras la comprobación mensual del sistema en la figura 3.8 
 \end{enumerate}
 

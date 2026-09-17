@@ -1,9 +1,52 @@
-    \documentclass[language=spanish,%
+\documentclass[language=spanish,%
     school=etsisi,%
     type=pfg,%
     degree=61IW,%
 ]{upm-report}
+\usepackage{listings}
+\usepackage{xcolor}
 
+\lstdefinelanguage{Solidity}{
+    keywords={
+        pragma, solidity, contract, function, public, private,
+        internal, external, view, pure, returns, return,
+        if, else, for, while, struct, enum, mapping,
+        address, uint, uint256, bool, string, memory,
+        storage, calldata, payable, require, modifier,
+        event, emit, constructor, msg, sender, value
+    },
+    sensitive=true,
+    comment=[l]{//},
+    morecomment=[s]{/*}{*/},
+    morestring=[b]"
+}
+\lstset{
+    language=Solidity,
+    basicstyle=\ttfamily\small,
+    numbers=left,
+    numberstyle=\tiny,
+    frame=single,
+    breaklines=true,
+    showstringspaces=false,
+    tabsize=4
+}
+\lstdefinelanguage{TypeScript}{
+    keywords={
+        abstract, any, as, async, await, boolean, break, case, catch,
+        class, const, constructor, continue, declare, default, delete,
+        do, else, enum, export, extends, false, finally, for, from,
+        function, get, if, implements, import, in, instanceof, interface,
+        let, namespace, new, null, number, of, private, protected, public,
+        readonly, return, set, static, string, super, switch, this, throw,
+        true, try, type, typeof, undefined, var, void, while, yield
+    },
+    sensitive=true,
+    comment=[l]{//},
+    morecomment=[s]{/*}{*/},
+    morestring=[b]",
+    morestring=[b]',
+    morestring=[b]`
+}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % TÍTULO, AUTORES Y DIRECTORES
 %
