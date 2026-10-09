@@ -1,0 +1,13 @@
+\chapter{Código fuente de los Smart Contracts}
+\label{anexo:smartcontracts}
+
+En este anexo se presenta el código fuente de los contratos inteligentes desarrollados para el sistema de préstamos descentralizado basado en la red Ethereum.
+
+\section{PRESTAMOS\_FACTORY.sol}
+
+El archivo \texttt{PRESTAMOS\_FACTORY.sol} implementa el patrón Factory utilizado en el sistema para gestionar la creación de nuevos contratos de préstamo.
+En este archivo se incluye el contrato principal \texttt{Prestamos Factory} que permite a los usuarios crear y gestionar sus préstamos de manera descentralizada.
+y el contrato \texttt{PrestamoCursando} que representa un préstamo en curso, con todas las funcionalidades necesarias para su gestión.
+\begin{lstlisting}[language=Solidity, caption={Código fuente de PRESTAMOS\_FACTORY.sol}, label={lst:prestamos-factory}]
+\lstinputlisting{smart contracts/PRESTAMOS_FACTORY.sol}
+\end{lstlisting}

@@ -1,19 +1,72 @@
 \chapter{Estado de la cuestión}
 \label{ch:estadodelacuestion}
  
-A continuación se definirán las tecnologías utilizadas en la solución ofrecida por este proyecto y también se definirán las claves por las que se han seleccionado dichas tecnología, desde la decisión inicial de utilizar una red blockchain hasta pequeñas decisiones de diseño como la selección del \gls{framework} para la \gls{UI}
+\section{Protocolos de referencia para préstamos descentralizados}
+El ecosistema de las finanzas descentralizadas (\gls{defi}) ha experimentado un crecimiento significativo en los últimos años,
+esto ha llevado a la aparación de distintos protocolos que ofrecen servicios de préstamos tal y como realiza este proyecto pero con distintas características específicas.
+El pequeño analisis que aparece a continuación no se va a centrar en la parte de negocio de estos protocolos sino en la parte tecnológica ya que cada uno de estos protolocos han sido creados por
+distintos equipos privadaos de desarrollo  y no suponen un estándar en la industria de las finanzas descentralizadas. La integridad de estos protocolos se apoyan en las propiedades 
+de las redes blockchain, las cuales se hablan en este proyecto y en la fuerza empresarial que han obtenido a través de la captación de usuarios y comunidades.
+
+Cabe destacar que estos protocolos se han desarrollado en distintas redes blockchain y en el caso de ethereum se puede acceder a los \gls{smartcontract} desplegados en la red
+siendo público y accesible para cualquier usuario.
+
+\subsection{AAVE}
+El protocolo AAVE es el protocolo más parecido a la solución que ofrece este proyecto. 
+La principal diferencia es que los usuarios finales no solo solicitan los préstamos si no que
+ también pueden ofrecer sus fondos para que otros usuarios puedan solicitar préstamos.
+
+El proceso consiste en una \gls{pool} de liquidez.
+Esta \gls{pool} es alimentada por los usuarios que ofrecen sus fondos y estos pueden ser pedidos
+como préstamo por otros usuarios.
+La definición del tipo de préstamo y sus intereses viene definida por la garantía que puede aportar la persona que solicita el préstamo,
+Dependiendo del valor ofrecido como garantía se le asignará un tipo de interés y un límite de préstamo.
+
+Se puede comprobar su estado en la la red \gls{ethereum} en: \citetitle{[26]} \cite{[26]}
+Para obtener mas información se puede consultar la documentación oficial del protocolo AAVE en: \citetitle{[29]} \cite{[29]}
+\subsection{Compound}
+Este protocolo es muy similar al anterior, la principal diferencia es que las garantias están previamente definidas según el tipo de préstamo que se solicita y no se permite la aportación de garantías externas.
+Se puede comprobar su estado en la la red \gls{ethereum} en: \citetitle{[27]} \cite{[27]}
+Para obtener mas información se puede consultar la documentación oficial del protocolo Compound en: \citetitle{[30]} \cite{[30]}
+\subsection{Uniswap}
+Este protocolo es un intercambio descentralizado de criptomonedas, no es un protocolo de préstamos, aunque también se obtiene comisión a través de dejar prestados tus
+propios fondos en una \gls{pool} de liquidez.
+El funcionamiento consiste en aportar fondos a una \gls{pool}, en esta \gls{pool} se definen dos criptomonedas 
+de tal forma que los usuarios aprovechan la liquidez de esos activos que se encuentran en la \gls{pool} para realizar intercambios de criptomonedas sin necesidad de un intermediario.
+Por ejemplo, si un usuario quiere intercambiar \gls{eth}ETH por \gls{bitcoin}, el protocolo Uniswap utiliza la liquidez de la \gls{pool} para realizar la transacción de manera automática y sin necesidad  de conseguir un comprador que 
+tenga exactamente bitcoin y quiera exactamente \gls{eth}.
+En el contrato de intercabio se desglosan la comisión que obtiene la plataforma y el prestatario para la realización del intercambio.
+
+Se puede comprobar su estado en la la red \gls{ethereum} en: \citetitle{[28]} \cite{[28]}
+Para obtener mas información se puede consultar la documentación oficial del protocolo AAVE en: \citetitle{[31]} \cite{[31]}
+
+
+A continuación se definirán las tecnologías utilizadas en la solución ofrecida por este proyecto
+y también se definirán las claves por las que se han seleccionado dichas tecnología,
+desde la decisión inicial de utilizar una red blockchain hasta pequeñas decisiones de diseño como la selección del \gls{framework} para la \gls{UI}
 
 \section{¿Por qué Blockchain y por qué Ethereum?}
 
 \subsection{Blockchain}
 
-Las redes blockchain representan una revolución en el mundo digital al proporcionar una infraestructura segura, descentralizada y transparente para la transferencia y almacenamiento de datos en forma de transacciones.
+Las redes blockchain representan una revolución en el mundo digital ya que proporcionan una infraestructura segura,
+ descentralizada y transparente para la transferencia y almacenamiento de datos en forma de transacciones.
 
-Las blockchain son bases de datos distribuidas (la información se replica en varios nodos) y consiste en una secuencia continua de bloques interconectados, donde cada bloque contiene una lista de transacciones y un código de referencia, o \gls{hash}, que lo vincula al bloque anterior.
+Las blockchain son bases de datos distribuidas, esto quiere decir que la información se guarda en distintos nodos en 
+forma de bloques donde cada uno tiene un \gls{hash} que vincula cada bloque en una cadena ordenada.
+Gracias a este sistema de bloques en cadena registrados por un \gls{hash}
+se hace imposible la modificación de la información guardada en la red sin que deje una huella digital,
+ ya que al realizar este acto se modificaría el \gls{hash} asociado al bloque afectado
+ haciendo visible para el resto de la red la modificación seguramente fraudulenta.
 
-Éste \gls{hash} es único, es decir, cualquier modificación en la información de los bloques utilizados para generar el hash modificaría el \gls{hash} de referencia del bloque, de esta forma la red comprueba rápidamente si ha habido una modificación, (seguramente maliciosa) en la red.  Esta estructura en cadena hace que la blockchain sea inmutable y resistente a manipulaciones, ya que cualquier cambio en un bloque alteraría todos los bloques posteriores, haciéndolo evidente para todos los participantes de la red.
+Esta estructura en cadena proporciona las propiedades de inmutabilidad y resistencia a manipulaciones.
 
-Estos sistemas  permiten la creación, registro y transferencia de información o valor sin necesidad de una entidad central de control. Su diseño y estructura presentan características innovadoras que la han posicionado como una de las tecnologías más prometedoras, sobre todo en el sector financiero, aunque su aplicación se está extendiendo a diversas industrias. \cite{[4]}
+Estos sistemas  permiten la creación, registro y transferencia de información o valor sin 
+necesidad de una entidad central de control, de aquí su naturaleza descentralizada.
+
+Este diseño y estructura presentan características innovadoras que posicionan a las redes \gls{blockchain}
+  como una de las tecnologías más prometedoras, sobre todo en el sector financiero,
+   aunque su aplicación se está extendiendo a diversas industrias. \cite{[4]}
 
 \subsubsection{Componentes en las transacciones Blockchain}
 
@@ -93,8 +146,27 @@ La Máquina Virtual de Ethereum (\gls{evm}) es la infraestructura que hace posib
         
 Gracias a los contratos inteligentes y la \gls{evm}, Ethereum se convirtió en una plataforma que permite a los desarrolladores crear y desplegar sus propias aplicaciones sobre la misma red, similar a una "\gls{appstore}" descentralizada. Esto le ha dado una gran popularidad y ha impulsado el crecimiento de sectores como las finanzas descentralizadas (\gls{defi}) y los tokens no fungibles (\gls{nft}), lo que ha ampliado las posibilidades de uso de blockchain más allá de las transferencias de valor.
 
-        \item \textbf{ Criptoeconomía y Modelo de Tokenización} Otra diferencia clave es que Ethereum cuenta con su propia criptomoneda, Ether (\gls{eth}), que es necesaria para realizar transacciones y ejecutar contratos inteligentes en la red. Los usuarios deben pagar '\gls{gas} (una tarifa en \gls{eth}) para que sus transacciones y contratos inteligentes se procesen, lo que incentiva a los  nodos mineros o nodos validadores (actualmente del tipo \gls{pos})a verificar las transacciones y mantiene la red segura y funcional.
-Además, Ethereum introdujo el concepto de tokenización mediante el estándar '\gls{erc20}', que permite crear \glspl{nft} que representan activos o derechos sobre la misma red Ethereum. Este estándar ha facilitado la creación de una gran variedad de \gls{nft} y criptomonedas en Ethereum, impulsando el crecimiento de proyectos de \gls{defi} y otros ecosistemas tokenizados. También existen otros estándares como ERC-721 y ERC-1155 para tokens no fungibles (\gls{nft}), que han revolucionado el sector de coleccionables y derechos digitales.
+        \item \textbf{ Criptoeconomía y Modelo de Tokenización}
+         Otra diferencia clave es que Ethereum cuenta con su propia criptomoneda,
+          Ether (\gls{eth}), que es necesaria para realizar transacciones y pagar las comisiones para obligatorias
+          para ejecutar \gls{smartcontract}en la red.
+          La comisión cobrada para cada transacción se calcula según la cantidad de \gls{gas} muliplicado por su precio 
+           en el momento de la transacción.
+          El  \gls{gas} mide el trabajo computacional necesario para ejecutar una operación en la red.
+          Estas comisiones son parcialmente transferidas a los  nodos mineros o nodos validadores, incentivando a estos
+          a verificar las transacciones  mantenienod la red segura y operativa.
+          La parte de la comisión que no es transferida a los nodos que participan en la red es retirada de la red.
+
+          Además, Ethereum introdujo el concepto de  \enquote{tokenización}, esto permite representar activos o derechos a través de \gls{token}.
+          Para facilitar el uso y transferencia de estos, se han creado distintos estandares como por ejemplo:
+          \begin{enumerate}
+            \item \gls{erc-20}: tokens fungibles, cuyas unidades son intercambiables entre sí, como puede ser una criptomenda.
+            \item \gls{erc-721} tokens no fungibles, que permiten distinguir cada token individualmente, pudiendose usar para representar
+                 activos en la vida real o distintos derechos de usuario como una votación.
+            \item \gls{erc-1155}ERC-1155: permite gestionar distintos tipos de tokens en una misma operación,
+             tanto fungibles como no fungibles, en un mismo contrato.
+          \end{enumerate}
+
         \item \textbf{Identidad} Ethereum es una red descentralizada, no utiliza identificaciones centralizadas como puede ser la centralización estatal del \gls{dni}.
         Aunque no es una característica exclusiva de Ethereum. el sistema de identificación de esta red consiste en el típico sistema asimétrico de clave pública y privada de forma que para identificar a cada usuario se utiliza su clave pública y para que este pueda ejecutar transacciones en su nombre utiliza su clave única y privada.
         Sin embargo, esto también significa que no hay una forma nativa de verificar identidades del mundo real.
@@ -113,13 +185,27 @@ Para obtener SepoliaETH, los desarrolladores pueden utilizar faucets como Sepoli
 
 \subsection{Identificación en la red: Metamask}
 
-La naturaleza anónima de las redes Blockchain supone que se requiera una capa extra para relacionar un usario de la red a una persona física. 
-Para la personalización de este proyecto se han buscado alternativas las cuales tengan librerías nativas capaces de interactuar directamente con las funciones de \gls{web3} para  una mayor personalización del sistema.
-Encontramos distintas alternativas como Coinbase\cite{[11]} y RabbyWallet\cite{[12]} pero para este proyecto se ha decido hacer uso de  Metamask\cite{[13]} debido a su mayor popularidad y sobretodo la facilidad de acceso a nivel de usuario. \citetitle{[14]} \cite{[14]}
-Metamask es una extensión del navegador la  cual actúa de 'cartera' de direcciones relacionando un usuario real con las direcciones que este tenga en las distintas redes disponibles.
-Al ser una extensión del navegador, puede detectar cuando el navegador se situa en una 
-\gls{dapp} y utilizarse para identificarse en la misma.
-A demás metmask también es un asistente para realizar transacciones sencillas de criptopmonedas.
+En una red blockchain los usuarios interactúan con la red mediante direcciones, estas direcciones no permiten conocer
+directamente la identidad de la persona que la utiliza. 
+Una cuenta en Metamask permite que un usuario guarde en un mismo punto todas las direcciones que utiliza para comunicarse
+con las redes blockchain, este sistema recibe el nombre de \gls{wallet} o cartera de direcciones.
+Aunque Metamask no relacione directamente sus cuentas con personas físicas, permite identifiar al usuario dentro de las 
+aplicaciones descentralizadas (\gls{dapp}).
+Metamask además ofrece librerías capaces de interactuar directamente con las funciones \gls{web3} siendo una buena opción
+para delegar el sistema de identificacón
+
+Encontramos distintas alternativas como Coinbase\cite{[11]} y RabbyWallet\cite{[12]} 
+pero para este proyecto se ha decido hacer uso de  Metamask\cite{[13]} debido a su mayor
+ popularidad y sobretodo la facilidad de acceso a nivel de usuario. \citetitle{[14]} \cite{[14]}
+
+Metamask es una extensión del navegador a través la cual una \gls{dapp} usando librerías \gls{web3} puede detectar
+ e identificar al  usuario en el sistema siempre que este de su autorización. 
+
+A demás metamask también es un asistente para revisar y firmar transacciones y operaciones con \gls{smartcontract}
+que requieren de una dirección privada, como, en el caso de este sistema, la solicitud de un prestamo.
+
+Estas caracteríscas hace de Metamask una  herrammienta muy potente para delegar un servicio tan delicado como la 
+identificación del usuario.
 
 \subsection{Web3}
 
@@ -140,6 +226,7 @@ También es deal como asistente de compilación y despliegue  de \glspl{smartcon
 Node.js \cite{[17]}entorno de ejecución \gls{javascript}  de código abierto y gratuito que facilita la incorporación de paquetes a un proyecto. Muy utilizado para instalar y utilizar librerías  web3.
 
 \subsection{Mochatest Framework}
+\label{sec:mochasection}
 Marco de pruebas en \gls{javascript} diseñado para ejecutar pruebas unitarias y de integración en aplicaciones Node.js. Ofrece una estructura flexible, con soporte para pruebas síncronas y asíncronas.
 
 \subsection{Truffle}

@@ -717,7 +717,7 @@ la cuota. \\ \hline
 \end{table}
 
 \section{Validación de resultados}
-MOCHA
+\subsection{Validación a través del uso de la aplicación del sistema}
 Tras el desarrollo del sistema de préstamos descentralizado, es necesario comprobar si cumple con los objetivos planteados y cubre los casos de uso definidos. Para ello, se presentan pruebas mediante capturas de pantalla de la interfaz y registros en Etherscan, validando la ejecución de transacciones y el correcto funcionamiento de los contratos inteligentes en la blockchain de Ethereum.
 
 El \gls{op} 2 consiste en la unificación de las distintas funcionalidades del proyecto en una interfaz accesible a cualquier sujeto independiente de la formación.
@@ -815,10 +815,211 @@ Se adjunta también otra captura de pantalla en la figura 3.11 de la informació
     \includegraphics[width=\textwidth]{figures/resultados/pagoprestamo.jpg}
     \label{fig:Etherscan comprobante de pago}
 \end{figure}
+\subsection{Mocha test}
+Ya se ha visto el correcto funcionamiento de la aplicación a traves de la interfaz de usuario y la verficación de las transacciones en la red. 
+Pero para garantizar el correcto funcionamiento de los smart contracts en situaciones distintas al correcto uso de la aplicación, 
+se han desarrollado distintos test unitarios utilizando la herramienta \hyperref[sec:mochasection]{Mocha test Framework}
 
+Estos tests tienen como objetivo:
+\begin{enumerate}
+    \item Comprobar el funcionamiento de los contratos inteligentes.
+    \item Verificar que las operaciones de préstamos funcionan correctamente.
+    \item Detectar errores en condiciones normales y situaciones no permitidas.
+    \item Comprobar las restricciones de acceso y los cambios de estado.
+\end{enumerate}
+
+\subsubsection{Red de pruebas local}
+Para evitar utilizar una red pública se han desplegado los contratos sobre una red local utilizando la herramienta Ganache \cite{[19]}.
+Esto evita que aparezcan transacciones de prueba exponiendo información sensible del funcionamiento del  sistema en la red pública y 
+permite la repetición de escenarios que son difíciles de reproducir en un entorno real, como que un usuario no pague su cuota mensual y se le aplique la penalización correspondiente.
+\subsubsection{Cuentas utilizadas para los test}
+La herramienta de creación de red local virtual es la encargada de generar distintas cuentas con las que interactuar en la red.
+Se han utilizado 3 cuentas para realizar los test unitarios:
+\begin{enumerate}
+    \item Una cuenta propietaria del sistema
+    \item Dos cuentas de usuario que solicitan el préstamo
+\end{enumerate}
+\subsubsection{Contratos inteligentes puestos a prueba}
+Los test se han hecho sobre el motor de este sistema, es decir, sobre los smart contracts que definen el funcionamiento del sistema de préstamos.
+Estos contratos se pueden ver en el anexo ~\ref{anexo:smartcontracts} y son los siguientes:
+\begin{enumerate}
+    \item Contract Factory: Contrato principal que gestiona la creación de los contratos de préstamo
+    \item Prestamo Cursando: Contrato que representa un préstamo individual y gestiona su estado
+\end{enumerate}
+\subsubsection{Tecnología de los test}
+Los test se han desarrollado utilizando JavaScript y el framework Mocha y la librería Chai para las aserciones.
+Estos test se pueden encontrar en el anexo ~\ref{anexo:mochatest}
+\subsubsection{Desarrollo de los test: Variables previas y condiciones iniciales}
+Previo al desarrollo puro de los test, antes de cada ejecución se deben dar las condiciones iniciales para que los test puedan ejecutarse correctamente.
+El proceso de preparación de los test consiste en desplegar los contratos en la red local y establecer las condiciones iniciales para cada prueba.
+Para ello se han realizado los siguientes pasos:
+\begin{enumerate}
+    \item \textbf{Compilación en local de los smart contracts} A través de la herramienta Truffle se compilan los smart contracts previamente para que la red sea capaz de adquirir sus funciones.
+    Esta compilación genera un archivo .json con las funciones del smart contract parametrizadas para que la red sea capaz de interactuar con él.
+    \item \textbf{Obtención de cuentas} Se obtienen las cuentas necesarias para realizar los test.
+    \item \textbf{Despliegue del contrato en la red} En el desarrollo de los test se hace uso del archivo .json de la compilación y se despliega el contrato a testear en la red local de pruebas.
+            \begin{lstlisting}[language=Solidity, caption={Despliegue de contrato en la red local}]
+                    describe('Prestamos factory test', () => {
+
+                    ```
+                    before( async() => {  
+                        accounts = await web3.eth.getAccounts();
+                        factory = await new web3.eth.Contract(prestamosFactoryBuild.abi)
+                            .deploy({data: prestamosFactoryBuild.evm.bytecode.object})
+                            .send({ from: accounts[0], gas: 6721975});
+                        
+                        console.log('contract address:'+ factory.options.address);
+                        console.log('Owner: ' + accounts[0]);
+                        
+                        
+                    } );
+                    ```
+
+                \end{lstlisting}
+
+    \item \textbf{Establecimiento del estado inicial} En el caso de los test para los Prestamos en curso, se establece primero las variables previas necesarias a la contratación de un prestamo.
+    Estas son:
+    \begin{enumerate}
+        \item \textbf{Introducción de fondos} El sistema de préstamos necesita fondos previos para que se le pueda solicitar prestamos.
+        \item \textbf{Creación de un tipo de préstamo} Se crea un tipo de préstamo con las características necesarias para el test.
+        \item \textbf{Creación de contratos de prestamo y obtención de sus direcciones} De esta manera se obtiene la forma de acceder a los contratos sobre los que se ejecutarán los test.
+    \end{enumerate}
     
+\begin{lstlisting}[language=Solidity, caption={Parametrización de Prestamos cursando}]
+    describe('Prestamos Cursando test', async () => {
+    //INICIALIZAR PRESTAMOS EN CURSO
+    before(async() => {  
+        //Inicializar cuentas
+        accounts = await web3.eth.getAccounts();
+        
+        
+        //Inicializar contract factory
+        factory = await new web3.eth.Contract(prestamosFactoryBuild.abi)
+            .deploy({data: prestamosFactoryBuild.evm.bytecode.object})
+            .send({ from: accounts[0], gas: 6721975});
+            
 
+        //Invertir para poder crear nuevos contratos
+        await factory.methods.invertir().send({
+                from: accounts[0],
+                value: web3.utils.toHex(10000)
+            });
+        //Definir préstamo
+        await factory.methods.definirPrestamo(10,1000,2,10).send({from: accounts[0],
+            gas: web3.utils.toHex(2000000)});
+        //Contratar prestamos
+        await factory.methods.contratarPrestamo(accounts[1],0).send({from: accounts[1],
+            gas: web3.utils.toHex(2000000)});
+        await factory.methods.contratarPrestamo(accounts[2],0).send({from: accounts[2],
+            gas: web3.utils.toHex(2000000)});
 
+        [prestamo1address]=await factory.methods.verContratos(accounts[1]).call({from: accounts[1]});
+        [prestamo2address]=await factory.methods.verContratos(accounts[2]).call({from: accounts[2]});
+        
+        prestamo1 = await new web3.eth.Contract(prestamoCursandoBuild.abi,prestamo1address);
+        prestamo2 = await new web3.eth.Contract(prestamoCursandoBuild.abi,prestamo2address);
+        
+    });
+    \end{lstlisting}
+
+    \item \textbf{Descripción test} El contenido de los test se pueden ver en los dos ficheros del anexo ~\ref{anexo:mochatest} y se describen a continuación:
+        ```latex
+            \begin{enumerate}
+                \item \textbf{1. Pruebas del \texttt{PrestamosFactory}}
+
+                En \texttt{test\_prestamos\_factory.js} se comprueba principalmente el \textbf{funcionamiento del contrato Factory y sus restricciones}:
+
+                \begin{enumerate}
+                    \item \textbf{Despliegue del contrato}: se verifica que el \texttt{PrestamosFactory} se despliega correctamente y obtiene una dirección.
+                    \item \textbf{Control de acceso}: se comprueba que determinadas funciones únicamente pueden ser ejecutadas por el \texttt{owner}.
+                    \item \textbf{Ingreso de fondos}: se comprueba que \texttt{invertir()} incrementa correctamente el saldo del Factory.
+                    \item \textbf{Consulta de saldo}: se verifica que \texttt{getBalance()} devuelve el saldo real del contrato.
+                    \item \textbf{Estado inicial}: se comprueba que inicialmente no existen clientes, tipos de préstamo ni préstamos en curso.
+                    \item \textbf{Retirada de fondos}: se verifica que \texttt{recolectarFondos()} reduce correctamente el saldo del Factory.
+                    \item \textbf{Validación de parámetros}: se prueban valores incorrectos para los porcentajes de intereses y penalizaciones, comprobando que las operaciones son rechazadas.
+                    \item \textbf{Creación de tipos de préstamo}: se comprueba que \texttt{definirPrestamo()} crea correctamente un nuevo producto y genera el evento correspondiente.
+                    \item \textbf{Consulta de tipos de préstamo}: se verifica que los datos almacenados coinciden con los valores introducidos.
+                    \item \textbf{Contratación de préstamos}: se comprueba tanto la contratación correcta como situaciones en las que la operación debe fallar.
+                    \item \textbf{Consulta de préstamos de un usuario}: se verifica que \texttt{verContratos()} devuelve los contratos correspondientes.
+                    \item \textbf{Intento de eliminar un préstamo no finalizado}: se comprueba que esta operación no está permitida.
+                \end{enumerate}
+
+                \item \textbf{2. Pruebas del \texttt{PrestamoCursando}}
+
+                El segundo archivo prueba el \textbf{ciclo de vida de un préstamo individual}.
+
+                Se parte de una situación preparada con:
+
+                \begin{enumerate}
+                    \item Factory desplegado.
+                    \item Fondos introducidos.
+                    \item Tipo de préstamo creado.
+                    \item Dos préstamos contratados por usuarios diferentes.
+                \end{enumerate}
+
+                A partir de ahí se prueban:
+
+                \begin{enumerate}
+                    \item \textbf{Control de acceso a la información}: un usuario diferente al prestatario no puede consultar la información privada del préstamo.
+                    \item \textbf{Consulta de información del préstamo}: se comprueban importe prestado, deuda, cuota mensual, número de cuotas, estado, prestatario, etc.
+                    \item \textbf{Restricción temporal}: se comprueba que no se puede realizar el chequeo mensual antes de que haya transcurrido el tiempo establecido.
+                    \item \textbf{Pago de una cuota}: se realiza un pago y se comprueba que:
+                    \begin{enumerate}
+                        \item disminuye el número de cuotas restantes;
+                        \item disminuye la deuda;
+                        \item cambia el estado del préstamo.
+                    \end{enumerate}
+                    \item \textbf{Transferencia de fondos}: se verifica que el dinero pagado vuelve correctamente al \texttt{PrestamosFactory} y que su balance es el esperado.
+                    \item \textbf{Chequeo mensual}: se simula el paso del tiempo y se comprueba que el chequeo:
+                    \begin{enumerate}
+                        \item actualiza el estado del préstamo;
+                        \item aplica una penalización al préstamo que no ha sido pagado.
+                    \end{enumerate}
+                    \item \textbf{Finalización del préstamo}: se paga la última cuota y se comprueba que el préstamo pasa al estado de finalizado.
+                    \item \textbf{Eliminación de préstamos finalizados}: después del chequeo mensual se comprueba que el contrato finalizado deja de aparecer entre los préstamos activos del usuario y que se actualiza la lista de clientes.
+                \end{enumerate}
+            \end{enumerate}
+
+    \item \textbf{Comprobación de los test} Tras la ejecución de los test, se comprueba que los resultados obtenidos son los esperados y que el sistema funciona correctamente.
+     Para ello se utilizan las funciones de aserción de la librería Chai, que permiten comparar los resultados obtenidos con los esperados y generar un informe de los test realizados.
+       \end{enumerate}
     
+\subsubsection{Resultados} Tras el desarrollo y ejecución de los test se puede comprobar que el sistema funciona correctamente y que se cumplen los objetivos planteados.
+    A su vez se han encontrado 2 situaciones que no se contemplaban en el diseño inicial.
+    \begin{enumerate}
+        \item Existe un metodo setIndex(index) a través del cual el contrato Factory crea un indice para controlar los contratos de préstamo en curso de un usuario. 
+        Esta función está publica en la red y únicamente puede ser ejecutada por el contrato PrestamoCursando, aunque si una atacante malicioso conociese la dirección del contrato principal y tuviese el archivo compilado del contrato puediendo 
+        acceder directamente a esta función podria simular que es el contrato PrestamoCursando y modificar el índice de los contratos de un usuario pudiendo quedar invisibles.
+        \item La funcion que chequea el estado de todos los contratos del sistema se demora más segundos de los que el timeOut mocha tiene por defecto por lo que se ha tenido que aumentar.
+    \end{enumerate}
+\subsection{Validación del proyecto después de pruebas}
+Durante la ejecución de las pruebas de este proyecto y la simulación de un entorno real se ha visto que un sistema como este puede llegar a niveles de producción
+en un entorno real. Dejando a parte la necesidad de un desarrollo futuro para añadir actores y elementos al sistema necesarios para un sistema de prestamos real
+,como pueden ser las garantías de devolucion, a nivel técnico se afirma que la tecnología es viable.
+\subsubsection{Viabilidad económica}
+Tras estudiar los gastos de \gls{gas} en los registros de \href{https://sepolia.etherscan.io/}{Etherscan Sepolia} se puede comprobar que los gastos de contratar un préstamo
+dependen mucho del precio del \gls{gas} en el momento de contratación, el cual varía de forma muy dinámica dependiendo de la congestión de la red, en el proceso de de validación se han ejecutado
+ transferencias de préstamo con costes desde 0,46 dólares hasta 30,49 dolares.
+ Esto puede crear un cuello de botella de entrada de préstamos en caso de que se dependa en exceso de esta variable obligando 
+a la gestión del sistema a retrasar contratos y operaciones cuando el coste sea muy alto o directamente pasar los costes a los clientes.
+Por otro lado, independientemente de esta variable, a nivel técnico se ha comprobado que en el momento en el que se comprueba si todos los préstamos han sido pagados o no,
+la cantidad de procesamiento aumenta linealmente por el número de contratos en el sistema, sumandolo a un alto coste del gas podría crear un bloqueo total del sistema
+por lo que sería obligatorio optimizar la forma en la que se realiza este chequeo aunque manteniendo la viabilidad del sistema.
 
+
+
+%%Hacer una introducción en condiciones como resumen final
+
+%%añadir ionic a la tecología
+%%revisar objetivos
+%%agenda 2030
+%%hABLAR DE TRABAJOS FUTUROS EN CONCLUSIONES
+
+
+%%\GLS Y \acrfull{pow} para Proff of Work**/
+%%arreglar referencias y tablas, ver referencias de google scholar
+%%referencias y citas
+%%repaso de glosarios
+%%citas antes del punto
+%%\enquote para citas
 
