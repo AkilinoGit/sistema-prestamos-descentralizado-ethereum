@@ -1,23 +1,81 @@
 \chapter{Conclusiones}
 
-En este Proyecto Fin de Grado se ha desarrollado un sistema de préstamos descentralizado basado en la red Ethereum. Se puede afirmar que se ha obtenido una aplicación capaz de conectarse con una red blockchain  y realizar transacciones en ella, y que gracias al registro de estas transacciones y cierta lógica aplicada a esta información, se puede componer un sistema de creación y control de préstamos digitales.
+En este Proyecto Fin de Grado se ha desarrollado un sistema de préstamos 
+descentralizado basado en la red Ethereum. Se puede afirmar que se ha obtenido 
+una aplicación capaz de conectarse con una red blockchain  y realizar transacciones 
+en ella, y que gracias al registro de estas transacciones y cierta lógica aplicada 
+a esta información, se puede componer un sistema de creación y control de préstamos 
+digitales.
 
-La interfaz de usuario realiza las conexiones necesarias con la red Blockchain y ordena las transacciones necesarias para cubrir las necesidades de creación y control de préstamos digitales.
+La interfaz de usuario realiza las conexiones necesarias con la red Blockchain y 
+ordena las transacciones necesarias para cubrir las necesidades de creación y 
+control de préstamos digitales.
 
-Los \glspl{smartcontract} desplegados en la red ethereum definen correctamente, dentro de la red, la lógica aplicada a los atributos de las transacciones conformando los mecanismos necesarios para la funcionalidad del sistema.
+Los \glspl{smartcontract} desplegados en la red ethereum definen correctamente, 
+dentro de la red, la lógica aplicada a los atributos de las transacciones 
+conformando los mecanismos necesarios para la funcionalidad del sistema.
 
-Las características de seguridad e inmutabilidad que ofrecen las redes descentralizadas aplicadas a la información que el sistema guarda en la red Ethereum confirman la viabilidad técnica de las operaciones financieras de este sistema.
+Las características de seguridad e inmutabilidad que ofrecen las redes 
+descentralizadas aplicadas a la información que el sistema guarda en la red 
+Ethereum confirman la viabilidad técnica de las operaciones financieras de este 
+sistema.
 
-Durante la implementación y validación, se ha demostrado el correcto funcionamiento del sistema mediante pruebas en redes de desarrollo.
+Durante la implementación y validación, se ha demostrado el correcto funcionamiento 
+del sistema mediante pruebas en redes de desarrollo.
 
-Estos resultados confirman que la solución desarrollada cumple con los objetivos iniciales los cuales intentaban crear un sistema capaz de utilizar la tecnología disponible en la actualidad para construir un sistema sólido, confiable, transparente y autónomo para la gestión de préstamos respaldados por criptomonedas.
-Acercando esta tecnología al usuario común y reuniendo las acciones necesarias en una única pantalla de control.
+Estos resultados confirman que la solución desarrollada cumple con los objetivos 
+iniciales los cuales intentaban crear un sistema capaz de utilizar la tecnología 
+disponible en la actualidad para construir un sistema sólido, confiable, 
+transparente y autónomo para la gestión de préstamos respaldados por criptomonedas.
+Acercando esta tecnología al usuario común y reuniendo las acciones necesarias en 
+una única pantalla de control.
 
 Finalmente, se concluye que la adopción de tecnologías \gls{defi} y contratos inteligentes tiene el potencial de transformar el acceso a servicios financieros, reduciendo costos y aumentando la inclusión financiera a nivel global. Sin embargo, persisten desafíos como la volatilidad del valor de las criptomonedas y los costos de transacción en Ethereum.
 
 \section{Trabajo futuro}
-Optimización de código, utilizar bases de dtaso para evitar el procesacmiento en la red, uso de Layer 2, sistemas de automatización con gas bajo.
-HAblar de Casos de uso futuro
+En el desarrollo de este proyecto se ha podido comprobar que un sistema de prestamos
+descentralizado es posible, pero, para que un proyecto como este llegue a una situación
+de producción real es necesario realizar una serie de desarrollos para cumplir con 
+necesidades básicas en un sistema de préstamo real.
+
+Se considera la más importante la adopción de garantías de impago, esta carencia del 
+proyecto se tiene en cuenta en el Caso de uso futuro 12 :  Garantía de devolución en 
+caso de impago,
+aunque actualmente el sistema sea capaz de penalizar los impagos, no se garantiza recuperar
+el capital prestado, para ello se pueden desarrollar dos casos de uso:
+\begin{itemize}
+     \item Creación de sistema de colaterales: en un futuro será de obligado 
+     cumplimiento que el usuario que solicite un prestamo añada al sistema 
+     alguna garantía, la cual puede estar en forma de \gls{nft}, y en caso 
+     de que el usuario se declare en situación de impago, este \gls{nft} pasaría 
+     automaticamente a ser propiedad del sistema
+     \item Creación de sistema de avales: En situaciones en los que el usuario 
+     no pueda añadir esa garantía o colateral se podrá añadir al contrato un tercero 
+     capaz de añadir un colateral al contrato e incluso encargarse de las cuotas en 
+     caso de que el usuario principal no lo haga
+\end{itemize}
+
+El nuevo sistema de garantías también debera incluir un sistema de validación de 
+solvencia, tal y como se habla en el Caso de uso futuro 14, lo que aportará 
+mayor solided a la garantía de devolución.
+
+Durante los tests de funcionamiento del sistema se pudo comprobar las ineficencias 
+de código en la red. Sobretodo evitar recorrer todos los contratos exoistentes 
+una vez al mes para comprobar si han sido pagados o no. Para ello el sistema se puede 
+apoyar en elementos externos a la red como una base de datos temporal en la que puede 
+quedar reflejado cada pago de la mensualidad en red y mensualmente ejecutar las 
+penalizaciones en la red con los contratos que no aparecen en esta base de datos,
+aunque sea una base de datos externa, su uso no rompe con ninguna característica 
+en las que se apoya el sistema ya que solo sería un apoyo técnico, manteniendo siempre 
+reflejado en la red la situación financiera del sistema.
+
+Con menos prioridad se deberán desarrollar sitemas que utilicen \gls{oraculo} 
+tal y como se habla en el Caso de uso Futuro 13, este sistema junto a la comprobación 
+de solvencia económica pueden servir para una correcta definición de  los tipos de 
+prestamo y condiciones disponibles en el sistema.
+
+
+
 \section{Impactos sociales y ambientales del desarrollo de este sistema a gran escala}
 
 La adopción masiva de un sistema de préstamos descentralizado basado en blockchain y 
@@ -103,6 +161,33 @@ Estos objetivos buscan equilibrar el desarrollo social, económico y ambiental, 
     \label{fig:2030}
 \end{figure}
 
-Se puede concluir que este proyecto tiene un gran potential de influir positivamente en los objetivos relacionados en el ámbito financiero como los \gls{ods} 8 y 9 y también en el ámbito social podría promover los \gls{ods} 10 y 16 aunque también es importante destacar que para que proyectos de este estilo aporten positivamente estos \gls{ods} habría que invertir mucho en educación y crear estructuras sólidas en el sistema financiero actual.
+Se puede concluir que este proyecto tiene un gran potential de influir 
+positivamente en los objetivos relacionados en el ámbito financiero como los 
+\gls{ods} 8 y 9 ya que supone la creación de una nueva infraestructura 
+en el desarrollo de actividades económicas favoreciendo nuevas oportunidades de 
+crecimiento económico.
 
-En el apartado ambiental, aunque no esta todo perdido y se pueden estudiar maneras de reducir la energía gastada en la computación de esta tecnología, todo apunta a que esta clase de proyectos van en contra de los objetivos climáticos como los \gls{ods} 11, 12 y 13.
+
+El desarrollo de plataforma \gls{defi} tiene un gran potencial en la reducción de 
+desigualdades y la aplicación de justicia social (\gls{ods} 10), la cuestión es
+que el desarrollo de este potencial viene directamente correlacionado con el uso
+que se le dé a esta tecnología pudiendo desarrollarse en una dirección opuesta a estos
+\gls{ods}, si no se combate la brecha digital y se evita la creación de barreras articifiales pueden aumentar
+por parte de los desarrolladores de esta tecnologías, 
+las desigualdades y la injusticia social aumentarían todavía mas en vez de reducirse.
+
+Algo parecido pasa con el \gls{ods} 16: la transparencia de las transacciones en un 
+entorno descentralizado suponen una clara exposición de injusticias o malversaciones
+realizadas en la red aunque esta característica pierde toda valided cuando se hace
+un mal uso de la justicia y suceden eventos en los que se aprecia que 
+\enquote{la justicia NO es igual para todos}
+
+En el apartado ambiental (\gls{ods} 11, 12 y 13), aunque, es cierto, que tras el cambio de validación de 
+bloques en la red a través de puro procesamiento y consumo eléctrico (\gls{pow})
+por un sorteo en base a las aportaciones de capital en la red (\gls{pos}) se redujo
+de manera drástica el consumo de electricidad, sigue habiendo otros problemas como 
+la gestión de residuos de la infraestructura de la red.
+Aunque volvemos a lo mismo que los apartados anteriores, siempre se puede utilizar
+el aumento de productividad y capital en paliar los efectos adversos que este 
+sistema incide en el ecosistema, todo depende del uso que se quiera dar a la 
+tecnología.
