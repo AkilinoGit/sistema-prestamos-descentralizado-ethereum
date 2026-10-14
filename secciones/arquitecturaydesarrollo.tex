@@ -422,9 +422,10 @@ El  diagrama  representado en la figura 3.4 pretende definir mediante relaciones
     \label{fig:er}
 \end{figure}
 
-\section{Decisiones de implementación en el sistema}
+\section{Smart contracts implicados}
+\subsection{Decisiones de implementación en el sistema}
 En esta sección se define el diseño de implementación utilizado para los smart contract, así como los atributos(Tablas 3.17 y 3.19) y funciones(Tablas 3.18 y 3.20) de cada uno de ellos.
-\subsection{Contract Factory}
+\subsubsection{Contract Factory}
 El lenguaje utilizado para el desarrollo de los \glspl{smartcontract} es \gls{solidity}
 El patrón de diseño en el que se basa el desarrollo de los \glspl{smartcontract} de este proyecto se llama \textit{'Contract Factory'}.
 Este patrón de diseño encaja perfectamente en el desarrollo de este proyecto ya que nos permite crear los distintos contratos de préstamo
@@ -513,7 +514,7 @@ En el contrato \textit{factory} se define un \textit{struct} que contiene los pa
                 }
             \end{lstlisting}
 
-\subsection{Direcciones como identificación}
+\subsubsection{Direcciones como identificación}
 En un sistema basado en \gls{ethereum} no es necesario generar un identificador centralizado para identificar a un usuario.
 La dirección pública de su cartera constituye un identificador único dentro de la red.
 Cada solicitud de producto solicitada al \gls{smartcontract} factory genera un nuevo contrato préstamo en la red con su correspondiente
@@ -529,16 +530,16 @@ De esta forma se puede registrar las direcciones de los contratos creados, propo
     }
 \end{lstlisting}
 
-\subsection{Utilización de la plataforma \gls{metamask}enta de identificación en el sistema}
+\subsubsection{Utilización de la plataforma \gls{metamask}enta de identificación en el sistema}
 Debido a que la identificación de los usuarios en la red se realiza a través de sus direcciones públicas, es necesario que los usuarios dispongan de una cartera digital que les permita interactuar con la red Ethereum
 de una manera mas amigable. Para ello se ha optado por utilizar la extensión de navegador \gls{metamask} a los usuarios hacer login en la plataforma con una simple extensión del navegador,
 así como firmar transacciones de manera segura.
 El uso de \gls{metamask} hace que la aplicación no se haga responsable de la generación, almacenamiento ni gestión de las claves privadas de los usuarios.
-\subsection{Representación de cantidades monetarias} Debido a que la  versión
+\subsubsection{Representación de cantidades monetarias} Debido a que la  versión
 estable del lenguaje \textit{solidity} para los Smart Contractsen el momento del desarrollo del proyecto puede tener ciertos
 errores a la hora de tratar decimales, la mejor decisión es tratar todas las cifras monetarias como enteros de la únidad mínima (\gls{wei}) evitando así los distintos
 problemas que puedan surgir con los decimales
-\subsection{Reducción del consumo de gas} Siempre que una operación no requiere necesariamente modificar el estado de la blockchain,
+\subsubsection{Reducción del consumo de gas} Siempre que una operación no requiere necesariamente modificar el estado de la blockchain,
     esta se ejecuta en la aplicación web del cliente. De esta manera se evita utilizar Gas para operaciones puramente relacionadas con la visualización de información,
     como el recorrido de los contratos de un usuario para mostrar su estado. En este sistema se recupera la información de todos los contratos y es la aplicación web la que filtra y muestra la información de cada contrato,
     tal y como se puede ver en las siguientes lineas de código \ref{lst:funcionvercontratos} y \ref{lst:funcionvercontratosweb}, la primera recupera la infromación de la red y la segunda muestra por pantalla
@@ -595,12 +596,12 @@ problemas que puedan surgir con los decimales
       </ion-card>
     </ion-col>
 \end{lstlisting}
-\subsection{Registro del estado antes de realizar transferencias} En solidity es una buena práctica actualizar el estado de las variables antes de realizar transferencias de fondos, ya que esto ayuda a prevenir ataques  en los que se 
+\subsubsection{Registro del estado antes de realizar transferencias} En solidity es una buena práctica actualizar el estado de las variables antes de realizar transferencias de fondos, ya que esto ayuda a prevenir ataques  en los que se 
     reutiliza la misma transacción mas de una vez debido a la reentrada y garantiza que el estado del contrato refleje la situación actual antes de cualquier movimiento de fondos.
     Esto se puede ver en ref{lst:funcionpagarmensualidad} donde se actualiza el estado del contrato antes de transferir los fondos al contrato \textit{factory}
 
 
-\section{Diagrama Entidad - Relación de Smart Contracts}
+\subsection{Diagrama Entidad - Relación de Smart Contracts}
 Aunque no sean entidades del sistema, para explicar detalladamente la arquitectura de de diseño se define otro diagrama entidad - relación en la figura 3.5:
 
 \begin{figure}[h]
@@ -610,8 +611,8 @@ Aunque no sean entidades del sistema, para explicar detalladamente la arquitectu
     \label{fig:etiqueta}
 \end{figure}
 
-\section{Descripción de Smart Contracts}
-\subsection{Contract Factory } 
+\subsection{Descripción de Smart Contracts}
+\subsubsection{Contract Factory } 
 \begin{table}[H]
 \centering
 \caption{Descripción de atributos del Contrato Contract Factory}
@@ -666,7 +667,7 @@ a un mismo usuario& \\ \hline
 \end{table}
 
 
-\subsection{Préstamo Contract } 
+\subsubsection{Préstamo Contract } 
 
 \begin{table}[H]
 \centering
@@ -834,28 +835,28 @@ Estos tests tienen como objetivo:
     \item Comprobar las restricciones de acceso y los cambios de estado.
 \end{enumerate}
 
-\subsubsection{Red de pruebas local}
+\paragraph{Red de pruebas local}
 Para evitar utilizar una red pública se han desplegado los contratos sobre una red local utilizando la herramienta Ganache \cite{[19]}.
 Esto evita que aparezcan transacciones de prueba exponiendo información sensible del funcionamiento del  sistema en la red pública y 
 permite la repetición de escenarios que son difíciles de reproducir en un entorno real, como que un usuario no pague su cuota mensual y se le aplique la penalización correspondiente.
-\subsubsection{Cuentas utilizadas para los test}
+\paragraph{Cuentas utilizadas para los test}
 La herramienta de creación de red local virtual es la encargada de generar distintas cuentas con las que interactuar en la red.
 Se han utilizado 3 cuentas para realizar los test unitarios:
 \begin{enumerate}
     \item Una cuenta propietaria del sistema
     \item Dos cuentas de usuario que solicitan el préstamo
 \end{enumerate}
-\subsubsection{Contratos inteligentes puestos a prueba}
+\paragraph{Contratos inteligentes puestos a prueba}
 Los test se han hecho sobre el motor de este sistema, es decir, sobre los smart contracts que definen el funcionamiento del sistema de préstamos.
 Estos contratos se pueden ver en el anexo ~\ref{anexo:smartcontracts} y son los siguientes:
 \begin{enumerate}
     \item Contract Factory: Contrato principal que gestiona la creación de los contratos de préstamo
     \item Prestamo Cursando: Contrato que representa un préstamo individual y gestiona su estado
 \end{enumerate}
-\subsubsection{Tecnología de los test}
+\paragraph{Tecnología de los test}
 Los test se han desarrollado utilizando JavaScript y el framework Mocha y la librería Chai para las aserciones.
 Estos test se pueden encontrar en el anexo ~\ref{anexo:mochatest}
-\subsubsection{Desarrollo de los test: Variables previas y condiciones iniciales}
+\paragraph{Desarrollo de los test: Variables previas y condiciones iniciales}
 Previo al desarrollo puro de los test, antes de cada ejecución se deben dar las condiciones iniciales para que los test puedan ejecutarse correctamente.
 El proceso de preparación de los test consiste en desplegar los contratos en la red local y establecer las condiciones iniciales para cada prueba.
 Para ello se han realizado los siguientes pasos:
@@ -990,7 +991,7 @@ Para ello se han realizado los siguientes pasos:
      Para ello se utilizan las funciones de aserción de la librería Chai, que permiten comparar los resultados obtenidos con los esperados y generar un informe de los test realizados.
        \end{enumerate}
     
-\subsubsection{Resultados} Tras el desarrollo y ejecución de los test se puede comprobar que el sistema funciona correctamente y que se cumplen los objetivos planteados.
+\paragraph{Resultados} Tras el desarrollo y ejecución de los test se puede comprobar que el sistema funciona correctamente y que se cumplen los objetivos planteados.
     A su vez se han encontrado 2 situaciones que no se contemplaban en el diseño inicial.
     \begin{enumerate}
         \item Existe un metodo setIndex(index) a través del cual el contrato Factory crea un indice para controlar los contratos de préstamo en curso de un usuario. 
@@ -1002,7 +1003,7 @@ Para ello se han realizado los siguientes pasos:
 Durante la ejecución de las pruebas de este proyecto y la simulación de un entorno real se ha visto que un sistema como este puede llegar a niveles de producción
 en un entorno real. Dejando a parte la necesidad de un desarrollo futuro para añadir actores y elementos al sistema necesarios para un sistema de prestamos real
 ,como pueden ser las garantías de devolucion, a nivel técnico se afirma que la tecnología es viable.
-\subsubsection{Viabilidad económica}
+\subsection{Viabilidad económica}
 Tras estudiar los gastos de \gls{gas} en los registros de \href{https://sepolia.etherscan.io/}{Etherscan Sepolia} se puede comprobar que los gastos de contratar un préstamo
 dependen mucho del precio del \gls{gas} en el momento de contratación, el cual varía de forma muy dinámica dependiendo de la congestión de la red, en el proceso de de validación se han ejecutado
  transferencias de préstamo con costes desde 0,46 dólares hasta 30,49 dolares.
