@@ -1,108 +1,186 @@
 \chapter{Estado de la cuestión}
 \label{ch:estadodelacuestion}
  
-\section{Protocolos de referencia para préstamos descentralizados}
-El ecosistema de las finanzas descentralizadas (\gls{defi}) ha experimentado un crecimiento significativo en los últimos años,
-esto ha llevado a la aparación de distintos protocolos que ofrecen servicios de préstamos tal y como realiza este proyecto pero con distintas características específicas.
-El pequeño analisis que aparece a continuación no se va a centrar en la parte de negocio de estos protocolos sino en la parte tecnológica ya que cada uno de estos protolocos han sido creados por
-distintos equipos privadaos de desarrollo  y no suponen un estándar en la industria de las finanzas descentralizadas. La integridad de estos protocolos se apoyan en las propiedades 
-de las redes blockchain, las cuales se hablan en este proyecto y en la fuerza empresarial que han obtenido a través de la captación de usuarios y comunidades.
+\section{Protocolos de referencia en sistemas de  préstamos descentralizados}
+El ecosistema de las finanzas descentralizadas (\gls{defi}) ha experimentado un 
+crecimiento significativo en los últimos años,
+esto ha llevado a la aparación de distintos protocolos que ofrecen servicios 
+de préstamos tal y como realiza este proyecto pero con distintas características 
+específicas.
+El pequeño analisis que aparece a continuación no se va a centrar en la parte de 
+negocio de estos protocolos sino en la parte tecnológica ya que cada uno de estos 
+protolocos han sido creados por
+distintos equipos privadaos de desarrollo  y no suponen un estándar en la 
+industria de las finanzas descentralizadas. 
+La integridad de estos protocolos se apoyan en las propiedades 
+de las redes \gls{blockchain}, las cuales se hablan en este proyecto, y 
+en la fuerza empresarial que han obtenido a través de la captación de usuarios 
+y creación de comunidades.
 
-Cabe destacar que estos protocolos se han desarrollado en distintas redes blockchain y en el caso de ethereum se puede acceder a los \gls{smartcontract} desplegados en la red
+Cabe destacar que estos protocolos se han desarrollado en distintas redes 
+\gls{blockchain} y en el caso de ethereum se puede acceder a los 
+\gls{smartcontract} desplegados en la red
 siendo público y accesible para cualquier usuario.
 
 \subsection{AAVE}
-El protocolo AAVE es el protocolo más parecido a la solución que ofrece este proyecto. 
+El protocolo \gls{aave} es el protocolo más parecido a la solución que ofrece este proyecto. 
 La principal diferencia es que los usuarios finales no solo solicitan los préstamos si no que
  también pueden ofrecer sus fondos para que otros usuarios puedan solicitar préstamos.
 
 El proceso consiste en una \gls{pool} de liquidez.
 Esta \gls{pool} es alimentada por los usuarios que ofrecen sus fondos y estos pueden ser pedidos
 como préstamo por otros usuarios.
-La definición del tipo de préstamo y sus intereses viene definida por la garantía que puede aportar la persona que solicita el préstamo,
+La definición del tipo de préstamo y sus intereses viene definida por la garantía que puede aportar 
+la persona que solicita el préstamo,
 Dependiendo del valor ofrecido como garantía se le asignará un tipo de interés y un límite de préstamo.
 
 Se puede comprobar su estado en la la red \gls{ethereum} en: \citetitle{[26]} \cite{[26]}
+
 Para obtener mas información se puede consultar la documentación oficial del protocolo AAVE en: \citetitle{[29]} \cite{[29]}
 \subsection{Compound}
-Este protocolo es muy similar al anterior, la principal diferencia es que las garantias están previamente definidas según el tipo de préstamo que se solicita y no se permite la aportación de garantías externas.
+Este protocolo es muy similar al anterior, la principal diferencia es que las garantias de devolución 
+están previamente definidas según el tipo de préstamo que se solicita y no se permite la aportación 
+de garantías externas.
+
 Se puede comprobar su estado en la la red \gls{ethereum} en: \citetitle{[27]} \cite{[27]}
+
 Para obtener mas información se puede consultar la documentación oficial del protocolo Compound en: \citetitle{[30]} \cite{[30]}
 \subsection{Uniswap}
-Este protocolo es un intercambio descentralizado de criptomonedas, no es un protocolo de préstamos, aunque también se obtiene comisión a través de dejar prestados tus
+Este protocolo es un intercambio descentralizado de criptomonedas, no es un protocolo orientado a 
+ préstamos aunque también se obtiene comisión a través de dejar prestados tus
 propios fondos en una \gls{pool} de liquidez.
-El funcionamiento consiste en aportar fondos a una \gls{pool}, en esta \gls{pool} se definen dos criptomonedas 
-de tal forma que los usuarios aprovechan la liquidez de esos activos que se encuentran en la \gls{pool} para realizar intercambios de criptomonedas sin necesidad de un intermediario.
-Por ejemplo, si un usuario quiere intercambiar \gls{eth}ETH por \gls{bitcoin}, el protocolo Uniswap utiliza la liquidez de la \gls{pool} para realizar la transacción de manera automática y sin necesidad  de conseguir un comprador que 
-tenga exactamente bitcoin y quiera exactamente \gls{eth}.
-En el contrato de intercabio se desglosan la comisión que obtiene la plataforma y el prestatario para la realización del intercambio.
+El funcionamiento consiste en aportar fondos a una \gls{pool}. En esta \gls{pool} se definen dos criptomonedas 
+de tal forma que los usuarios aprovechan la liquidez de esos activos que se encuentran en la \gls{pool} 
+para realizar intercambios de criptomonedas sin necesidad de un intermediario.
+
+Por ejemplo, si un usuario quiere intercambiar \gls{eth} por \gls{bitcoin}, el protocolo \gls{uniswap} 
+utiliza la liquidez de la \gls{pool} para realizar la transacción de manera automática y sin necesidad 
+de conseguir un comprador que tenga exactamente \gls{bitcoin} y quiera exactamente \gls{eth}.
+En el contrato de intercambio se desglosa la comisión que obtiene la plataforma y el prestatario 
+para la realización del intercambio.
 
 Se puede comprobar su estado en la la red \gls{ethereum} en: \citetitle{[28]} \cite{[28]}
+
 Para obtener mas información se puede consultar la documentación oficial del protocolo AAVE en: \citetitle{[31]} \cite{[31]}
 
 
 A continuación se definirán las tecnologías utilizadas en la solución ofrecida por este proyecto
 y también se definirán las claves por las que se han seleccionado dichas tecnología,
-desde la decisión inicial de utilizar una red blockchain hasta pequeñas decisiones de diseño como la selección del \gls{framework} para la \gls{UI}
+desde la decisión inicial de utilizar una red blockchain hasta pequeñas decisiones de 
+diseño como la selección del \gls{framework} para la \gls{UI}
 
 \section{¿Por qué Blockchain y por qué Ethereum?}
 
 \subsection{Blockchain}
 
-Las redes blockchain representan una revolución en el mundo digital ya que proporcionan una infraestructura segura,
- descentralizada y transparente para la transferencia y almacenamiento de datos en forma de transacciones.
+Las redes \gls{blockchain} representan una revolución en el mundo digital ya que proporcionan una 
+infraestructura segura, 
+descentralizada y transparente para la transferencia y almacenamiento de datos en forma de 
+transacciones.
 
-Las blockchain son bases de datos distribuidas, esto quiere decir que la información se guarda en distintos nodos en 
-forma de bloques donde cada uno tiene un \gls{hash} que vincula cada bloque en una cadena ordenada.
+Las \gls{blockchain} son bases de datos distribuidas, esto quiere decir que la información se guarda 
+en distintos nodos en forma de bloques donde cada uno tiene un \gls{hash} que vincula cada bloque 
+con el anterior en una cadena ordenada.
 Gracias a este sistema de bloques en cadena registrados por un \gls{hash}
-se hace imposible la modificación de la información guardada en la red sin que deje una huella digital,
- ya que al realizar este acto se modificaría el \gls{hash} asociado al bloque afectado
- haciendo visible para el resto de la red la modificación seguramente fraudulenta.
+se hace imposible la modificación de la información guardada en la red sin que deje una huella digital, 
+ya que al realizar este acto se modificaría el \gls{hash} asociado al bloque afectado,
+haciendo visible para el resto de copias distribuidas en la red la modificación, seguramente 
+fraudulenta.
 
 Esta estructura en cadena proporciona las propiedades de inmutabilidad y resistencia a manipulaciones.
 
 Estos sistemas  permiten la creación, registro y transferencia de información o valor sin 
 necesidad de una entidad central de control, de aquí su naturaleza descentralizada.
 
-Este diseño y estructura presentan características innovadoras que posicionan a las redes \gls{blockchain}
-  como una de las tecnologías más prometedoras, sobre todo en el sector financiero,
-   aunque su aplicación se está extendiendo a diversas industrias. \cite{[4]}
+Este diseño y estructura presentan características innovadoras que posicionan a las redes 
+\gls{blockchain} como una de las tecnologías más prometedoras, sobre todo en el sector financiero, 
+aunque su aplicación se está extendiendo a diversas industrias tal y como se habla en el paper de 
+la Universitat Politécnica de Catalunya\cite{[4]}
 
 \subsubsection{Componentes en las transacciones Blockchain}
 
-Para comprender en profundidad el funcionamiento y la seguridad de una red blockchain, es fundamental analizar sus componentes clave, su estructura de datos, los mecanismos de consenso y las técnicas criptográficas que aseguran su integridad.
+Para comprender en profundidad el funcionamiento y la seguridad de una red blockchain, 
+es fundamental analizar sus componentes clave, su estructura de datos, los mecanismos de consenso para 
+la aportación de nueva información la red y las técnicas criptográficas que aseguran su integridad.
 
-A través del siguiente paper: \citetitle{[5]} \cite{[5]} se ha reunido la  información necesaria:
+La siguiente información se ha obtenido a través del siguiente paper: 
+\citetitle{[5]} \cite{[5]}
 
 \begin{enumerate}
-    \item \textbf{Bloques}: La red Blockchain se estructura en bloques, que son conjuntos de información agrupada. Cada bloque contiene un conjunto de transacciones y un código de referencia al bloque anterior \gls{hash}, formando una cadena continua. Los bloques también incluyen una marca de tiempo y un identificador único que garantiza su autenticidad.
+    \item \textbf{Bloques}: La red \gls{blockchain} se estructura en bloques, que son conjuntos de 
+    información agrupada. Cada bloque contiene un conjunto de transacciones y un código de referencia 
+    al bloque anterior \gls{hash}, formando una cadena continua. Los bloques también incluyen una 
+    marca de tiempo y un identificador único que garantiza su autenticidad.
+
+    \item \textbf{Hash criptográfico}: Cada bloque y cada transacción dentro de la blockchain está 
+    asegurada por un \gls{hash}, que es un código único generado por los validadores. 
+    Este hash permite verificar de forma única el contenido del bloque y protege 
+    los datos de cualquier alteración. 
+    Si se modificara cualquier información en un bloque, el \gls{hash} cambiaría, alertando al 
+    resto de la red de la alteración
     
-    \item \textbf{Nodos}: Son las computadoras que participan en la red. Cada nodo contiene una copia completa o parcial de la blockchain y es responsable de verificar y propagar transacciones y bloques. Los nodos se dividen en diferentes tipos, como nodos completos (que guardan la blockchain completa y participan en la verificación) y nodos ligeros (que solo descargan partes de la cadena y confían en nodos completos para la verificación).
+    \item \textbf{Nodos}: Son las computadoras que participan en la red. Cada nodo contiene una copia 
+    completa o parcial de la \gls{blockchain} y son responsables de verificar y propagar las nuevas transacciones y 
+    bloques. Los nodos se dividen en diferentes tipos:
+    \begin{enumerate}
+        \item Nodos completos: Guardan la \gls{blockchain} completa y participan en la verificación de bloques.
+        \item Nodos ligeros: Descargan partes de la cadena y confían en nodos completos para la verificación.
+        \item Nodos mineros: Son los encargados de replicar la blockchain, aceptando los bloques
+            generados por los validadores y ejecutando las transacciones incluidas en los mismos. Estos nodos son
+            los que inyectan transacciones en la red, a partir de fuentes externas al blockchain.
+            Estos nodos compiten para agregar nuevos bloques a la cadena realizando el proceso de validación de 
+            transacciones y siendo incentivados por su labor
+    \end{enumerate} 
+     
     
-    \item \textbf{Mineros o validadores}: Son nodos que compiten para agregar nuevos bloques a la cadena realizando el proceso de validación de transacciones y siendo incentivados por su labor. Pueden ser:
+    \item \textbf{Proceso de validación de bloque}: Los nodos mineros pueden validar los nuevos bloques a través de 
+    distintos procesos, los que incumben a este proyecto son:
         \begin{enumerate}
-          \item \textbf{\textit{Proof of work} (PoW)}: Forma de validación en la que los nodos mineros compiten por resolver un problema matemático que implica encontrar un hash (código criptográfico) que cumpla ciertos requisitos establecidos por el protocolo. Dificil de resolver pero facil de verificar para otros nodos.
-          \item \textbf{\textit{Proof of Stake} (PoS)}: Los participantes de la red depositan una cantidad de criptomonedas como "participación" o "stake". Estos participantes se llaman validadores. Los validadores son seleccionados de forma pseudo-aleatoria para proponer y validar nuevos bloques, con probabilidades generalmente proporcionales a la cantidad de criptomonedas que tienen participando. Si el validador elegido valida correctamente recibe una recompensa, si actúa de manera malicionsa puede perder su participación.
+          \item \textbf{\textit{Proof of work} (\gls{pow})}: Forma de validación en la que los nodos 
+          mineros compiten por resolver un problema matemático que implica encontrar un \gls{hash} 
+          que cumpla ciertos requisitos establecidos por el protocolo. El primer nodo en obtener este \gls{hash}
+          es el que se encarga de incorporar el nuevo bloque a la red y obener la recompensa.
+          Este proceso es dificil de resolver pero facil de verificar para otros nodos.
+          \item \textbf{\textit{Proof of Stake} (\gls{pos})}: Los participantes de la red depositan 
+          una cantidad de criptomonedas en fomra de \enquote{participación}. 
+          Estos participantes se llaman validadores. Los validadores son seleccionados de forma 
+          pseudo-aleatoria para proponer y validar nuevos bloques, con probabilidades generalmente 
+          proporcionales a la cantidad de criptomonedas que tienen participando. 
+          Si el validador elegido obiene el \gls{hash} de forma correcta recibe la recompensa, 
+          y si actúa de manera malicionsa puede perder su participación.
         \end{enumerate}
 
-    \item \textbf{Hash criptográfico}: Cada bloque y cada transacción dentro de la blockchain está asegurada por un hash, que es un código único generado por los validadores. Este hash permite verificar de forma única el contenido del bloque y protege los datos de cualquier alteración. Si se modificara cualquier información en un bloque, el hash cambiaría, alertando al resto de la red de la alteración.
-        
-    \item \textbf{Libro mayor distribuido}: La blockchain en conjunto actúa como un libro de contabilidad digital distribuido. Este libro mayor es inmutable, lo que significa que una vez registrada una transacción, no se puede modificar. Todos los nodos tienen acceso a la misma información, y las actualizaciones se sincronizan de forma continua y automática.
+    \item \textbf{Libro mayor distribuido}: La \gls{blockchain} en conjunto actúa como un libro 
+    de contabilidad digital distribuido. Este libro mayor es inmutable, lo que significa que una ç
+    vez registrada una transacción, no se puede modificar. 
+    Todos los nodos tienen acceso a la misma información, y las actualizaciones se sincronizan 
+    de forma continua y automática.
 \end{enumerate}
 
 \subsubsection{Proceso de transacción}
 
-Cada transacción en una blockchain sigue un proceso de verificación y registro antes de formar parte de la cadena:
+Cada transacción en una blockchain sigue un proceso de verificación y registro antes de formar 
+parte de un bloque:
 
 \begin{enumerate}
-    \item \textbf{Creación de la transacción}:  El usuario (o nodo emisor) crea una transacción con información como las direcciones del emisor y receptor, el monto de la transferencia y la firma digital generada con la clave privada del emisor.
-    \item \textbf{Difusión a la red}: La transacción es difundida a la red para su verificación. Los nodos recopilan las transacciones válidas y las agrupan en bloques para su posterior validación.
-    \item \textbf{Verificación de la transacción}: Los nodos validadores comprueban que la transacción es válida mediente \gls{pow} o \gls{pos}.
-    \item \textbf{Agregación a la blockchain}: El bloque verificado se agrega a la cadena. Este proceso implica registrar la transacción inicial y todas las demas del bloque y vincular el nuevo bloque al bloque anterior mediante su hash. Esto asegura que la cadena sea inmutable y cronológica.
-    \item \textbf{Confirmación de la transacción}: Una vez que un bloque ha sido agregado, la transacción es confirmada. Las confirmaciones se refuerzan con cada bloque añadido posteriormente, haciendo la transacción prácticamente irreversible.
+    \item \textbf{Creación de la transacción}:  El usuario (o nodo emisor) crea una transacción con 
+    información como las direcciones del emisor y receptor, el monto de la transferencia y la firma 
+    digital generada con la clave privada del emisor.
+    \item \textbf{Verificación de la transacción}: Los nodos validadores comprueban que la 
+    transacción es válida mediente \gls{pow} o \gls{pos}.
+    \item \textbf{Difusión a la red}: La transacción es difundida a la red para su verificación. 
+    Los nodos recopilan las transacciones válidas y las agrupan en bloques para su posterior 
+    validación.
+    \item \textbf{Agregación a la blockchain}: El bloque verificado se agrega a la cadena. 
+    Este proceso implica registrar la transacción inicial y todas las demas del bloque y 
+    vincular el nuevo bloque al bloque anterior mediante un \gls{hash}. Esto asegura que la cadena 
+    sea inmutable y cronológica.
+    \item \textbf{Confirmación de la transacción}: Una vez que un bloque ha sido agregado, 
+    la transacción es confirmada. Las confirmaciones se refuerzan con cada bloque añadido 
+    posteriormente, haciendo la transacción prácticamente irreversible.
 \end{enumerate}
       
-A través de la figura  1 se representa un diagrama simplificado del proceso de transacción.
+A través de la figura~\ref{fig:transaction} se representa un diagrama simplificado del proceso de transacción.
 
 \begin{figure}[h]
     \centering
@@ -113,21 +191,47 @@ A través de la figura  1 se representa un diagrama simplificado del proceso de 
 \end{figure}
       
 \subsubsection{Seguridad en Blockchain } 
-La seguridad de la blockchain depende de varias capas de tecnología criptográfica y del diseño descentralizado de la red. Los elementos clave de su seguridad incluyen:
+La seguridad de la blockchain depende de varias capas de tecnología criptográfica y del diseño 
+descentralizado de la red. 
+Los elementos clave de su seguridad incluyen:
     \begin{enumerate}
-        \item \textbf{Inmutabilidad}: Una vez que se agrega un bloque, es extremadamente difícil modificar los datos sin alterar el hash y afectar a todos los bloques posteriores. Cualquier intento de modificación sería rápidamente detectado por los nodos.
-        \item \textbf{Distribución y descentralización}: Al distribuir el control de la red entre miles de nodos (en el caso de las redes más importantes), blockchain elimina los puntos de fallo únicos. Esto significa que, incluso si un nodo es comprometido o hackeado, el resto de la red sigue siendo seguro, de hecho dependiendo de los criterios de cada red, realmente mientras ente el 51 y 70 \% de nodos siga sin alterarse la red sigue siendo segura.
-        \item \textbf{Criptografía de clave pública y privada}: Cada usuario de la red tiene una clave pública y una clave privada. La clave pública funciona como una dirección visible para recibir activos, mientras que la clave privada permite firmar transacciones, asegurando la autenticidad de la actividad en la red. Solo el propietario de la clave privada puede autorizar transacciones en nombre de su dirección pública protegiendo los fondos.
-        \item \textbf{Hashing criptográfico}: El uso de algoritmos de \gls{hashing} (como \gls{sha256} en Bitcoin) convierte los datos de las transacciones en códigos únicos de longitud fija. Cualquier cambio en los datos originales generaría un hash completamente diferente, alertando a la red de la alteración. Este proceso es irreversible, lo que significa que el hash no puede descifrarse para revelar los datos originales.
+        \item \textbf{Inmutabilidad}: Una vez que se agrega un bloque, es extremadamente difícil 
+        modificar los datos sin alterar el \gls{hash} que contiene sin afectar a todos los bloques 
+        posteriores. 
+        Cualquier intento de modificación es rápidamente detectado por los nodos validadores.
+        \item \textbf{Hashing criptográfico}: El uso de algoritmos de \gls{hashing} 
+        (como \gls{sha256} en \gls{bitcoin}) convierte los datos de las transacciones en 
+        códigos únicos de longitud fija. Cualquier cambio en los datos originales generaría 
+        un \gls{hash} completamente diferente, alertando a la red de la alteración. 
+        Este proceso es irreversible, lo que significa que el \gls{hash} no puede descifrarse 
+        para revelar los datos originales.
+        \item \textbf{Distribución y descentralización}: Al distribuir el control de la red entre 
+        miles de nodos (en el caso de las redes más importantes), \gls{blockchain} elimina los 
+        puntos de fallo únicos. Esto significa que, incluso si un nodo es comprometido o hackeado, 
+        el resto de la red sigue siendo seguro, de hecho dependiendo de los criterios de cada red, 
+        realmente mientras ente el 51 y 70 \% de nodos siga sin alterarse la red sigue siendo segura.
+        \item \textbf{Criptografía de clave pública y privada}: Cada usuario de la red tiene una 
+        clave pública y una clave privada. La clave pública funciona como una dirección visible 
+        para recibir activos e identificarse en la red ante otros usuarios, mientras que la clave 
+        privada permite firmar transacciones y verificar la identidad del usuario, 
+        asegurando la autenticidad de la actividad en la red. 
+        Solo el propietario de la clave privada puede autorizar transacciones en nombre de 
+        su dirección pública.
+       
     \end{enumerate}
 
-Con todas estas características se puede afirmar que una red blockchain es una herramienta segura para la realización de transacciones monetarias y de reserva de valor. Ahora bien, ¿cómo se puede crear un sistema automatizado?. En redes como \gls{bitcoin}, el único tipo de operación que se puede realizar es el de transacción. Este proyecto se apoya en una red con capacidad de ejecutar \glspl{script} o como son llamados dentro de la red: \glspl{smartcontract}. \cite{[6]}
+Con todas estas características se puede afirmar que una red \gls{blockchain} es una herramienta 
+segura para la realización de transacciones monetarias y de reserva de valor. 
+Ahora bien, ¿cómo se puede crear un sistema automatizado?. 
+En redes como \gls{bitcoin} el único tipo de operación que se puede realizar es el de transacción. 
+Este proyecto se apoya en una red con capacidad de ejecutar \glspl{script} o como son 
+llamados dentro de la red de \gls{ethereum}: \glspl{smartcontract}.
 
 
 \subsection{Ethereum}
-Ethereum es una plataforma de blockchain propuesta en 2013 por Vitalik Buterin a los 19 años de edad. \cite{[7]} Se ha escogido esta red principalmente por su capacidad  de despliegue de \glspl{smartcontract}, lo cual es necesario para este proyecto.
+Ethereum es una plataforma de \gls{blockchain} propuesta en 2013 por Vitalik Buterin a los 19 años de edad. \cite{[7]} Se ha escogido esta red principalmente por su capacidad  de despliegue de \glspl{smartcontract}, lo cual es necesario para este proyecto.
 
-Aunque existen otras redes blockchain con capacidad de despliegue de \glspl{smartcontract}, como \citetitle{[9]} \cite{[9]} y \citetitle{[10]} \cite{[10]}, al tratarse de un proyecto basado en la economía \gls{defi} se ha seleccionado \gls{ethereum} debido a que su moneda es la que tiene mayor valor de mercado. Este se puede visualizar en la figura 2 a fecha de 14-03-2024 y a tiempo real en la web: \href{https://coinmarketcap.com/es/}{CoinMarketCap}\footnote{\href{https://coinmarketcap.com/es/}{https://coinmarketcap.com}.}
+Aunque existen otras redes \gls{blockchain} con capacidad de despliegue de \glspl{smartcontract}, como \citetitle{[9]} \cite{[9]} y \citetitle{[10]} \cite{[10]}, al tratarse de un proyecto basado en la economía \gls{defi} se ha seleccionado \gls{ethereum} debido a que su moneda es la que tiene mayor valor de mercado. Este se puede visualizar en la figura 2 a fecha de 14-03-2024 y a tiempo real en la web: \href{https://coinmarketcap.com/es/}{CoinMarketCap}\footnote{\href{https://coinmarketcap.com/es/}{https://coinmarketcap.com}.}
 
 \begin{figure}[h]
     \centering
