@@ -2,49 +2,88 @@
 \label{ch:arquitecturaydesarrollo}
 \section{Solución propuesta}
 
-La propuesta que ofrece este proyecto para un sistema descentralizado basado en la red ethereum reúne todas las tecnologías anteriormente mencionadas creando una \gls{dapp} con funciones básicas como la creación, ejecución y control de préstamos de cripto activos.
+Este proyecto propone una \gls{dapp} que gestiona préstamos de \gls{eth} dentro 
+de la red \gls{ethereum} a través de \gls{smartcontract} desplegados en dicha 
+red.
 
-Este proyecto controla el pago de los préstamos en curso que pueda tener nuestro sistema cubre gracias a la inmutabilidad de la red junto con un algoritmo basado en semáforos:
-Cada préstamo tiene en cada momento un estado el cual cambia cuando se da la orden de \textbf{chequeo de mensualidad}, esta orden se produce mensualmente y transforma el estado de cada contrato dependiendo de si ha sido pagado o no.
+Como se ha explicado en la comparación con otros protocolos \gls{defi}, 
+la diferenciación de este sistema es que solo una entidad, possedora del proyecto,
+está autorizada a ofrecer los prestamos, configurar los tipos de préstamos 
+disponibles y gestiona los fondos.
 
-El funcionamiento de este algoritmo se ve reflejado en la figura 3.1
+El sistema principalmente se basa en en el diseño de los \glspl{smartcontract} que 
+junto a las propiedades de inmutabilidad y veracidad de una \gls{blockchain} deja
+escrita en la red la información necesaria para llevar un libro contable de 
+un sistema de préstamos de forma casi automatizada.
 
-\begin{figure}[h]
+El usario de la \gls{dapp} interactúa con el sistema a través de una interfaz web 
+en la que conectando su cartera con \gls{metamask} puede gestionar sus propios 
+préstamos sin la necesidad de interactuar directamente con la organización del 
+sistema.
+
+El seguimiento de control de pagos de los contratos 
+funciona como una máquina de estados automatizada que es accionada como un 
+semáforo con ciclos mensuales.
+
+En la figura~\ref{fig:semaforos} se pueden ver los tres tipos de estados en los que
+puede llegar un préstamo al chequeo mensual de pagos (estado 0), como actúa la 
+\gls{dapp} dependiendo de su estado durante el chequeo (estado 1), y como se queda 
+el préstamo pasado el chequeo esperando al próximo (estado 0).
+
+\begin{figure}[H]
     \centering
-    \caption{Diagrama algoritmo semaforos que asegura el control de estados de los contratos del sistema.}
+    \caption{Diagrama algoritmo de estados que asegura el control de 
+    los contratos del sistema.}
     \includegraphics[width=\textwidth]{figures/semaforos.jpg}
     \label{fig:semaforos}
 \end{figure}
 
+
+
 \section{Limitaciones del proyecto}
 \subsection{Limitaciones legales}
 
-Durante este proceso de desarrollo, en diciembre de 2024, la Unión Europea aprueba el Reglamento Europeo de Criptoactivos~\cite{[24]}, el objetivo de este reglamento es establecer normas para las entidades emisoras y proveedoras de servicios relacionados con la criptoactividad.
+Durante este proceso de desarrollo, en diciembre de 2024, la Unión Europea aprueba 
+el Reglamento Europeo de Criptoactivos~\cite{[24]}, 
+el objetivo de este reglamento es establecer normas para las entidades emisoras 
+y proveedoras de servicios relacionados con la criptoactividad.
 
-En el nuevo reglamento se  tratan distintas cuestiones entre las que se encuentran:
+En el nuevo reglamento se  tratan distintas cuestiones entre las que se 
+encuentran:
 \begin{enumerate}
-    \item Requisitos de transparencia absoluta a las plataformas de negociación de criptoactivos.
-    \item Necesidad de autorización europea para lea emisión y provisionamiento de criptoactivos.
+    \item Requisitos de transparencia absoluta a las plataformas de negociación 
+    de criptoactivos.
+    \item Necesidad de autorización europea para lea emisión y provisionamiento 
+    de criptoactivos.
     \item Protección del valor monetario en euros de los clientes.
-    \item Creación de medidas de control de las operaciones con información privilegiada y manipulación de mercado.
+    \item Creación de medidas de control de las operaciones con información 
+    privilegiada y manipulación de mercado.
 \end{enumerate}
 
-En esta normativa se especifican acciones obligatorias para entidades financieras que pueden adoptar este proyecto. Dentro de estas acciones se definen elementos comunes a cualquier empresa como definirse como persona jurídica o actuar de forma honesta, justa y profesional.
+En esta normativa se especifican acciones obligatorias para entidades financieras 
+que pueden adoptar este proyecto. Dentro de estas acciones se definen elementos 
+comunes a cualquier empresa como definirse como persona jurídica o actuar de forma 
+honesta, justa y profesional.
 
-Las acciones que pueden llegar limitar el proyecto es la obligatoriedad de ofrecer la capacidad de convertir en Euros, los criptoactivos proporcionados por este proyecto. Específicamente se obliga a mantener:
+Las acciones que pueden llegar limitar el proyecto es la obligatoriedad de ofrecer 
+la capacidad de convertir en Euros los criptoactivos proporcionados por este 
+proyecto. Específicamente se obliga a mantener:
 \begin{enumerate}
     \item Un fondo propio de 350.000E
     \item El 2\% del importe medio de los activos de reserva
     \item Una cuarta parte de los gastos generales fijos del año anterior
-    \item Establecimiento de planes de recuperación y reembolso en caso de no cumplir las obligaciones de la normativa 
+    \item Establecimiento de planes de recuperación y reembolso en caso de no 
+    cumplir las obligaciones de la normativa 
 \end{enumerate}
 
-Estas acciones obligan a cualquier entidad que quiera hacer uso de este proyecto a aprovisionar las cantidades definidas en la normativa.
+Estas acciones obligan a cualquier entidad que quiera hacer uso de este proyecto 
+a aprovisionar las cantidades definidas en la normativa.
+
 \subsection{Limitaciones técnicas}
 
-El sistema desarrollado presenta una serie de limitaciones técnicas derivadas tanto
-del alcance definido para el proyecto como de las características propias de una
-solución basada en contratos inteligentes sobre la red Ethereum. Las principales
+El sistema desarrollado presenta una serie de limitaciones técnicas derivadas 
+tanto del alcance definido para el proyecto como de las características propias de 
+una solución basada en \gls{smartcontract}. Las principales
 limitaciones identificadas son las siguientes:
 
 \begin{enumerate}
@@ -57,40 +96,39 @@ limitaciones identificadas son las siguientes:
 
     \item \textbf{Ausencia de garantías o colateral:} el sistema no incorpora
     mecanismos de colateralización que permitan garantizar el pago del préstamo
-    en caso de impago. Esta funcionalidad se plantea como una posible ampliación
-    futura mediante fondos bloqueados o activos tokenizados. Esta limitación
-    restringe su aplicación en escenarios abiertos en los que no exista una
-    relación de confianza entre las partes.
+    en caso de impago.
 
     \item \textbf{Uso de un único activo:} el prototipo utiliza exclusivamente
     \gls{eth} como activo para la concesión y devolución de los préstamos.
     No se contempla actualmente el uso de otros tokens o activos digitales como
-    unidad de préstamo, lo que limita la flexibilidad del sistema.
+    unidad de préstamo.
 
     \item \textbf{Escalabilidad y consumo de \gls{gas}:} el incremento del
     número de préstamos activos implica un mayor número de operaciones que deben
-    ser procesadas y registradas en la blockchain. En consecuencia, el coste
+    ser procesadas y registradas en la \gls{blockchain}. En consecuencia, el coste
     acumulado de \gls{gas} puede aumentar a medida que crece el volumen de
-    préstamos gestionados. Esta situación resulta especialmente relevante en las
-    comprobaciones periódicas del estado de los préstamos, ya que una cantidad
-    elevada de préstamos activos puede requerir un número significativo de
-    operaciones y, por tanto, incrementar el coste de funcionamiento del sistema.
+    préstamos gestionados. Esta situación no tiene por qué invalidar el proyecto 
+    pero sí ejecutar un desarrollo enfocado en la escalabilidad.
     \end{enumerate}
 
 Estas limitaciones deben tenerse en cuenta al valorar una posible aplicación del
-sistema en un entorno real. La incorporación de mecanismos de colateralización,
-gestión de pagos anticipados, cancelación anticipada, soporte para múltiples
-activos y estrategias destinadas a reducir el coste de las transacciones
-constituyen posibles líneas de evolución futura.
+sistema en un entorno real a la vez que se plantean como líneas de desarrollo 
+futuro.
 
-\section{Actores del sistema}
-Los posibles actores que participan en el sistema son:
+\section{Análisis y diseño del software}
+
+\subsection{Actores del sistema}
+Los actores que pueden participan en el sistema son:
+
 \begin{itemize}
-    \item \textbf{Usuario prestatario (User)} Usuario que accede al servicio de préstamos.
-    \item \textbf{Entidad prestamista (Owner)} Entidad que ofrece los distintos tipos de préstamos.
+    \item \textbf{Usuario prestatario (User)} Usuario que accede al servicio de 
+    préstamos.
+    \item \textbf{Entidad prestamista (Owner)} Entidad que ofrece los distintos 
+    tipos de préstamos.
 \end{itemize}
 
-\subsection{Diagrama UML}
+\subsubsection{Diagrama UML}
+%%PONER EN VOCABULARIO%%
 Un diagrama UML (Unified Modeling Language) es una representación gráfica utilizada para modelar, visualizar, documentar y diseñar sistemas de software. 
 En este caso relaciona los actores con los Casos de uso que pueden realizar y está representado en la figura 3.2.
 \begin{figure}[H]
@@ -100,7 +138,7 @@ En este caso relaciona los actores con los Casos de uso que pueden realizar y es
     \label{fig:uml}
 \end{figure}
 
-\subsection{Diagrama de secuencia}
+\subsubsection{Diagrama de secuencia}
 Un diagrama de secuencia UML muestra cómo interactúan los objetos de un sistema en un orden temporal, representando el intercambio de mensajes entre ellos.
 
 En este caso el diagrama de secuencia es de gran ayuda para comprender la cohesión del proyecto y la inmutabilidad de la información gracias a los registros en la blockchain tal y como se puede ver en la figura 3.3
@@ -111,14 +149,14 @@ En este caso el diagrama de secuencia es de gran ayuda para comprender la cohesi
     \label{fig:etiqueta}
 \end{figure}
 
-\section{Casos de uso}
+\subsection{Casos de uso}
 
 En el marco del desarrollo del presente proyecto, se ha priorizado la definición de un conjunto de casos de uso que representan los escenarios esenciales para cumplir con los objetivos fundamentales del sistema ya que este proyecto debe de ser 'finito' y no 'infinito'.
 
 La selección de los casos de uso  no pretende abarcar una totalidad de posibles funcionalidades del sistema sino un conjunto operativo sólido y funcional. Comentando también un posible desarrollo futuro.
 
 Estos casos de uso se definen en las tablas ~\ref{tab:casos-uso-sistema} y ~\ref{tab:casos-uso-posteriores}
-\subsection{Pantallas del sistema}
+\subsubsection{Pantallas del sistema}
 Para un mayor entendimiento de los casos de uso se realiza una declaración las posibles pantallas que participan en el sistema son:
 \begin{itemize}
     \item \textbf{Pantalla principal común} Pantalla de incio comun a todos los usuarios, principalmente para hacer log in.
@@ -126,7 +164,7 @@ Para un mayor entendimiento de los casos de uso se realiza una declaración las 
     \item \textbf{Pantalla principal de prestatario.} 
 \end{itemize}
 
-\subsection{Casos de uso}
+\subsubsection{Casos de uso}
 \begin{table}[H]
 \centering
 \caption{Casos de uso del sistema}
@@ -150,7 +188,7 @@ Para un mayor entendimiento de los casos de uso se realiza una declaración las 
 \end{table}
 
 
-\subsection{Casos de uso para posteriores desarrollos}
+\subsubsection{Casos de uso para posteriores desarrollos}
 \begin{table}[H]
 \centering
 \caption{Casos de uso para desarrollos posteriores}
@@ -176,7 +214,7 @@ Para un mayor entendimiento de los casos de uso se realiza una declaración las 
     \item La validación de solvencia también se realizaría a través de un oráculo y se podría utlizar para personalizar los tipos de contrato al cliente.
 \end{itemize}
 
-\subsection{Casos de uso detallados}
+\subsubsection{Casos de uso detallados}
 
 \begin{table}[!h]
 \centering
@@ -376,7 +414,7 @@ importe deseado a la dirección del sistema de préstamos.
 \end{tabular}
 \end{table}
 
-\section{Entidades del sistema}
+\subsection{Entidades del sistema}
 A continuación se definen las entidades cuyas relaciones compondrán y habilitarán las funciones del sistema propuesto
 
 \begin{table}[!h]
@@ -413,7 +451,7 @@ A continuación se definen las entidades cuyas relaciones compondrán y habilita
 \end{tabular}
 \end{table}
 
-\subsection{Diagrama entidad relación}
+\subsubsection{Diagrama entidad relación}
 El  diagrama  representado en la figura 3.4 pretende definir mediante relaciones entre las entidades las funciones que definen el sistema.
 \begin{figure}[h]
     \centering
@@ -422,7 +460,7 @@ El  diagrama  representado en la figura 3.4 pretende definir mediante relaciones
     \label{fig:er}
 \end{figure}
 
-\section{Smart contracts implicados}
+\section{Análisis Smart contracts implicados}
 \subsection{Decisiones de implementación en el sistema}
 En esta sección se define el diseño de implementación utilizado para los smart contract, así como los atributos(Tablas 3.17 y 3.19) y funciones(Tablas 3.18 y 3.20) de cada uno de ellos.
 \subsubsection{Contract Factory}
@@ -717,6 +755,9 @@ la cuota. \\ \hline
 \end{tabular}
 \end{table}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% VALIDACIÓN DE RESULTADOS %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Validación de resultados}
 \subsection{Validación a través del uso de la aplicación del sistema}
 Tras el desarrollo del sistema de préstamos descentralizado, es necesario comprobar si cumple con los objetivos planteados y cubre los casos de uso definidos. Para ello, se presentan pruebas mediante capturas de pantalla de la interfaz y registros en Etherscan, validando la ejecución de transacciones y el correcto funcionamiento de los contratos inteligentes en la blockchain de Ethereum.
