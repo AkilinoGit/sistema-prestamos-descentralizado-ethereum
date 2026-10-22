@@ -229,127 +229,256 @@ llamados dentro de la red de \gls{ethereum}: \glspl{smartcontract}.
 
 
 \subsection{Ethereum}
-Ethereum es una plataforma de \gls{blockchain} propuesta en 2013 por Vitalik Buterin a los 19 años de edad. \cite{[7]} Se ha escogido esta red principalmente por su capacidad  de despliegue de \glspl{smartcontract}, lo cual es necesario para este proyecto.
+\subsubsection{Historia}
+La información presentada a continuación
+sobre el origen  de Ethereum
+se ha obtenido de su página web oficial
+\cite{ethereumVitalikHistoria}.
 
-Aunque existen otras redes \gls{blockchain} con capacidad de despliegue de \glspl{smartcontract}, como \citetitle{[9]} \cite{[9]} y \citetitle{[10]} \cite{[10]}, al tratarse de un proyecto basado en la economía \gls{defi} se ha seleccionado \gls{ethereum} debido a que su moneda es la que tiene mayor valor de mercado. Este se puede visualizar en la figura 2 a fecha de 14-03-2024 y a tiempo real en la web: \href{https://coinmarketcap.com/es/}{CoinMarketCap}\footnote{\href{https://coinmarketcap.com/es/}{https://coinmarketcap.com}.}
+Ethereum es una plataforma de \gls{blockchain} propuesta en 2013 por Vitalik Buterin 
+a sus 19 años de edad y fue lanzada oficialmente en 2015. Es una plataforma descentralizada 
+gobernada por su comunidad y con el apoyo de la fundación Ethereum, sin ánimo de 
+lucro.
 
-\begin{figure}[h]
+Buterin mostró un talento matemático excepcional a edad temprana y comenzó a escribir 
+artibulos sobre \gls{bitcoin}, llegando a cofundar \enquote{Bitcoin Magazine 2012}.
+
+En 2014. publicó el \enquote{Documento técnico de Ethereum}, en el que habla de la nueva 
+plataforma que iría más allá del \gls{bitcoin} creando una cadena de bloques que podría 
+hacer más que solo pagos.
+
+\begin{quote}
+    ``Ethereum amplía el enfoque de Bitcoin,
+    básicamente diciendo: bueno, en lugar de tener
+    reglas diseñadas para respaldar una sola
+    aplicación, vamos a crear algo de propósito
+    más general donde las personas puedan
+    simplemente crear sus propias aplicaciones
+    y las reglas para cualquier aplicación que
+    hayan creado puedan ejecutarse e implementarse
+    en la plataforma Ethereum.''
+    \citeauthor{ethereumVitalikHistoria}\cite{ethereumVitalikHistoria}
+\end{quote}
+
+\subsection{Ethereum para el proyecto}
+El poderoso desarrollo de Vitalik es el motivo principal por el que se ha escogido
+la red de Ethereum: la capacidad de desplegar \glspl{smartcontract}.
+
+Aunque existen otras redes \gls{blockchain} con capacidad de despliegue de 
+\glspl{smartcontract}, como \citetitle{[9]} \cite{[9]} y 
+\citetitle{[10]} \cite{[10]}, al tratarse de un proyecto basado en la economía 
+\gls{defi} se ha seleccionado \gls{ethereum} debido a que su moneda es la que 
+tiene mayor valor de mercado. 
+Este se puede visualizar en la figura~\ref{fig:criptovalues} a 
+fecha de 14-03-2024 y a tiempo real en la web de \citetitle{[35]} \cite{[35]}
+
+\begin{figure}[H]
     \centering
-    \caption{Información a tiempo real del valor de criptomonedas, especialmente de  \citetitle{[9]} \cite{[9]}, \citetitle{[10]} \cite{[10]}, \citetitle{[7]} \cite{[7]} las cuales sí permiten la integración de \glspl{smartcontract}.}
+    \caption{
+        Información a tiempo real del valor de criptomonedas, 
+    especialmente de  \citetitle{[9]} \cite{[9]}, \citetitle{[10]} \cite{[10]}, 
+    \citetitle{[7]} \cite{[7]} las cuales sí permiten la integración de 
+    \glspl{smartcontract}.
+    }
     \includegraphics[width=.4\textwidth]{figures/coinmarket.jpg}
     \label{fig:criptovalues}
 \end{figure}
 
-Las principales características de  \gls{ethereum} y en las cuales se apoya este proyecto son:
-    \begin{enumerate}
+Las características de \gls{ethereum} en las cuales se apoya este 
+proyecto son:
+
+\begin{enumerate}   
+    \item \textbf{ Contratos Inteligentes y Máquina Virtual de Ethereum (\gls{evm})}
+        Como se ha comentado antes, esta es la característica más importante de 
+        ethereum. Los \gls{smartcontract} son programas autoejecutables con 
+        condiciones predefinidas, que permiten automatizar una amplia variedad 
+        de procesos y acuerdos entre partes sin necesidad de intermediarios. 
+        La Máquina Virtual de Ethereum (\gls{evm}) es la infraestructura que hace 
+        posible la ejecución de estos \gls{smartcontract}. Esta consiste en un 
+        entorno virtual que permite que el código de los Smart Contract se ejecute 
+        por igual y de manera segura en todos los nodos de la red Ethereum, lo que 
+        garantiza consistencia e inmutabilidad. La \gls{evm} es compatible 
+        con varios lenguajes de programación, siendo \gls{solidity} el más 
+        utilizado para desarrollar contratos inteligentes en la red y el que se ha 
+        utilizado en este proyecto.
+
+        \item \textbf{Plataforma para \glspl{dapp}} A partir del desarrollo de los
+        \gls{smartcontract}, Ethereum fue la primera 
+        \gls{blockchain} en introducir el concepto de aplicaciones descentralizadas 
+        (\glspl{dapp}). Las \glspl{dapp} son aplicaciones que funcionan en redes 
+        descentralizadas, permitiendo que los usuarios interactúen de manera directa 
+        y sin intermediarios en diferentes servicios, desde finanzas hasta juegos y 
+        redes sociales. En este caso, \gls{evm} actúa como una \enquote{\gls{appstore} 
+        descentrelizada} 
     
-        \item \textbf{ Contratos Inteligentes y Máquina Virtual de Ethereum (\gls{evm})}
-        La característica más destacada de Ethereum es su capacidad para ejecutar \gls{SC}. Estos son programas autoejecutables con condiciones predefinidas, que permiten automatizar una amplia variedad de procesos y acuerdos entre partes sin necesidad de intermediarios.
-La Máquina Virtual de Ethereum (\gls{evm}) es la infraestructura que hace posible la ejecución de estos contratos inteligentes esta consiste en un entorno virtual que permite que el código de los Smart Contract se ejecute por igual y de manera segura en todos los nodos de la red Ethereum, lo que garantiza consistencia e inmutabilidad. La \gls{evm} también es compatible con varios lenguajes de programación, siendo \gls{solidity} el más utilizado para desarrollar contratos inteligentes en la red.
-        \item \textbf{Plataforma para \glspl{dapp}} Ethereum fue la primera blockchain en introducir el concepto de aplicaciones descentralizadas (\glspl{dapp}). Las \glspl{dapp} son aplicaciones que funcionan en redes descentralizadas, permitiendo que los usuarios interactúen de manera directa y sin intermediarios en diferentes servicios, desde finanzas hasta juegos y redes sociales.
-        
-Gracias a los contratos inteligentes y la \gls{evm}, Ethereum se convirtió en una plataforma que permite a los desarrolladores crear y desplegar sus propias aplicaciones sobre la misma red, similar a una "\gls{appstore}" descentralizada. Esto le ha dado una gran popularidad y ha impulsado el crecimiento de sectores como las finanzas descentralizadas (\gls{defi}) y los tokens no fungibles (\gls{nft}), lo que ha ampliado las posibilidades de uso de blockchain más allá de las transferencias de valor.
-
         \item \textbf{ Criptoeconomía y Modelo de Tokenización}
-         Otra diferencia clave es que Ethereum cuenta con su propia criptomoneda,
-          Ether (\gls{eth}), que es necesaria para realizar transacciones y pagar las comisiones para obligatorias
-          para ejecutar \gls{smartcontract}en la red.
-          La comisión cobrada para cada transacción se calcula según la cantidad de \gls{gas} muliplicado por su precio 
-           en el momento de la transacción.
-          El  \gls{gas} mide el trabajo computacional necesario para ejecutar una operación en la red.
-          Estas comisiones son parcialmente transferidas a los  nodos mineros o nodos validadores, incentivando a estos
-          a verificar las transacciones  mantenienod la red segura y operativa.
-          La parte de la comisión que no es transferida a los nodos que participan en la red es retirada de la red.
+        La existencia de la \gls{criptomoneda} \gls{eth} en Ethereum es clave para 
+        el desarrollo de un sistema \gls{defi}, pudiendo ser utilizada para realizar 
+        transacciones y pagar comisiones obligatorias.
 
-          Además, Ethereum introdujo el concepto de  \enquote{tokenización}, esto permite representar activos o derechos a través de \gls{token}.
-          Para facilitar el uso y transferencia de estos, se han creado distintos estandares como por ejemplo:
-          \begin{enumerate}
-            \item \gls{erc-20}: tokens fungibles, cuyas unidades son intercambiables entre sí, como puede ser una criptomenda.
-            \item \gls{erc-721} tokens no fungibles, que permiten distinguir cada token individualmente, pudiendose usar para representar
+        Además, Ethereum introdujo el concepto de  \enquote{tokenización}, 
+        esto permite representar activos o derechos a través de \gls{token}.
+        Para facilitar el uso y transferencia de estos, se han creado distintos 
+        estandares como por ejemplo:
+        \begin{enumerate}
+            \item ERC-20\cite{erc-20}: tokens fungibles, cuyas unidades son intercambiables entre sí, como puede ser una criptomenda.
+            \item ERC-72\cite{erc-721} tokens no fungibles, que permiten distinguir cada token individualmente, pudiendose usar para representar
                  activos en la vida real o distintos derechos de usuario como una votación.
-            \item \gls{erc-1155}ERC-1155: permite gestionar distintos tipos de tokens en una misma operación,
+            \item ERC-1155\cite{erc-1155}: permite gestionar distintos tipos de tokens en una misma operación,
              tanto fungibles como no fungibles, en un mismo contrato.
-          \end{enumerate}
+        \end{enumerate}
 
-        \item \textbf{Identidad} Ethereum es una red descentralizada, no utiliza identificaciones centralizadas como puede ser la centralización estatal del \gls{dni}.
-        Aunque no es una característica exclusiva de Ethereum. el sistema de identificación de esta red consiste en el típico sistema asimétrico de clave pública y privada de forma que para identificar a cada usuario se utiliza su clave pública y para que este pueda ejecutar transacciones en su nombre utiliza su clave única y privada.
-        Sin embargo, esto también significa que no hay una forma nativa de verificar identidades del mundo real.
+        \item \textbf{Identidad} Ethereum es una red descentralizada, no utiliza 
+        identificaciones centralizadas como puede ser la centralización estatal del 
+        \gls{dni}.
+        Aunque no es una característica exclusiva de Ethereum, el sistema de 
+        identificación de esta red consiste en el típico sistema asimétrico de clave 
+        pública y privada de forma que para identificar a cada usuario se utiliza 
+        su clave pública y para que este pueda ejecutar transacciones en su nombre 
+        utiliza su clave única y privada.
+        Sin embargo, esto también significa que no hay una forma nativa de verificar 
+        identidades del mundo real.
         
-        \item \textbf{Oráculos} son servicios externos que alimentan la blockchain con datos de fuentes externas, permitiendo que los contratos inteligentes interactúen con el mundo real. Por ejemplo, en aplicaciones \gls{defi} relacionadas con bienes raíces, un oráculo podría verificar que una propiedad física corresponde a un token en Ethereum, permitiendo así transacciones con respaldo en activos físicos.
+        \item \textbf{Oráculos} son servicios externos que alimentan la blockchain 
+        con datos de fuentes externas, permitiendo que los contratos inteligentes 
+        interactúen con el mundo real. Por ejemplo, en aplicaciones \gls{defi} 
+        relacionadas con bienes raíces, un oráculo podría verificar que una propiedad 
+        física corresponde a un token en Ethereum, permitiendo así transacciones con 
+        respaldo en activos físicos.
     
     \end{enumerate}
 
-Se puede concluir que ethereum es un buen  medio para  desarrollar la intencionalidad del proyecto gracias a su \gls{evm} y la posiblidad de definir contratos inteligentes en ella, utilizando como moneda de cambio \gls{eth} e icluso añadir avales a los contratos y préstamos a través de los \gls{nft} y oráculos que los identifican en el mundo físico.
-
-\paragraph{Sepholia ETH}
-Sepolia\cite{[21]}es una red de pruebas que permite a los desarrolladores experimentar y probar contratos inteligentes y aplicaciones descentralizadas en un entorno que simula la red principal de Ethereum pero sin utilizar Ether real.
-Para obtener SepoliaETH, los desarrolladores pueden utilizar faucets como Sepoliafaucet\cite{[22]}, que son servicios que proporcionan pequeñas cantidades de esta criptomoneda de prueba de forma gratuita.
+Se puede concluir que ethereum es un buen  medio para  desarrollar la 
+intencionalidad del proyecto gracias a su \gls{evm} y la posiblidad de definir 
+\gls{smartcontract} en ella, utilizando como moneda de cambio \gls{eth} e incluso 
+añadir avales a los contratos y préstamos utilizando los \gls{nft} e identificándolos 
+en el mundo físico a través de \enquote{oráculos}.
 
 \section{Tecnologías para el desarrollo}
 
-\subsection{Identificación en la red: Metamask}
+\subsection{Herramienta de identificación: Metamask}
+La aplicación web necesita conectarse con la cuenta y dirección \gls{ethereum} 
+del usuario para solicitar la firma de las operaciones de préstamo.
 
-En una red blockchain los usuarios interactúan con la red mediante direcciones, estas direcciones no permiten conocer
-directamente la identidad de la persona que la utiliza. 
-Una cuenta en Metamask permite que un usuario guarde en un mismo punto todas las direcciones que utiliza para comunicarse
-con las redes blockchain, este sistema recibe el nombre de \gls{wallet} o cartera de direcciones.
-Aunque Metamask no relacione directamente sus cuentas con personas físicas, permite identifiar al usuario dentro de las 
-aplicaciones descentralizadas (\gls{dapp}).
-Metamask además ofrece librerías capaces de interactuar directamente con las funciones \gls{web3} siendo una buena opción
-para delegar el sistema de identificacón
+La primera opción podría ser desarrollar a través de herramientas de desarrollo
+\gls{web3} una capa de identificación en la red, aunque se ha decidido delegar 
+esta tarea a proyectos ya existentes y consolidados ya que es un punto crítico de 
+seguridad del sistema y de esta manera se evita almacenar claves privadas de usuario.
 
-Encontramos distintas alternativas como Coinbase\cite{[11]} y RabbyWallet\cite{[12]} 
-pero para este proyecto se ha decido hacer uso de  Metamask\cite{[13]} debido a su mayor
- popularidad y sobretodo la facilidad de acceso a nivel de usuario. \citetitle{[14]} \cite{[14]}
+Existen varias alternativas externas para identifición en \glspl{blockchain}  
+en el sistema como Coinbase\cite{[11]} y RabbyWallet\cite{[12]} aunque simplemente 
+se ha optado por Metamask por su popularidad.
 
-Metamask es una extensión del navegador a través la cual una \gls{dapp} usando librerías \gls{web3} puede detectar
- e identificar al  usuario en el sistema siempre que este de su autorización. 
+Estas herramientas de identificación proporcionan una API para comunicar la 
+\gls{dapp} con la \gls{wallet} pudiendo automatizar a traves de funciones \gls{web3} 
+las peticiones de autorización al usuario que ha entrado en el sistema.
 
-A demás metamask también es un asistente para revisar y firmar transacciones y operaciones con \gls{smartcontract}
-que requieren de una dirección privada, como, en el caso de este sistema, la solicitud de un prestamo.
+En el caso de Metamask, esta actúa como extensión del navegador y aparece como un 
+\gls{pop-up} cada vez que la \gls{dapp} requiere una autorización, también sirve 
+para hacer transferencias directas entre cuentas, y por su puesto sirve de \gls{wallet}
 
-Estas caracteríscas hace de Metamask una  herrammienta muy potente para delegar un servicio tan delicado como la 
-identificación del usuario.
+\subsection{Herramienta multiusos para despliegue en \gls{evm} Truffle}
+
+Para el desarrollo de una \gls{dapp} en Ethereum Virtual Machine~(\gls{evm}) es 
+necesario realizar distintos procesos de compilación y despliegue para probar el 
+funcioniento del sistema antes de desplegar en la \gls{blockchain}
+
+Truffle \cite{[18]} es un conjunto de herramientas para el desarrollo de 
+aplicaciones en \gls{evm}. Principalmente puede compilar \glspl{smartcontract} y 
+reducir el código a la información necesaria la \gls{evm}
+
+Truffle también tiene una herramienta muy poderosa: Ganache \cite{[19]}, 
+esta es capaz de ejecutar  una \gls{evm} en un entorno local. 
+Perfecto para el desarrollo aunque tiende a fallar.
+
+\paragraph{Red de pruebas Sepholia-ETH}
+
+Aunque de manera muy técnica sea posible crear \gls{blockchain} de manera local,
+debido a la importancia de probar todo desarrollo antes de desplegarlo en la red 
+inmutable, existen alternativas de prueba de la mayoría de las redes \gls{blockchain} 
+públicas, estas actúan exactamente igual que la red original pero si utilizar 
+\glspl{criptomoneda} reales.
+Sepolia\cite{[21]} es la red encargada de simular la red \gls{ethereum}, su moneda
+se denomina \enquote{SepoliaETH} y se puede obtener de manera gratuita en dsitintas
+plataformas.
+
+\subsection{Explorador de bloques Etherscan}
+
+La información guardada en la red está en distintas capas y de forma no legible
+para el humano. Etherscan~\cite{[20]} es un explorador de bloques de 
+\gls{blockchain} para Ethereum que permite visualizar transacciones, 
+\gls{smartcontract}, 
+balances de \glspl{wallets} y más información en tiempo real. 
+Es una herramienta clave para analizar y verificar 
+actividades en la red Ethereum.
+
+\subsection{Remix IDE}
+
+Se ha de tener en cuenta que en el desarrollo de esta \gls{dapp} aún no estaban 
+tan extendidas las herramienta de desarrollo centralizado a través de inteligencia 
+articifial, por lo que se encontró una alternativa muy buena para el desarrollo 
+de \glspl{smartcontract} con \gls{solidity}.
+
+Remix Project \cite{[16]} es el conjunto de herramientas más exhausitivo que 
+puede usarse para toda la experiencia de desarrollo de  \glspl{smartcontract}.
+Ofrece todo tipo de herramientas para la depuración de código, despliegue en redes 
+tanto públicas como privadas, compilación de \gls{smartcontract}, etc\dots
+
+\subsection{Test unitarios: Mocha Framework}
+\label{sec:mochasection}
+Marco de pruebas en \gls{javascript} diseñado para ejecutar pruebas unitarias y 
+de integración en aplicaciones Node.js. 
+Ofrece la capacidad de comprobar reglas comunes a los \glspl{smartcontract} como 
+la comprobación de permisos de usuario, ingreso y retirada de fondos.
+
+Tiene funciones para esperar operaciones asíncronas, muy importante a la hora de 
+esperar acciones provenientes de la \gls{evm}, a demás de las funciones comunes 
+a cualquier otro entorno de trabajo para tests.
+
+\subsection{Node.js}
+
+Node.js \cite{[17]} es un entorno de ejecución \gls{javascript}  de código abierto y 
+gratuito que facilita la incorporación de paquetes a un proyecto. Muy utilizado 
+para instalar y utilizar librerías  \gls{web3}.
 
 \subsection{Web3}
 
 Se le llama web3 a la próxima generación web (actual web2).
 Entre otras cosas buscará la descentralización y sobretodo el uso de \gls{dapp}.
 A su vez web3 es un \gls{framework} de \gls{javascript} que permite acciones como 
-conectarte a una red bockchain, gestionar cuentas, firmar transacciones, consultar saldos de las cuentas, interactuar con \glspl{smartcontract}.
-Este framework abstrae la complejidad de las interacciones con la blockchain, simplificando el desarrollo de \glspl{dapp}.
+conectarte a una red bockchain, gestionar cuentas, firmar transacciones, 
+consultar saldos de las cuentas, interactuar con \glspl{smartcontract}.
+Este framework abstrae la complejidad de las interacciones con la \gls{blockchain}, 
+simplificando el desarrollo de \glspl{dapp}.
+
 
 \subsection{Solidity}
-Solidity\cite{[15]} es un lenguaje de programación diseñado para escribir contratos inteligentes que se ejecutan en la blockchain de Ethereum. Es similar a JavaScript y C++, con características específicas para gestionar transacciones, almacenamiento en blockchain y lógica descentralizada. Es fundamental para desarrollar aplicaciones descentralizadas (dApps) y sistemas DeFi.
 
-\subsection{Remix IDE}
-Remix Project \cite{[16]} es el conjunto de herramientas más exhausitivo que puede usarse para toda la experiencia de desarrollo de  \glspl{smartcontract}  para  usuarios de cualquier nivel de conocimientos y como laboratorio de aprendizaje para enseñar y experimentar con Ethereum.
-También es deal como asistente de compilación y despliegue  de \glspl{smartcontract} en \gls{ethereum}.
+Solidity\cite{[15]} es un lenguaje de programación diseñado para escribir 
+\glspl{smartcontract} que se ejecutan en la \gls{evm} de \gls{ethereum}.
+Es similar a JavaScript y C++, con características específicas para gestionar 
+transacciones, almacenamiento en blockchain y lógica descentralizada. 
 
-\subsection{Node.js}
-Node.js \cite{[17]}entorno de ejecución \gls{javascript}  de código abierto y gratuito que facilita la incorporación de paquetes a un proyecto. Muy utilizado para instalar y utilizar librerías  web3.
+Aunque existen alternativas para el desarrollo de \gls{smartcontract}, solidity
+tiene más comunidad enfocada directamente al desarrollo de \gls{smartcontract}, lo cual
+es clave en un entorno \enquote{pre-Inteligencia Artificial}
 
 \subsection{Angular}
-\citetitle{[33]} es un framework de código abierto basado en TypeScript..
-Sus herramientas hacen más sencillo las tareas comunes al desarrollo web como la gestión de rutas de dirección,
-organización de código a través de elementos llamados \enquote{componentes}, recogida de datos de usuario, etc..
-
+\citetitle{[33]} es un framework de código abierto basado en TypeScript.
+Sus herramientas hacen más sencillo las tareas comunes al desarrollo web como 
+la gestión de rutas de dirección,
+organización de código a través de elementos llamados \enquote{componentes}, 
+recogida de datos de usuario, etc..
 
 \subsection{Ionic}
-\citetitle{[32]} es un framework de código abierto orientado en el desarrollo de los componentes visuales en una
-aplicación web. En combinación con \citetitle{[33]} es una herramienta que facilita mucho
-el desarrollo. 
+\citetitle{[32]} es un framework de código abierto orientado en el desarrollo 
+de los componentes visuales en una
+aplicación web. 
+En combinación con \citetitle{[33]} se convierte en una herramienta que facilita 
+mucho el desarrollo web. 
 
-\subsection{Mochatest Framework}
-\label{sec:mochasection}
-Marco de pruebas en \gls{javascript} diseñado para ejecutar pruebas unitarias y de integración en aplicaciones Node.js. Ofrece una estructura flexible, con soporte para pruebas síncronas y asíncronas.
 
-\subsection{Truffle}
-Truffle \cite{[18]} es un conjunto de herramientas para el desarrollo de aplicaciones en Ethereum.
-Principalmente puede compilar \glspl{smartcontract} y obtener información necesaria para su despliegue en la red.
-Truffle también tiene una herramienta muy poderosa: Ganache \cite{[19]}, esta es capaz de ejecutar  una \gls{evm} en un entorno local. Perfecto para el desarrollo aunque con tendencia a fallos.
 
-\subsection{Explorador de bloques Etherscan}
-Etherscan\cite{[20]} es un explorador de blockchain para Ethereum que permite visualizar transacciones, contratos inteligentes, balances de wallets y otra información en tiempo real. Es una herramienta clave para analizar y verificar actividades en la red Ethereum.
+
 
 
