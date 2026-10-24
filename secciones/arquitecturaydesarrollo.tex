@@ -596,7 +596,9 @@ sus tipos de datos y su finalidad.
     \end{table}
 
 
-\paragraph{A continuación, las funciones}
+A continuación, la tabla~\ref{fig:funcionesfactory} presenta las funciones del contrato
+\textit{Contract Factory}, sus parámetros de entrada y salida y una
+descripción de su finalidad.
 
 \begin{table}[H]
 \centering
@@ -609,21 +611,21 @@ sus tipos de datos y su finalidad.
     
     crearTipoPrestamo   & Importe,\newline interesTotal,\newline penalización impago, \newline número cuotas & & Añade un nuevo tipo de préstamo al mapping tipos de préstamo.\\ \hline
     
-    crearPrestamo&Tipo de préstamo\newline address de usuario&&Añade un nuevo tipo de préstamo al mapping tipos de préstamo \\ \hline
+    crearPrestamo&Tipo de préstamo,\newline Address de usuario&&Añade un nuevo tipo de préstamo al mapping tipos de préstamo \\ \hline
     
     chequeoMensual & & & Actualiza los estados de los contratos y calcula la nueva
     cuota mensual \\ \hline
 
     consultarContratos& & Mapping de préstamos en curso & Devuelve la listado de
     préstamos en curso \\ \hline
-    recuperarFondos &Cantidad &&Transfiere unidades desde este contrato al Owner \\ \hline
+    recuperarFondos &Cantidad &&Transfiere unidades desde el \textit{Contract Factory}
+    a la dirección del Owner \\ \hline
     invertirFondos & Cantidad &&Transfiere unidades
-a este contrato. \\ \hline
+\textit{Contract Factory}. \\ \hline
     consultarPrestamosUsuario&Dirección de usuario a consultar&Conjunto de de Direcciones
-de contrato de
-préstamo asociados
+de \textit{Contráto Préstamo} asociados
 a un mismo usuario& \\ \hline
-
+ 
 \end{tabular}
 \end{table}
 
