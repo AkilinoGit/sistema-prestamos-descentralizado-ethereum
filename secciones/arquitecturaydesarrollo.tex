@@ -116,6 +116,8 @@ sistema en un entorno real a la vez que se plantean como líneas de desarrollo
 futuro.
 
 \section{Análisis y diseño del software}
+En esta sección se muestran diagrmas y tablas que definen la estructura y 
+flujo del sistema.
 
 \subsection{Actores del sistema}
 Los actores que pueden participan en el sistema son:
@@ -128,38 +130,58 @@ Los actores que pueden participan en el sistema son:
 \end{itemize}
 
 \subsubsection{Diagrama UML}
-%%PONER EN VOCABULARIO%%
-Un diagrama UML (Unified Modeling Language) es una representación gráfica utilizada para modelar, visualizar, documentar y diseñar sistemas de software. 
-En este caso relaciona los actores con los Casos de uso que pueden realizar y está representado en la figura 3.2.
+En la figura~r\ref{fig:uml} hay representado un \gls{diagramauml} 
+que relaciona los actores del sistema con los 
+\enquote{Casos de Uso} que pueden realizar.
+
 \begin{figure}[H]
     \centering
-    \caption{Diagrama UML representando los actores del sistema relacionados con los casos de uso a los que tienen acceso.}
+    \caption{Diagrama UML representando los actores del sistema relacionados 
+    con los casos de uso a los que tienen acceso.}
     \includegraphics[width=\textwidth]{figures/uml.jpg}
     \label{fig:uml}
 \end{figure}
 
-\subsubsection{Diagrama de secuencia}
-Un diagrama de secuencia UML muestra cómo interactúan los objetos de un sistema en un orden temporal, representando el intercambio de mensajes entre ellos.
+\subsubsection{Diagrama de secuencia UML}
+Para mostrar como interactúan los actores con el sistema en una lína de tiempo 
+y conocer el flujo de información que sucede en el sistema se ha definido
+el siguiente \gls{secuenciauml} en la figura~\ref{fig:secuenciauml}
 
-En este caso el diagrama de secuencia es de gran ayuda para comprender la cohesión del proyecto y la inmutabilidad de la información gracias a los registros en la blockchain tal y como se puede ver en la figura 3.3
+En este caso, el diagrama de secuencia muestra como todo registro en el sistema 
+siempre es grabado en la \gls{blockchain}, siendo un flujo clave en este proyecto 
+para poder dar las propiedades de veracidad e inmutabilidad a la información de los
+préstamos.
+
 \begin{figure}[H]
     \centering
-    \caption{Diagrama Secuencia que representa como la información vital del sistema queda registrada en la red aportando la inmutabilidad y confianza propia del proyecto}
+    \caption{Diagrama Secuencia que representa como la información 
+    vital del sistema queda registrada en la red aportando la inmutabilidad 
+    y confianza propia del proyecto}
     \includegraphics[width=\textwidth]{figures/diagramasecuencia.jpg}
-    \label{fig:etiqueta}
+    \label{fig:secuenciauml}
 \end{figure}
 
 \subsection{Casos de uso}
 
-En el marco del desarrollo del presente proyecto, se ha priorizado la definición de un conjunto de casos de uso que representan los escenarios esenciales para cumplir con los objetivos fundamentales del sistema ya que este proyecto debe de ser 'finito' y no 'infinito'.
+En el marco del desarrollo del presente proyecto, 
+se ha priorizado la definición de un conjunto de casos de uso que representan 
+los escenarios esenciales para cumplir con los objetivos fundamentales del 
+sistema ya que este proyecto debe de ser 'finito' y no 'infinito'.
 
-La selección de los casos de uso  no pretende abarcar una totalidad de posibles funcionalidades del sistema sino un conjunto operativo sólido y funcional. Comentando también un posible desarrollo futuro.
+La selección de los casos de uso  no pretende abarcar una totalidad 
+de posibles funcionalidades del sistema sino un conjunto operativo sólido y 
+funcional, comentando también un posible desarrollo futuro.
 
-Estos casos de uso se definen en las tablas ~\ref{tab:casos-uso-sistema} y ~\ref{tab:casos-uso-posteriores}
+Estos casos de uso se definen en las tablas ~\ref{tab:casos-uso-sistema} y 
+~\ref{tab:casos-uso-posteriores}
+
 \subsubsection{Pantallas del sistema}
-Para un mayor entendimiento de los casos de uso se realiza una declaración las posibles pantallas que participan en el sistema son:
+Para un mayor entendimiento de los casos de uso se realiza una declaración 
+de las posibles pantallas que participan en el sistema son:
+
 \begin{itemize}
-    \item \textbf{Pantalla principal común} Pantalla de incio comun a todos los usuarios, principalmente para hacer log in.
+    \item \textbf{Pantalla principal común} Pantalla de incio comun a todos los 
+    usuarios, principalmente para identificarse en el sistema.
     \item \textbf{Pantalla principal de prestamista.} 
     \item \textbf{Pantalla principal de prestatario.} 
 \end{itemize}
@@ -189,32 +211,30 @@ Para un mayor entendimiento de los casos de uso se realiza una declaración las 
 
 
 \subsubsection{Casos de uso para posteriores desarrollos}
-\begin{table}[H]
-\centering
-\caption{Casos de uso para desarrollos posteriores}
-\label{tab:casos-uso-posteriores}
-\begin{tabular}{|c|l|}
-    \hline
-    \rowcolor[HTML]{D0E7FF}
-    Código  & Descripción   \\ \hline
-    CU12     & Garantía de dvolución en caso de impago\\ \hline
-    CU13    & Consulta de valor de \gls{euribor}\\ \hline
-    CU14    &Validación de solvencia económica de usuarios\\ \hline
-\end{tabular}
-\end{table}
 
-\begin{itemize}
-    \item Para el caso de uso de la garantía se podría:
-        \begin{itemize}
-            \item Bloquear fondos de otra cuenta a través de un \gls{smartcontract} la cual tuviera un balance mínimo
-            \item Bloquear un \gls{nft} dentro del \gls{smartcontract} tipo préstamo el cual se libera cuando se acabe la deuda.
-            \item Podría externalizarse esta responsabilidad a otra \gls{dapp}
-        \end{itemize}
-    \item La consulta del valor del \gls{euribor} se realizaría a través de un  y serviría para el cálculo de la cuota mensual del préstamo.
-    \item La validación de solvencia también se realizaría a través de un oráculo y se podría utlizar para personalizar los tipos de contrato al cliente.
-\end{itemize}
+%VER CUANDO SE HABLA MÁS DE LOS CASOS DE USO PARA NO REPETIR
+% EN CASO DE QEU NO SE HABLE MÁS DARLE MISMO A  LA EXPLICACIÓN
+% AUNQUE SE HABLE EN OTROS MOMENOTS, DARLE MIMO IGUALMENTE
+    \begin{table}[H]
+    \centering
+    \caption{Casos de uso para desarrollos posteriores}
+    \label{tab:casos-uso-posteriores}
+    \begin{tabular}{|c|l|}
+        \hline
+        \rowcolor[HTML]{D0E7FF}
+    Código & Descripción \\ \hline
+    \hypertarget{cu:garantia}{CU12}
+        & Garantía de devolución en caso de impago \\ \hline
+    \hypertarget{cu:euribor}{CU13}
+        & Consulta del valor del \gls{euribor} \\ \hline
+    \hypertarget{cu:solvencia}{CU14}
+        & Validación de solvencia económica de usuarios \\ \hline
+    \end{tabular}
+    \end{table}
 
 \subsubsection{Casos de uso detallados}
+En esta sección se describen los casos de uso implementados y más adelante,
+en la sección de trabajo futuro se comentarán los casos de uso futuro.
 
 \begin{table}[!h]
 \centering
@@ -222,13 +242,14 @@ Para un mayor entendimiento de los casos de uso se realiza una declaración las 
 \begin{tabular}{|c|p{12cm}|}
     \hline
     \rowcolor[HTML]{D0E7FF}
-    CU1 & Log in usuario. \\ \hline
-    Descripción   & Los usuarios accederán al sistema a través de Metamask  \\ \hline
-    Pantalla     & Pantalla inicial. (Se redirecciona a esta página si no se ha realizado el log in)   \\ \hline
+    CU1 & \gls{login} usuario. \\ \hline
+    Descripción   & Los usuarios se identificarán en el sistema a través de Metamask  \\ \hline
+    Pantalla     & Pantalla inicial. (Se redirecciona a esta página si no se ha realizado el \gls{login})   \\ \hline
     Rol     & Cualquier usuario \\ \hline
-    Flujo     &    - El usuario accede a nuestra página web está le pedirá                           autenticarse con Metamask para poder acceder al                             servicio \newline
-                   - La extensión de Metamask permite la autenticación del          usuario y la página se redirige a la respectiva página       principal dependiendo de si es la entidad prestamista o no.
-                 \\ \hline
+    Flujo     &    - El usuario, al acceder a la página web, recibirá una notificación
+    por parte de Metamask  para poder acceder al   
+                           servicio \newline
+                   - La extensión de Metamask permite la autenticación del          usuario y la página se redirige a la respectiva página       correspondiente al rol de usuario.
 \end{tabular}
 \end{table}
 
@@ -245,7 +266,7 @@ Para un mayor entendimiento de los casos de uso se realiza una declaración las 
     Flujo     &    - El usuario owner tiene un formulario en su página principal para
 rellenar la información necesaria para la creación de un nuevo tipo de
 préstamo.\newline
-                   - Este contrato se le mostrará al usuario prestatario en su página principal
+                   - Este contrato se le mostrará al usuario prestatario en su página principal en forma de producto para contratar.
                  \\ \hline
 \end{tabular}
 \end{table}
@@ -265,11 +286,11 @@ puede contratar. \newline
                    - El usuario contrata un nuevo préstamo pinchando en el botón de
 “Contratar”.
                  \newline
-                                 Tan pronto como se procese la transacción, web 3 llamará al smart contract correspondiente y generará otro contrato el cual reflejará el estado del prestamo en
+                                 Tan pronto como se procese la transacción, la \gls{dapp} llamará al \gls{smartcontract} desplegado en la red el cual genera otro \gls{smartcontract} que refleja el estado del préstamo en
 cada momento.
                  \newline
-                                  También las unidades solicitadas en el préstamo serán transferidas
-automáticamente desde los fondos del \gls{smartcontract} de préstamos a la dirección del
+                                Al mismo tiempo, las unidades de \gls{eth} solicitadas en el préstamo serán transferidas
+automáticamente desde los fondos del \gls{smartcontract} que conserva el balance del sistema a la dirección del
 usuario.
                   \\ \hline
 \end{tabular}
