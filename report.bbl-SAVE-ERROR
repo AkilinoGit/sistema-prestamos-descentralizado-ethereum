@@ -1,0 +1,631 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global/global}
+    \entry{[3]}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=3bcbd5f8e98d2920dd3bf17bbbe95269}{%
+           family={Dans},
+           familyi={D\bibinitperiod},
+           given={Enrique},
+           giveni={E\bibinitperiod}}}%
+      }
+      \strng{namehash}{3bcbd5f8e98d2920dd3bf17bbbe95269}
+      \strng{fullhash}{3bcbd5f8e98d2920dd3bf17bbbe95269}
+      \strng{fullhashraw}{3bcbd5f8e98d2920dd3bf17bbbe95269}
+      \strng{bibnamehash}{3bcbd5f8e98d2920dd3bf17bbbe95269}
+      \strng{authorbibnamehash}{3bcbd5f8e98d2920dd3bf17bbbe95269}
+      \strng{authornamehash}{3bcbd5f8e98d2920dd3bf17bbbe95269}
+      \strng{authorfullhash}{3bcbd5f8e98d2920dd3bf17bbbe95269}
+      \strng{authorfullhashraw}{3bcbd5f8e98d2920dd3bf17bbbe95269}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{<<Planteando el bitcoin como alternativa monetaria>>}
+      \field{year}{2024}
+      \verb{urlraw}
+      \verb https://www.enriquedans.com/2024/12/planteando-el-bitcoin-como-alternativa-monetaria.html
+      \endverb
+      \verb{url}
+      \verb https://www.enriquedans.com/2024/12/planteando-el-bitcoin-como-alternativa-monetaria.html
+      \endverb
+    \endentry
+    \entry{[25]}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=93632db6c99fe8fb2f6f67a537ea215c}{%
+           family={Sanz},
+           familyi={S\bibinitperiod},
+           given={Aquilino\bibnamedelima Pascual},
+           giveni={A\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+      }
+      \strng{namehash}{93632db6c99fe8fb2f6f67a537ea215c}
+      \strng{fullhash}{93632db6c99fe8fb2f6f67a537ea215c}
+      \strng{fullhashraw}{93632db6c99fe8fb2f6f67a537ea215c}
+      \strng{bibnamehash}{93632db6c99fe8fb2f6f67a537ea215c}
+      \strng{authorbibnamehash}{93632db6c99fe8fb2f6f67a537ea215c}
+      \strng{authornamehash}{93632db6c99fe8fb2f6f67a537ea215c}
+      \strng{authorfullhash}{93632db6c99fe8fb2f6f67a537ea215c}
+      \strng{authorfullhashraw}{93632db6c99fe8fb2f6f67a537ea215c}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Repositorio de este proyecto: Sistema de préstamos descentralizado basado en la red Blockchain de Ethereum}
+      \field{year}{2024}
+      \verb{urlraw}
+      \verb https://github.com/AkilinoGit/akilinogit.github.io
+      \endverb
+      \verb{url}
+      \verb https://github.com/AkilinoGit/akilinogit.github.io
+      \endverb
+    \endentry
+    \entry{[4]}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=b8301f77dc675c5b22c7e9cedd990fb6}{%
+           family={CARLOS\bibnamedelimb DOLADER\bibnamedelima RETAMAL},
+           familyi={C\bibinitperiod\bibinitdelim D\bibinitperiod\bibinitdelim R\bibinitperiod},
+           given={JOSE\bibnamedelimb LUÍS\bibnamedelimb MUÑOZ\bibnamedelima TAPIA},
+           giveni={J\bibinitperiod\bibinitdelim L\bibinitperiod\bibinitdelim M\bibinitperiod\bibinitdelim T\bibinitperiod},
+           suffix={JOAN\bibnamedelimb BEL\bibnamedelima ROIG},
+           suffixi={J\bibinitperiod\bibinitdelim B\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+      }
+      \strng{namehash}{b8301f77dc675c5b22c7e9cedd990fb6}
+      \strng{fullhash}{b8301f77dc675c5b22c7e9cedd990fb6}
+      \strng{fullhashraw}{b8301f77dc675c5b22c7e9cedd990fb6}
+      \strng{bibnamehash}{b8301f77dc675c5b22c7e9cedd990fb6}
+      \strng{authorbibnamehash}{b8301f77dc675c5b22c7e9cedd990fb6}
+      \strng{authornamehash}{b8301f77dc675c5b22c7e9cedd990fb6}
+      \strng{authorfullhash}{b8301f77dc675c5b22c7e9cedd990fb6}
+      \strng{authorfullhashraw}{b8301f77dc675c5b22c7e9cedd990fb6}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{<<LA BLOCKCHAIN: FUNDAMENTOS, APLICACIONES Y RELACIÓN CON OTRAS TECNOLOGÍAS DISRUPTIVAS>>}
+      \field{year}{2017}
+      \verb{urlraw}
+      \verb https://www.mintur.gob.es/Publicaciones/Publicacionesperiodicas/EconomiaIndustrial/RevistaEconomiaIndustrial/405/DOLADER%2C%20BEL%20Y%20MU%C3%91OZ.pdf
+      \endverb
+      \verb{url}
+      \verb https://www.mintur.gob.es/Publicaciones/Publicacionesperiodicas/EconomiaIndustrial/RevistaEconomiaIndustrial/405/DOLADER%2C%20BEL%20Y%20MU%C3%91OZ.pdf
+      \endverb
+    \endentry
+    \entry{[5]}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=f69aa4e60b8245fc0d37e2b7f69f99bb}{%
+           family={BARTOLOMEO\bibnamedelima Alejandro},
+           familyi={B\bibinitperiod\bibinitdelim A\bibinitperiod},
+           given={MACHIN\bibnamedelimb URBAY\bibnamedelima Gustavo},
+           giveni={M\bibinitperiod\bibinitdelim U\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+      }
+      \strng{namehash}{f69aa4e60b8245fc0d37e2b7f69f99bb}
+      \strng{fullhash}{f69aa4e60b8245fc0d37e2b7f69f99bb}
+      \strng{fullhashraw}{f69aa4e60b8245fc0d37e2b7f69f99bb}
+      \strng{bibnamehash}{f69aa4e60b8245fc0d37e2b7f69f99bb}
+      \strng{authorbibnamehash}{f69aa4e60b8245fc0d37e2b7f69f99bb}
+      \strng{authornamehash}{f69aa4e60b8245fc0d37e2b7f69f99bb}
+      \strng{authorfullhash}{f69aa4e60b8245fc0d37e2b7f69f99bb}
+      \strng{authorfullhashraw}{f69aa4e60b8245fc0d37e2b7f69f99bb}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{<<INTRODUCCIÓN A LA TECNOLOGÍA BLOCKCHAIN: SU IMPACTO EN LAS CIENCIAS ECONÓMICAS S>>}
+      \field{year}{2020}
+      \verb{urlraw}
+      \verb https://bdigital.uncuyo.edu.ar/objetos_digitales/15304/14.-introduccinalatecnologia.pdf
+      \endverb
+      \verb{url}
+      \verb https://bdigital.uncuyo.edu.ar/objetos_digitales/15304/14.-introduccinalatecnologia.pdf
+      \endverb
+    \endentry
+    \entry{[23]}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=f3327eb40d1adb4daf667920a54ee6e9}{%
+           family={Neocheck},
+           familyi={N\bibinitperiod}}}%
+      }
+      \strng{namehash}{f3327eb40d1adb4daf667920a54ee6e9}
+      \strng{fullhash}{f3327eb40d1adb4daf667920a54ee6e9}
+      \strng{fullhashraw}{f3327eb40d1adb4daf667920a54ee6e9}
+      \strng{bibnamehash}{f3327eb40d1adb4daf667920a54ee6e9}
+      \strng{authorbibnamehash}{f3327eb40d1adb4daf667920a54ee6e9}
+      \strng{authornamehash}{f3327eb40d1adb4daf667920a54ee6e9}
+      \strng{authorfullhash}{f3327eb40d1adb4daf667920a54ee6e9}
+      \strng{authorfullhashraw}{f3327eb40d1adb4daf667920a54ee6e9}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{SepoliaFaucet}
+      \field{year}{2019}
+      \verb{urlraw}
+      \verb https://www.neocheck.es/wp-content/uploads/2019/09/funcionamiento-blockchain-permisionada-800x416.png
+      \endverb
+      \verb{url}
+      \verb https://www.neocheck.es/wp-content/uploads/2019/09/funcionamiento-blockchain-permisionada-800x416.png
+      \endverb
+    \endentry
+    \entry{[6]}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=b3b3a6ac74ecbd56bcdbefa4799fb9df}{%
+           family={Amazon},
+           familyi={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{b3b3a6ac74ecbd56bcdbefa4799fb9df}
+      \strng{fullhash}{b3b3a6ac74ecbd56bcdbefa4799fb9df}
+      \strng{fullhashraw}{b3b3a6ac74ecbd56bcdbefa4799fb9df}
+      \strng{bibnamehash}{b3b3a6ac74ecbd56bcdbefa4799fb9df}
+      \strng{authorbibnamehash}{b3b3a6ac74ecbd56bcdbefa4799fb9df}
+      \strng{authornamehash}{b3b3a6ac74ecbd56bcdbefa4799fb9df}
+      \strng{authorfullhash}{b3b3a6ac74ecbd56bcdbefa4799fb9df}
+      \strng{authorfullhashraw}{b3b3a6ac74ecbd56bcdbefa4799fb9df}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{<<¿Qué es la tecnología de cadena de bloques?>>}
+      \field{year}{-}
+      \verb{urlraw}
+      \verb https://aws.amazon.com/what-is/blockchain/?aws-products-all.sort-by=item.additionalFields.productNameLowercase&aws-products-all.sort-order=ascf
+      \endverb
+      \verb{url}
+      \verb https://aws.amazon.com/what-is/blockchain/?aws-products-all.sort-by=item.additionalFields.productNameLowercase&aws-products-all.sort-order=ascf
+      \endverb
+    \endentry
+    \entry{[7]}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=94195b7b439ec3bda396c8df3d53e0c0}{%
+           family={Ethereum},
+           familyi={E\bibinitperiod}}}%
+      }
+      \strng{namehash}{94195b7b439ec3bda396c8df3d53e0c0}
+      \strng{fullhash}{94195b7b439ec3bda396c8df3d53e0c0}
+      \strng{fullhashraw}{94195b7b439ec3bda396c8df3d53e0c0}
+      \strng{bibnamehash}{94195b7b439ec3bda396c8df3d53e0c0}
+      \strng{authorbibnamehash}{94195b7b439ec3bda396c8df3d53e0c0}
+      \strng{authornamehash}{94195b7b439ec3bda396c8df3d53e0c0}
+      \strng{authorfullhash}{94195b7b439ec3bda396c8df3d53e0c0}
+      \strng{authorfullhashraw}{94195b7b439ec3bda396c8df3d53e0c0}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{<<Historia de Ethereum: fundador, lanzamiento y propiedad>>}
+      \field{year}{2026}
+      \verb{urlraw}
+      \verb https://ethereum.org/es/ethereum-history-founder-and-ownership/
+      \endverb
+      \verb{url}
+      \verb https://ethereum.org/es/ethereum-history-founder-and-ownership/
+      \endverb
+    \endentry
+    \entry{[9]}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=cad0684c438a5cf2f244db35b55a4116}{%
+           family={Solana},
+           familyi={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{cad0684c438a5cf2f244db35b55a4116}
+      \strng{fullhash}{cad0684c438a5cf2f244db35b55a4116}
+      \strng{fullhashraw}{cad0684c438a5cf2f244db35b55a4116}
+      \strng{bibnamehash}{cad0684c438a5cf2f244db35b55a4116}
+      \strng{authorbibnamehash}{cad0684c438a5cf2f244db35b55a4116}
+      \strng{authornamehash}{cad0684c438a5cf2f244db35b55a4116}
+      \strng{authorfullhash}{cad0684c438a5cf2f244db35b55a4116}
+      \strng{authorfullhashraw}{cad0684c438a5cf2f244db35b55a4116}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Solana}
+      \field{year}{-}
+      \verb{urlraw}
+      \verb https://solana.com/es
+      \endverb
+      \verb{url}
+      \verb https://solana.com/es
+      \endverb
+    \endentry
+    \entry{[10]}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=7ed48ad1438642d003dc6a9596d6488e}{%
+           family={BNBChain},
+           familyi={B\bibinitperiod}}}%
+      }
+      \strng{namehash}{7ed48ad1438642d003dc6a9596d6488e}
+      \strng{fullhash}{7ed48ad1438642d003dc6a9596d6488e}
+      \strng{fullhashraw}{7ed48ad1438642d003dc6a9596d6488e}
+      \strng{bibnamehash}{7ed48ad1438642d003dc6a9596d6488e}
+      \strng{authorbibnamehash}{7ed48ad1438642d003dc6a9596d6488e}
+      \strng{authornamehash}{7ed48ad1438642d003dc6a9596d6488e}
+      \strng{authorfullhash}{7ed48ad1438642d003dc6a9596d6488e}
+      \strng{authorfullhashraw}{7ed48ad1438642d003dc6a9596d6488e}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{BNBChain}
+      \field{year}{-}
+      \verb{urlraw}
+      \verb https://www.bnbchain.org/es-LA
+      \endverb
+      \verb{url}
+      \verb https://www.bnbchain.org/es-LA
+      \endverb
+    \endentry
+    \entry{[21]}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=5d931f1fa88c25e04d6a87227eaa7cb3}{%
+           family={Sepolia},
+           familyi={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{5d931f1fa88c25e04d6a87227eaa7cb3}
+      \strng{fullhash}{5d931f1fa88c25e04d6a87227eaa7cb3}
+      \strng{fullhashraw}{5d931f1fa88c25e04d6a87227eaa7cb3}
+      \strng{bibnamehash}{5d931f1fa88c25e04d6a87227eaa7cb3}
+      \strng{authorbibnamehash}{5d931f1fa88c25e04d6a87227eaa7cb3}
+      \strng{authornamehash}{5d931f1fa88c25e04d6a87227eaa7cb3}
+      \strng{authorfullhash}{5d931f1fa88c25e04d6a87227eaa7cb3}
+      \strng{authorfullhashraw}{5d931f1fa88c25e04d6a87227eaa7cb3}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Sepolia}
+      \field{year}{-}
+      \verb{urlraw}
+      \verb https://sepolia.etherscan.io/
+      \endverb
+      \verb{url}
+      \verb https://sepolia.etherscan.io/
+      \endverb
+    \endentry
+    \entry{[22]}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=65f9313274e2d2aaab08d757e7a3f41a}{%
+           family={SepoliaFaucet},
+           familyi={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{65f9313274e2d2aaab08d757e7a3f41a}
+      \strng{fullhash}{65f9313274e2d2aaab08d757e7a3f41a}
+      \strng{fullhashraw}{65f9313274e2d2aaab08d757e7a3f41a}
+      \strng{bibnamehash}{65f9313274e2d2aaab08d757e7a3f41a}
+      \strng{authorbibnamehash}{65f9313274e2d2aaab08d757e7a3f41a}
+      \strng{authornamehash}{65f9313274e2d2aaab08d757e7a3f41a}
+      \strng{authorfullhash}{65f9313274e2d2aaab08d757e7a3f41a}
+      \strng{authorfullhashraw}{65f9313274e2d2aaab08d757e7a3f41a}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{SepoliaFaucet}
+      \field{year}{-}
+      \verb{urlraw}
+      \verb https://www.alchemy.com/faucets/ethereum-sepolia
+      \endverb
+      \verb{url}
+      \verb https://www.alchemy.com/faucets/ethereum-sepolia
+      \endverb
+    \endentry
+    \entry{[11]}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=28d13ddddf18afba2c3727253ba0d42f}{%
+           family={Coinbase},
+           familyi={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{28d13ddddf18afba2c3727253ba0d42f}
+      \strng{fullhash}{28d13ddddf18afba2c3727253ba0d42f}
+      \strng{fullhashraw}{28d13ddddf18afba2c3727253ba0d42f}
+      \strng{bibnamehash}{28d13ddddf18afba2c3727253ba0d42f}
+      \strng{authorbibnamehash}{28d13ddddf18afba2c3727253ba0d42f}
+      \strng{authornamehash}{28d13ddddf18afba2c3727253ba0d42f}
+      \strng{authorfullhash}{28d13ddddf18afba2c3727253ba0d42f}
+      \strng{authorfullhashraw}{28d13ddddf18afba2c3727253ba0d42f}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Coinbase}
+      \field{year}{-}
+      \verb{urlraw}
+      \verb https://www.coinbase.com/es-es/wallet
+      \endverb
+      \verb{url}
+      \verb https://www.coinbase.com/es-es/wallet
+      \endverb
+    \endentry
+    \entry{[12]}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=9d45e97a4ef27bca00438c4f8bd86fd7}{%
+           family={RabbyWallet},
+           familyi={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{9d45e97a4ef27bca00438c4f8bd86fd7}
+      \strng{fullhash}{9d45e97a4ef27bca00438c4f8bd86fd7}
+      \strng{fullhashraw}{9d45e97a4ef27bca00438c4f8bd86fd7}
+      \strng{bibnamehash}{9d45e97a4ef27bca00438c4f8bd86fd7}
+      \strng{authorbibnamehash}{9d45e97a4ef27bca00438c4f8bd86fd7}
+      \strng{authornamehash}{9d45e97a4ef27bca00438c4f8bd86fd7}
+      \strng{authorfullhash}{9d45e97a4ef27bca00438c4f8bd86fd7}
+      \strng{authorfullhashraw}{9d45e97a4ef27bca00438c4f8bd86fd7}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{RabbyWallet}
+      \field{year}{-}
+      \verb{urlraw}
+      \verb https://rabby.io/
+      \endverb
+      \verb{url}
+      \verb https://rabby.io/
+      \endverb
+    \endentry
+    \entry{[13]}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=0f0ecaaf4dd15916b0e22874e98912ee}{%
+           family={MetaMask},
+           familyi={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{0f0ecaaf4dd15916b0e22874e98912ee}
+      \strng{fullhash}{0f0ecaaf4dd15916b0e22874e98912ee}
+      \strng{fullhashraw}{0f0ecaaf4dd15916b0e22874e98912ee}
+      \strng{bibnamehash}{0f0ecaaf4dd15916b0e22874e98912ee}
+      \strng{authorbibnamehash}{0f0ecaaf4dd15916b0e22874e98912ee}
+      \strng{authornamehash}{0f0ecaaf4dd15916b0e22874e98912ee}
+      \strng{authorfullhash}{0f0ecaaf4dd15916b0e22874e98912ee}
+      \strng{authorfullhashraw}{0f0ecaaf4dd15916b0e22874e98912ee}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{MetaMask}
+      \field{year}{-}
+      \verb{urlraw}
+      \verb https://metamask.io/
+      \endverb
+      \verb{url}
+      \verb https://metamask.io/
+      \endverb
+    \endentry
+    \entry{[14]}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=419a174a64f9ddf2dd7498f58e177def}{%
+           family={Megaacademi.io},
+           familyi={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{419a174a64f9ddf2dd7498f58e177def}
+      \strng{fullhash}{419a174a64f9ddf2dd7498f58e177def}
+      \strng{fullhashraw}{419a174a64f9ddf2dd7498f58e177def}
+      \strng{bibnamehash}{419a174a64f9ddf2dd7498f58e177def}
+      \strng{authorbibnamehash}{419a174a64f9ddf2dd7498f58e177def}
+      \strng{authornamehash}{419a174a64f9ddf2dd7498f58e177def}
+      \strng{authorfullhash}{419a174a64f9ddf2dd7498f58e177def}
+      \strng{authorfullhashraw}{419a174a64f9ddf2dd7498f58e177def}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{MetaMask – ¿Qué es MetaMask y qué ventajas tiene?}
+      \field{year}{-}
+      \verb{urlraw}
+      \verb https://megaacademy.io/metamask/
+      \endverb
+      \verb{url}
+      \verb https://megaacademy.io/metamask/
+      \endverb
+    \endentry
+    \entry{[15]}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=a88edfd1c634037c6d17d1ad47ae2f29}{%
+           family={Solidity},
+           familyi={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{a88edfd1c634037c6d17d1ad47ae2f29}
+      \strng{fullhash}{a88edfd1c634037c6d17d1ad47ae2f29}
+      \strng{fullhashraw}{a88edfd1c634037c6d17d1ad47ae2f29}
+      \strng{bibnamehash}{a88edfd1c634037c6d17d1ad47ae2f29}
+      \strng{authorbibnamehash}{a88edfd1c634037c6d17d1ad47ae2f29}
+      \strng{authornamehash}{a88edfd1c634037c6d17d1ad47ae2f29}
+      \strng{authorfullhash}{a88edfd1c634037c6d17d1ad47ae2f29}
+      \strng{authorfullhashraw}{a88edfd1c634037c6d17d1ad47ae2f29}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Solidity}
+      \field{year}{-}
+      \verb{urlraw}
+      \verb https://soliditylang.org/
+      \endverb
+      \verb{url}
+      \verb https://soliditylang.org/
+      \endverb
+    \endentry
+    \entry{[16]}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=29ae00d93bbefa3ae9e0b333abfac11a}{%
+           family={RemixIDE},
+           familyi={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{29ae00d93bbefa3ae9e0b333abfac11a}
+      \strng{fullhash}{29ae00d93bbefa3ae9e0b333abfac11a}
+      \strng{fullhashraw}{29ae00d93bbefa3ae9e0b333abfac11a}
+      \strng{bibnamehash}{29ae00d93bbefa3ae9e0b333abfac11a}
+      \strng{authorbibnamehash}{29ae00d93bbefa3ae9e0b333abfac11a}
+      \strng{authornamehash}{29ae00d93bbefa3ae9e0b333abfac11a}
+      \strng{authorfullhash}{29ae00d93bbefa3ae9e0b333abfac11a}
+      \strng{authorfullhashraw}{29ae00d93bbefa3ae9e0b333abfac11a}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{RemixIDE}
+      \field{year}{-}
+      \verb{urlraw}
+      \verb https://remix-project.org/?lang=es
+      \endverb
+      \verb{url}
+      \verb https://remix-project.org/?lang=es
+      \endverb
+    \endentry
+    \entry{[17]}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=46753be63b6ba8975974383d42485f70}{%
+           family={NodeJS},
+           familyi={N\bibinitperiod}}}%
+      }
+      \strng{namehash}{46753be63b6ba8975974383d42485f70}
+      \strng{fullhash}{46753be63b6ba8975974383d42485f70}
+      \strng{fullhashraw}{46753be63b6ba8975974383d42485f70}
+      \strng{bibnamehash}{46753be63b6ba8975974383d42485f70}
+      \strng{authorbibnamehash}{46753be63b6ba8975974383d42485f70}
+      \strng{authornamehash}{46753be63b6ba8975974383d42485f70}
+      \strng{authorfullhash}{46753be63b6ba8975974383d42485f70}
+      \strng{authorfullhashraw}{46753be63b6ba8975974383d42485f70}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{NodeJS}
+      \field{year}{-}
+      \verb{urlraw}
+      \verb https://nodejs.org/es
+      \endverb
+      \verb{url}
+      \verb https://nodejs.org/es
+      \endverb
+    \endentry
+    \entry{[18]}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=5d76d05ca32fae5fc3a8f4ac4f110f45}{%
+           family={Truffle},
+           familyi={T\bibinitperiod}}}%
+      }
+      \strng{namehash}{5d76d05ca32fae5fc3a8f4ac4f110f45}
+      \strng{fullhash}{5d76d05ca32fae5fc3a8f4ac4f110f45}
+      \strng{fullhashraw}{5d76d05ca32fae5fc3a8f4ac4f110f45}
+      \strng{bibnamehash}{5d76d05ca32fae5fc3a8f4ac4f110f45}
+      \strng{authorbibnamehash}{5d76d05ca32fae5fc3a8f4ac4f110f45}
+      \strng{authornamehash}{5d76d05ca32fae5fc3a8f4ac4f110f45}
+      \strng{authorfullhash}{5d76d05ca32fae5fc3a8f4ac4f110f45}
+      \strng{authorfullhashraw}{5d76d05ca32fae5fc3a8f4ac4f110f45}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Truffle}
+      \field{year}{-}
+      \verb{urlraw}
+      \verb https://archive.trufflesuite.com/
+      \endverb
+      \verb{url}
+      \verb https://archive.trufflesuite.com/
+      \endverb
+    \endentry
+    \entry{[19]}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=1d1bee6d3bffa84b7221afe066f6a3a8}{%
+           family={Ganache},
+           familyi={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{1d1bee6d3bffa84b7221afe066f6a3a8}
+      \strng{fullhash}{1d1bee6d3bffa84b7221afe066f6a3a8}
+      \strng{fullhashraw}{1d1bee6d3bffa84b7221afe066f6a3a8}
+      \strng{bibnamehash}{1d1bee6d3bffa84b7221afe066f6a3a8}
+      \strng{authorbibnamehash}{1d1bee6d3bffa84b7221afe066f6a3a8}
+      \strng{authornamehash}{1d1bee6d3bffa84b7221afe066f6a3a8}
+      \strng{authorfullhash}{1d1bee6d3bffa84b7221afe066f6a3a8}
+      \strng{authorfullhashraw}{1d1bee6d3bffa84b7221afe066f6a3a8}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Ganache}
+      \field{year}{-}
+      \verb{urlraw}
+      \verb https://archive.trufflesuite.com/ganache/
+      \endverb
+      \verb{url}
+      \verb https://archive.trufflesuite.com/ganache/
+      \endverb
+    \endentry
+    \entry{[20]}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=89b9ed27c1b999b77b1e565826acf04d}{%
+           family={EtherScan},
+           familyi={E\bibinitperiod}}}%
+      }
+      \strng{namehash}{89b9ed27c1b999b77b1e565826acf04d}
+      \strng{fullhash}{89b9ed27c1b999b77b1e565826acf04d}
+      \strng{fullhashraw}{89b9ed27c1b999b77b1e565826acf04d}
+      \strng{bibnamehash}{89b9ed27c1b999b77b1e565826acf04d}
+      \strng{authorbibnamehash}{89b9ed27c1b999b77b1e565826acf04d}
+      \strng{authornamehash}{89b9ed27c1b999b77b1e565826acf04d}
+      \strng{authorfullhash}{89b9ed27c1b999b77b1e565826acf04d}
+      \strng{authorfullhashraw}{89b9ed27c1b999b77b1e565826acf04d}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{EtherScan}
+      \field{year}{-}
+      \verb{urlraw}
+      \verb https://etherscan.io/
+      \endverb
+      \verb{url}
+      \verb https://etherscan.io/
+      \endverb
+    \endentry
+    \entry{[24]}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=8251caff3132eb3d942c5363e7378345}{%
+           family={Europea},
+           familyi={E\bibinitperiod},
+           given={Unión},
+           giveni={U\bibinitperiod}}}%
+      }
+      \strng{namehash}{8251caff3132eb3d942c5363e7378345}
+      \strng{fullhash}{8251caff3132eb3d942c5363e7378345}
+      \strng{fullhashraw}{8251caff3132eb3d942c5363e7378345}
+      \strng{bibnamehash}{8251caff3132eb3d942c5363e7378345}
+      \strng{authorbibnamehash}{8251caff3132eb3d942c5363e7378345}
+      \strng{authornamehash}{8251caff3132eb3d942c5363e7378345}
+      \strng{authorfullhash}{8251caff3132eb3d942c5363e7378345}
+      \strng{authorfullhashraw}{8251caff3132eb3d942c5363e7378345}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Reglamento Europeo sobre los Criptoativos}
+      \field{year}{2023}
+      \verb{urlraw}
+      \verb https://eur-lex.europa.eu/ES/legal-content/summary/european-crypto-assets-regulation-mica.html
+      \endverb
+      \verb{url}
+      \verb https://eur-lex.europa.eu/ES/legal-content/summary/european-crypto-assets-regulation-mica.html
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

@@ -236,7 +236,7 @@ de las posibles pantallas que participan en el sistema son:
 En esta sección se describen los casos de uso implementados y más adelante,
 en la sección de trabajo futuro se comentarán los casos de uso futuro.
 
-\begin{table}[!h]
+\begin{table}[H]
 \centering
 \caption{Casos de uso 1}
 \begin{tabular}{|c|p{12cm}|}
@@ -249,11 +249,12 @@ en la sección de trabajo futuro se comentarán los casos de uso futuro.
     Flujo     &    - El usuario, al acceder a la página web, recibirá una notificación
     por parte de Metamask  para poder acceder al   
                            servicio \newline
-                   - La extensión de Metamask permite la autenticación del          usuario y la página se redirige a la respectiva página       correspondiente al rol de usuario.
+                   - La extensión de Metamask permite la autenticación del          usuario y la página se redirige a la respectiva página       correspondiente segun su rol de usuario.
+    \\ \hline
 \end{tabular}
 \end{table}
 
-\begin{table}[!h]
+\begin{table}[H]
 \centering
 \caption{Casos de uso 2}
 \begin{tabular}{|c|p{12cm}|}
@@ -271,7 +272,7 @@ préstamo.\newline
 \end{tabular}
 \end{table}
 
-\begin{table}[!h]
+\begin{table}[H]
 \centering
 \caption{Casos de uso 3}
 \begin{tabular}{|c|p{12cm}|}
@@ -296,7 +297,7 @@ usuario.
 \end{tabular}
 \end{table}
 
-\begin{table}[!h]
+\begin{table}[H]
 \centering
 \caption{Casos de uso 4}
 \begin{tabular}{|c|p{12cm}|}
@@ -313,26 +314,26 @@ que tiene contratados \\ \hline
 \end{tabular}
 \end{table}
 
-\begin{table}[!h]
+\begin{table}[H]
     \centering
     \caption{Casos de uso 5}
 \begin{tabular}{|c|p{12cm}|}
     \hline
     \rowcolor[HTML]{D0E7FF}
     CU5 & Pago cuota préstamo. \\ \hline
-    Descripción   & Los usuarios del servicio de préstamo realizan el pago de sus mensualidades a través
-de la DApp del proyecto  \\ \hline
+    Descripción   & Los usuarios del servicio de préstamo realizan el pago de sus 
+    mensualidades a través de la \gls{dapp} del proyecto  \\ \hline
     Pantalla     & Pantalla principal de usuarios prestatarios   \\ \hline
     Rol     & User \\ \hline
     Flujo     &    -En la página principal del usuario aparecen los distintos prestamos que
 tiene contratados y su respectivos estados, junto a esto, existe un botón para
 cada contrato que transfiere la mensualidad calculada previamente desde la
-cuenta del usuario a la cuenta del \gls{smartcontract} de préstamo.
+cuenta del usuario a la dirección del \gls{smartcontract} de préstamo.
                  \\ \hline
 \end{tabular}
 \end{table}
 
-\begin{table}[!h]
+\begin{table}[H]
 \centering
 \caption{Casos de uso 6}
 \begin{tabular}{|c|p{12cm}|}
@@ -348,7 +349,7 @@ curso \\ \hline
 \end{tabular}
 \end{table}
 
-\begin{table}[!h]
+\begin{table}[H]
 \centering
 \caption{Casos de uso 7}
 \begin{tabular}{|c|p{12cm}|}
@@ -365,7 +366,7 @@ esa orden siempre y cuando hayan pasado 30 días desde la última orden.
 \end{tabular}
 \end{table}
 
-\begin{table}[!h]
+\begin{table}[H]
 \centering
 \caption{Casos de uso 8}
 \begin{tabular}{|c|p{12cm}|}
@@ -373,27 +374,27 @@ esa orden siempre y cuando hayan pasado 30 días desde la última orden.
     \rowcolor[HTML]{D0E7FF}
     CU8 & Penalización por impago de cuota mensual \\ \hline
     Descripción   & Los contratos en estado de impago generan una penalización de deuda, esta
-penalización solo puede suceder una vez por cada chequeo mensual de contratos  \\ \hline
+penalización solo puede suceder una vez al mes.  \\ \hline
     Pantalla     & Pantalla principal de entidad financiera  \\ \hline
     Rol     & Owner \\ \hline
     Flujo     &    Cuando el propietario genera la orden de chequeo mensual los contratos
-que tengan estado de “impago” aumentaran su valor de deuda
+que tengan estado de \enquote{impago} aumentaran su valor de deuda
                  \\ \hline
 \end{tabular}
 \end{table}
 
-\begin{table}[!h]
+\begin{table}[H]
 \centering
 \caption{Casos de uso 9}
 \begin{tabular}{|c|p{12cm}|}
     \hline
     \rowcolor[HTML]{D0E7FF}
-    CU9 & Cálculo de importe de próxima cuota mensua \\ \hline
+    CU9 & Cálculo de importe de próxima cuota mensual \\ \hline
     Descripción   & El importe de la próxima cuota mensual es un valor dinámico sujeto a
 penalizaciones  \\ \hline
     Pantalla     & Pantalla principal usuario  \\ \hline
     Rol     & User \\ \hline
-    Flujo     &    - Tras el chequeo el mensual la cuota del próximo pago se podrá ver
+    Flujo     &    - Tras el chequeo mensual la cuota del próximo pago se podrá ver
 modificada en caso de penalización \newline
                    - En la información de los préstamos contratados aparecerá la cantidad de la
 cuota del mes en curso
@@ -401,31 +402,31 @@ cuota del mes en curso
 \end{tabular}
 \end{table}
 
-\begin{table}[!h]
+\begin{table}[H]
 \centering
 \caption{Casos de uso 10}
 \begin{tabular}{|c|p{12cm}|}
     \hline
     \rowcolor[HTML]{D0E7FF}
-    CU10 & Recoger fondos del contrato de prestamos \\ \hline
+    CU10 & Recoger fondos del contrato de préstamos \\ \hline
     Descripción   & La entidad bancaria propietaria  del sistema de prestámos puede disponer de los fondos almacenados en el sistmea
 cuando desee  \\ \hline
     Pantalla     & Pantalla principal de Owner   \\ \hline
     Rol     & Owner \\ \hline
-    Flujo     &    La entidad bancarai tendrá una casilla en su página principal para escribir y recibir el
-importe desde la dirección del contract factory a su dirección de la red
+    Flujo     &    La entidad bancaria tendrá una casilla en su página principal para escribir y recibir el
+importe desde la dirección del \gls{smartcontract} con el balance a su dirección de la red
                  \\ \hline
 \end{tabular}
 \end{table}
 
-\begin{table}
+\begin{table}[H]
 \centering
 \caption{Casos de uso 11}
 \begin{tabular}{|c|p{12cm}|}
     \hline
     \rowcolor[HTML]{D0E7FF}
     CU11 & Transferir fondos al sistema de préstamos \\ \hline
-    Descripción   & La entidad bancaria  puede transferir cualquier cantidad de unidades al sistema de prestamos para mantener
+    Descripción   & La entidad bancaria  puede transferir cualquier cantidad de \gls{eth} al sistema de prestamos para mantener
  un saldo positivo y poder realizar estos préstamos\\ \hline
     Pantalla     & Pantalla principal Owner   \\ \hline
     Rol     & Owner \\ \hline
@@ -435,10 +436,12 @@ importe deseado a la dirección del sistema de préstamos.
 \end{tabular}
 \end{table}
 
+\clearpage
 \subsection{Entidades del sistema}
-A continuación se definen las entidades cuyas relaciones compondrán y habilitarán las funciones del sistema propuesto
+A continuación se definen las entidades cuyas relaciones compondrán y 
+habilitarán las funciones del sistema propuesto
 
-\begin{table}[!h]
+\begin{table}[H]
 \centering
 \caption{Definción de entidades del sistema}
 \begin{tabular}{|c|p{12cm}|}
@@ -447,7 +450,7 @@ A continuación se definen las entidades cuyas relaciones compondrán y habilita
     1 & Usuario. \\ \hline
     Descripción   & Usuario que accede al servicio de préstamos.  \\ \hline
     Atributos     & Dirección pública de la red.   \\ \hline
-    Acciones     & - Pedir préstamo  \newline
+    Acciones     &- Pedir préstamo  \newline
                     - Pagar préstamo\\ \hline   
 
     \hline
@@ -455,35 +458,161 @@ A continuación se definen las entidades cuyas relaciones compondrán y habilita
     2 & Propietario. \\ \hline
     Descripción   & Propietario del sistema, único capaz de recolectar los fondos del sistema. Normalmente una entidad financiera  \\ \hline
     Atributos     & Dirección pública de la red.   \\ \hline
-    Acciones     & - Transferir unidades al sistema \newline
+    Acciones     &- Transferir unidades al sistema \newline
                     - Recoger unidades del sistema\\ \hline
    
 
     \hline
     \rowcolor[HTML]{D0E7FF}
     3 & Sistema de préstamos     \\ \hline
-    Descripción   & Conjunto de smart contract que definen los elementos del sistema y cuya ejecución valida las transacciones del sistema  \\ \hline
-    Atributos     & - Dirección de propietario \newline
-                    - Lista de préstamos contratables
-                    - Lista de usuarios y sus préstamos en curso\\ \hline
-    Acciones     & - Ejecutar las transacciones ordenadas por los usuarios dle sistema  \newline
-                    - Registrar en la red blockchain la informacion del sistema.\\ \hline
+    Descripción   & Conjunto de \gls{smartcontract} que definen los elementos del sistema y cuya ejecución valida las transacciones del sistema  \\ \hline
+    Atributos     &- Dirección de propietario \newline
+                    - Lista de préstamos contratables \newline
+                    - Lista de usuarios junto con sus préstamos en curso\\ \hline
+    Acciones     & - Ejecutar las transacciones ordenadas por los usuarios del sistema  \newline
+                    - Registrar en la red \gls{ethereum} la información del sistema.\\ \hline
    
 \end{tabular}
 \end{table}
 
+\clearpage
 \subsubsection{Diagrama entidad relación}
-El  diagrama  representado en la figura 3.4 pretende definir mediante relaciones entre las entidades las funciones que definen el sistema.
-\begin{figure}[h]
+El  diagrama  representado en la figura~\ref{fig:er} pretende 
+definir mediante relaciones entre las entidades las funciones que 
+definen el sistema.
+\begin{figure}[H]
     \centering
-    \caption{Diagrama entidad relación que representa la relaciones entre las entidades del sistema definiendo las funciones de este}
+    \caption{Diagrama entidad relación }
     \includegraphics[width=\textwidth]{figures/E-R.jpg}
     \label{fig:er}
 \end{figure}
 
 \section{Análisis Smart contracts implicados}
 \subsection{Decisiones de implementación en el sistema}
-En esta sección se define el diseño de implementación utilizado para los smart contract, así como los atributos(Tablas 3.17 y 3.19) y funciones(Tablas 3.18 y 3.20) de cada uno de ellos.
+En esta sección se define la arquitectura de diseño utilizada para los 
+\glspl{smartcontract}, así como los atributos (tablas~\ref{fig:atributosfactory} y \ref{fig:atributosprestamo}) y 
+funciones (tablas~\ref{fig:funcionesfactory} y \ref{fig:funcionesprestamo}) de cada uno de ellos.
+
+\subsection{Diagrama Entidad - Relación de Smart Contracts}
+%%Joder, aquí se está representado la estrucutra de diseño de CONTRACT FACTORY y no hablas de ella
+Aunque no sean entidades del sistema, para explicar detalladamente la arquitectura de de diseño se define otro diagrama entidad - relación en la figura~\ref{fig:ersmartcontract}
+
+\begin{figure}[h]
+    \centering
+    \caption{Diagrama entidad relación que representa las relaciones y funciones entre los Smart contracts.}
+    \includegraphics[width=\textwidth]{figures/E-R-smartcontracts.jpg}
+    \label{fig:ersmartcontract}
+\end{figure}
+
+\subsection{Descripción de Smart Contracts}
+\subsubsection{Contract Factory } 
+    \begin{table}[H]
+    \centering
+    \caption{Descripción de atributos del Contrato Contract Factory}
+        \label{fig:atributosfactory}
+    \begin{tabular}{|c|p{5cm}|p{6cm}|}
+        \hline
+        \rowcolor[HTML]{D0E7FF}
+        Nombre & Tipo de dato & Descripción\\ \hline
+        Owner&\gls{addresstype}&Dirección propietaria del sistema.\\ \hline
+        Tipos de préstamo&Mapping ((Uint => Struct) “tipo prestamo” )&Mapping que guarda los distintipos tipos
+    de préstamo contratables por el usuario. \newline
+    Esta variable solo puede ser editada por la
+    dirección de Owner.\\ \hline
+    TipoPréstamo&Struct&Conjunto de variables que definen un tipo de préstamo(Importe, intereses, deuda total, penalización de impago y  cuotas)\\ \hline
+    Préstamos en curso&Mapping
+    (Address => Address[])&Mapping que relaciona el address de un
+    usuario con las direcciones de sus
+    préstamos en curso. \newline
+    Esta variable solo puede ser editada por la
+    dirección de Owner.\\ \hline
+    \end{tabular}
+    \end{table}
+
+
+\textbf{Funciones:}
+
+\begin{table}[H]
+\centering
+\caption{Descripción de funciones del Contrato Contract Factory}
+\label{fig:funcionesfactory}
+\begin{tabular}{|c|p{3cm}|p{3cm}|p{4cm}|}
+    \hline
+    \rowcolor[HTML]{D0E7FF}
+    Nombre & Parámetro entrada & Parámetro salida & Descripcion\\ \hline
+    
+    crearTipoPrestamo   & Importe,\newline interesTotal,\newline penalización impago, \newline número cuotas & & Añade un nuevo tipo de préstamo al mapping tipos de préstamo.\\ \hline
+    
+    crearPrestamo&Tipo de préstamo\newline address de usuario&&Añade un nuevo tipo de préstamo al mapping tipos de préstamo \\ \hline
+    
+    chequeoMensual & & & Actualiza los estados de los contratos y calcula la nueva
+    cuota mensual \\ \hline
+
+    consultarContratos& & Mapping de préstamos en curso & Devuelve la listado de
+    préstamos en curso \\ \hline
+    recuperarFondos &Cantidad &&Transfiere unidades desde este contrato al Owner \\ \hline
+    invertirFondos & Cantidad &&Transfiere unidades
+a este contrato. \\ \hline
+    consultarPrestamosUsuario&Dirección de usuario a consultar&Conjunto de de Direcciones
+de contrato de
+préstamo asociados
+a un mismo usuario& \\ \hline
+
+\end{tabular}
+\end{table}
+
+
+\subsubsection{Préstamo Contract } 
+
+\begin{table}[H]
+\centering
+\caption{Descripción de atributos del Contrato Préstamo Contract }
+\label{fig:atributosprestamo}
+\begin{tabular}{|c|p{3cm}|p{4cm}|}
+    \hline
+    \rowcolor[HTML]{D0E7FF}
+    Nombre & Tipo de dato & Descripcion\\ \hline
+    ID & Int & Identificador único \\ \hline
+    Estado&ENUMERADO& {CUOTA PAGADA, PLAZO ABIERTO, FINALIZADO}
+\\ \hline
+   CuotasRestantes &Int&Informa el tiempo límite acordado para devolver el
+préstamo\\ \hline
+    Prestatario&\gls{addresstype}&Cuenta que ha contratado el préstamo\\ \hline
+    Deuda Restante&Float&Deuda restante del préstamo\\ \hline
+    Cuota Mensual&Float&Cantidad de la deuda a pagar mensualmente\\ \hline
+    Porcentaje penalización&Int& Porcentaje de penalización a la deuda en caso de impago\\ \hline
+\end{tabular}
+\end{table}
+
+\textbf{Funciones:}
+\begin{table}[H]
+\centering
+\caption{Descripción de funciones del Contrato Préstamo Contract }
+    \label{fig:funcionesprestamo}
+\begin{tabular}{|c|p{3cm}|p{3cm}|p{4cm}|}
+    \hline
+    \rowcolor[HTML]{D0E7FF}
+    Nombre & Parámetro entrada & Parámetro salida & Descripcion\\ \hline
+    
+    pagoCuota  & & & Transfiere al contrato la cuota
+previamente calculada, este importe es
+transferido directamente al contract
+factory después de dejar reflejado que
+se ha pagado la cuota.\\ \hline
+    
+    aplicarPenalización&&Nuevo valor de
+deuda&Añade el porcentaje de penalización del
+contrato a la deuda total \\ \hline
+    
+    calculoCuotaMensua & &Valor de la cuota
+mensual & A partir de la deuda restante y el
+numero de cuotas restantes calcula el
+la cuota. \\ \hline
+
+  
+
+\end{tabular}
+\end{table}
 \subsubsection{Contract Factory}
 El lenguaje utilizado para el desarrollo de los \glspl{smartcontract} es \gls{solidity}
 El patrón de diseño en el que se basa el desarrollo de los \glspl{smartcontract} de este proyecto se llama \textit{'Contract Factory'}.
@@ -660,121 +789,6 @@ problemas que puedan surgir con los decimales
     Esto se puede ver en ref{lst:funcionpagarmensualidad} donde se actualiza el estado del contrato antes de transferir los fondos al contrato \textit{factory}
 
 
-\subsection{Diagrama Entidad - Relación de Smart Contracts}
-Aunque no sean entidades del sistema, para explicar detalladamente la arquitectura de de diseño se define otro diagrama entidad - relación en la figura 3.5:
-
-\begin{figure}[h]
-    \centering
-    \caption{Diagrama entidad relación que representa las relaciones y funciones entre los Smart contracts.}
-    \includegraphics[width=\textwidth]{figures/E-R-smartcontracts.jpg}
-    \label{fig:etiqueta}
-\end{figure}
-
-\subsection{Descripción de Smart Contracts}
-\subsubsection{Contract Factory } 
-\begin{table}[H]
-\centering
-\caption{Descripción de atributos del Contrato Contract Factory}
-\begin{tabular}{|c|p{5cm}|p{6cm}|}
-    \hline
-    \rowcolor[HTML]{D0E7FF}
-    Nombre & Tipo de dato & Descripción\\ \hline
-    Owner&\gls{addresstype}&Dirección propietaria del sistema.\\ \hline
-    Tipos de préstamo&Mapping ((Uint => Struct) “tipo prestamo” )&Mapping que guarda los distintipos tipos
-de préstamo contratables por el usuario. \newline
-Esta variable solo puede ser editada por la
-dirección de Owner.\\ \hline
-TipoPréstamo&Struct&Conjunto de variables que definen un tipo de préstamo(Importe, intereses, deuda total, penalización de impago y  cuotas)\\ \hline
-Préstamos en curso&Mapping
-(Address => Address[])&Mapping que relaciona el address de un
-usuario con las direcciones de sus
-préstamos en curso. \newline
-Esta variable solo puede ser editada por la
-dirección de Owner.\\ \hline
-\end{tabular}
-\end{table}
-
-
-\textbf{Funciones:}
-
-\begin{table}[H]
-\centering
-\caption{Descripción de funciones del Contrato Contract Factory}
-\begin{tabular}{|c|p{3cm}|p{3cm}|p{4cm}|}
-    \hline
-    \rowcolor[HTML]{D0E7FF}
-    Nombre & Parámetro entrada & Parámetro salida & Descripcion\\ \hline
-    
-    crearTipoPrestamo   & Importe,\newline interesTotal,\newline penalización impago, \newline número cuotas & & Añade un nuevo tipo de préstamo al mapping tipos de préstamo.\\ \hline
-    
-    crearPrestamo&Tipo de préstamo\newline address de usuario&&Añade un nuevo tipo de préstamo al mapping tipos de préstamo \\ \hline
-    
-    chequeoMensual & & & Actualiza los estados de los contratos y calcula la nueva
-    cuota mensual \\ \hline
-
-    consultarContratos& & Mapping de préstamos en curso & Devuelve la listado de
-    préstamos en curso \\ \hline
-    recuperarFondos &Cantidad &&Transfiere unidades desde este contrato al Owner \\ \hline
-    invertirFondos & Cantidad &&Transfiere unidades
-a este contrato. \\ \hline
-    consultarPrestamosUsuario&Dirección de usuario a consultar&Conjunto de de Direcciones
-de contrato de
-préstamo asociados
-a un mismo usuario& \\ \hline
-
-\end{tabular}
-\end{table}
-
-
-\subsubsection{Préstamo Contract } 
-
-\begin{table}[H]
-\centering
-\caption{Descripción de atributos del Contrato Préstamo Contract }
-\begin{tabular}{|c|p{3cm}|p{4cm}|}
-    \hline
-    \rowcolor[HTML]{D0E7FF}
-    Nombre & Tipo de dato & Descripcion\\ \hline
-    ID & Int & Identificador único \\ \hline
-    Estado&ENUMERADO& {CUOTA PAGADA, PLAZO ABIERTO, FINALIZADO}
-\\ \hline
-   CuotasRestantes &Int&Informa el tiempo límite acordado para devolver el
-préstamo\\ \hline
-    Prestatario&\gls{addresstype}&Cuenta que ha contratado el préstamo\\ \hline
-    Deuda Restante&Float&Deuda restante del préstamo\\ \hline
-    Cuota Mensual&Float&Cantidad de la deuda a pagar mensualmente\\ \hline
-    Porcentaje penalización&Int& Porcentaje de penalización a la deuda en caso de impago\\ \hline
-\end{tabular}
-\end{table}
-
-\textbf{Funciones:}
-\begin{table}[H]
-\centering
-\caption{Descripción de funciones del Contrato Préstamo Contract }
-\begin{tabular}{|c|p{3cm}|p{3cm}|p{4cm}|}
-    \hline
-    \rowcolor[HTML]{D0E7FF}
-    Nombre & Parámetro entrada & Parámetro salida & Descripcion\\ \hline
-    
-    pagoCuota  & & & Transfiere al contrato la cuota
-previamente calculada, este importe es
-transferido directamente al contract
-factory después de dejar reflejado que
-se ha pagado la cuota.\\ \hline
-    
-    aplicarPenalización&&Nuevo valor de
-deuda&Añade el porcentaje de penalización del
-contrato a la deuda total \\ \hline
-    
-    calculoCuotaMensua & &Valor de la cuota
-mensual & A partir de la deuda restante y el
-numero de cuotas restantes calcula el
-la cuota. \\ \hline
-
-  
-
-\end{tabular}
-\end{table}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % VALIDACIÓN DE RESULTADOS %
