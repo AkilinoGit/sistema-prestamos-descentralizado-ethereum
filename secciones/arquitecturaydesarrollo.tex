@@ -488,24 +488,89 @@ definen el sistema.
 \end{figure}
 
 \section{Análisis Smart contracts implicados}
-\subsection{Decisiones de implementación en el sistema}
+
 En esta sección se define la arquitectura de diseño utilizada para los 
 \glspl{smartcontract}, así como los atributos (tablas~\ref{fig:atributosfactory} y \ref{fig:atributosprestamo}) y 
-funciones (tablas~\ref{fig:funcionesfactory} y \ref{fig:funcionesprestamo}) de cada uno de ellos.
+funciones (tablas~\ref{fig:funcionesfactory} y \ref{fig:funcionesprestamo}) de 
+cada uno de ellos.
 
 \subsection{Diagrama Entidad - Relación de Smart Contracts}
-%%Joder, aquí se está representado la estrucutra de diseño de CONTRACT FACTORY y no hablas de ella
-Aunque no sean entidades del sistema, para explicar detalladamente la arquitectura de de diseño se define otro diagrama entidad - relación en la figura~\ref{fig:ersmartcontract}
+%%Joder, aquí se está representado la estrucutra de diseño de CONTRACT FACTORY y 
+%%no hablas de ella
+Aunque no sean entidades del sistema, para explicar detalladamente la arquitectura 
+de de diseño se define otro diagrama entidad - relación en la 
+figura~\ref{fig:ersmartcontract}
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \caption{Diagrama entidad relación que representa las relaciones y funciones entre los Smart contracts.}
     \includegraphics[width=\textwidth]{figures/E-R-smartcontracts.jpg}
     \label{fig:ersmartcontract}
 \end{figure}
+\subsubsection{Contract Factory}
+En la figura anterior,~\ref{fig:ersmartcontract}, también define gráficamente el 
+patron de diseño utilizado en el desarrollo de los \glspl{smartcontract}, a este
+patrón se le denomina \textit{'Contract Factory'}.
 
-\subsection{Descripción de Smart Contracts}
+El diseño de \textit{'Contract Factory'} encaja perfectamente en el desarrollo 
+de este proyecto ya 
+que nos permite crear los distintos contratos de préstamo
+de forma dinámica y automática.
+En esta arquitectura, un contrato principal (el \textit{Factory}) actúa como 
+intermediario recibiendo las solicitudes y generando nuevos contratos 
+(\textit{contratos préstamo}) según
+las necesidades de los usuarios o la aplicación.
+Dentro de este contrato se definen los distintos tipos de préstamos que pueden 
+ser contratados por los usuarios,
+asi como las distintas funcionalidades de gestión y monitorización.
+Para ello este contrato cuenta con varibles como:
+\begin{lstlisting}[language=Solidity, caption={Variable que contiene los 
+    prestamos producto},label={lst:prestamoscursando}]
+    mapping(address => PrestamoCursando[])  prestamosCursando;
+    address[] clientes;
+\end{lstlisting}
+En el fragmento de código del listado~\ref{lst:prestamoscursando} se observa 
+la variable \textit{prestamosCurando} perteneciente al \gls{smartcontract} principal 
+\textit{Contract Factory}, la cual guarda en la red \gls{blockchain} el 
+conjunto de direcciones correspondientes a un contrato tipo \textit{Préstamo} 
+pertenecientes al sistema.
+
+Por otra parte, cada contrato creado por \textit{Contract Factory} , es decir 
+cada \textit{Contrato Préstamo} mantiene información específica como la dirección 
+del prestatario, la deuda restante, el número de cuotas pendientes, 
+el estado del préstamo o el porcentaje de penalización aplicable, tal y como 
+podemos ver en~\ref{lst:prestamovariables}
+
+
+
+        \begin{lstlisting}[language=Solidity, 
+            caption={Variables contrato préstamo},
+            label={lst:prestamovariables}]
+            uint index;
+            enum State { PAGADO, ABIERTO, FINALIZADO }
+            State state;
+            address prestatario;
+            address entidadFinanciera;
+            address payable prestamosFactory;
+            uint256 cuotasRestantes;
+            uint256 cantidadPrestada;
+            uint256 deudaRestante;
+            uint256 cuotaMensual;
+            uint256 penalizacion;
+            uint256 ultimoCheckeo;
+        \end{lstlisting}
+
+
+
+\subsection{Análisis de Smart Contracts}
 \subsubsection{Contract Factory } 
+El contrato \textit{Contract Factory} centraliza la gestión de los tipos de 
+préstamo disponibles y el registro de los préstamos asociados a cada usuario. 
+Para ello, mantiene un conjunto de atributos que identifican al propietario del 
+sistema, definen las condiciones de los productos y 
+relacionan a los usuarios con sus contratos de préstamo. 
+La tabla~\ref{fig:atributosfactory} recoge estos atributos, 
+sus tipos de datos y su finalidad.
     \begin{table}[H]
     \centering
     \caption{Descripción de atributos del Contrato Contract Factory}
@@ -514,23 +579,24 @@ Aunque no sean entidades del sistema, para explicar detalladamente la arquitectu
         \hline
         \rowcolor[HTML]{D0E7FF}
         Nombre & Tipo de dato & Descripción\\ \hline
-        Owner&\gls{addresstype}&Dirección propietaria del sistema.\\ \hline
+        Owner&\gls{addresstype}&Dirección de la red \gls{ethereum} perteneciente a la 
+        propietaria del sistema.\\ \hline
         Tipos de préstamo&Mapping ((Uint => Struct) “tipo prestamo” )&Mapping que guarda los distintipos tipos
     de préstamo contratables por el usuario. \newline
-    Esta variable solo puede ser editada por la
+    Esta variable solo puede ser editada si se hace identifacado desde la 
     dirección de Owner.\\ \hline
     TipoPréstamo&Struct&Conjunto de variables que definen un tipo de préstamo(Importe, intereses, deuda total, penalización de impago y  cuotas)\\ \hline
     Préstamos en curso&Mapping
-    (Address => Address[])&Mapping que relaciona el address de un
+    (Address => Address[])&Mapping que relaciona la dirección de un
     usuario con las direcciones de sus
     préstamos en curso. \newline
-    Esta variable solo puede ser editada por la
+    Esta variable solo puede ser editada si se hace identifacado desde la
     dirección de Owner.\\ \hline
     \end{tabular}
     \end{table}
 
 
-\textbf{Funciones:}
+\paragraph{A continuación, las funciones}
 
 \begin{table}[H]
 \centering
@@ -613,41 +679,26 @@ la cuota. \\ \hline
 
 \end{tabular}
 \end{table}
-\subsubsection{Contract Factory}
-El lenguaje utilizado para el desarrollo de los \glspl{smartcontract} es \gls{solidity}
-El patrón de diseño en el que se basa el desarrollo de los \glspl{smartcontract} de este proyecto se llama \textit{'Contract Factory'}.
-Este patrón de diseño encaja perfectamente en el desarrollo de este proyecto ya que nos permite crear los distintos contratos de préstamo
-de forma dinámica y automática.
-En esta arquitectura, un contrato principal (el \textit{Factory}) actúa como intermediario recibiendo las solicitudes y generando nuevos contratos (\textit{contratos préstamo}) según
-las necesidades de los usuarios o la aplicación.
-Dentro de este contrato se definen los distintos tipos de préstamos que pueden ser contratados por los usuarios,
-asi como las distintas funcionalidades de gestión y monitorización.
-Para ello este contrato cuenta con varibles como:
-\begin{lstlisting}[language=Solidity, caption={Variable que contiene los prestamos producto}]
-    mapping(address => PrestamoCursando[])  prestamosCursando;
-    address[] clientes;
-\end{lstlisting}
 
-Por otra parte, cada \textit{contrato préstamo} mantiene información específica como el prestatario, la deuda restante, el número de cuotas pendientes, el estado del préstamo y el porcentaje de penalización aplicable
-como podemos comprobar en la definición de las variables de este prestamo en \ref{lst:prestamovariables}
-        \begin{lstlisting}[language=Solidity, caption={Variables contrato préstamo},label={lst:prestamovariables}]
-            uint index;
-            enum State { PAGADO, ABIERTO, FINALIZADO }
-            State state;
-            address prestatario;
-            address entidadFinanciera;
-            address payable prestamosFactory;
-            uint256 cuotasRestantes;
-            uint256 cantidadPrestada;
-            uint256 deudaRestante;
-            uint256 cuotaMensual;
-            uint256 penalizacion;
-            uint256 ultimoCheckeo;
-        \end{lstlisting}
+\subsection{Decisiones de implementación en el sistema}
 
-Al contar cada contrato préstamo con su propia información, se garantiza que cada préstamo es independiente y puede ser gestionado de manera autónoma, mientras que el contrato factory centraliza la creación y supervisión de todos los préstamos.
-Tal y como se puede ver en la función \ref{lst:funcionpagarmensualidad} del \textit{contrato préstamo}
+%INTRODUCCIÓN Y METER CON CALZADOR LAS EXSITENTES
+Al contar cada \textit{Contrato Préstamo} con su propia información, 
+se garantiza que 
+cada préstamo es independiente y puede ser gestionado de manera casi autónoma, 
+mientras que el \textit{Contract Factory} centraliza la creación y supervisión 
+de todos los préstamos.
 
+Se puede ver un ejemplo de gestión autónoma en la función~\ref{lst:funcionpagarmensualidad} 
+ del 
+\textit{Contrato Préstamo}, enl a que a través de las lineas que comienzan por 
+\lstinline[language=Solidity]|require|, aseguramos que:
+\begin{itemize}
+    \item El 
+prestatario sea el único que puede realizar el pago de la mensualidad.
+\item El importe enviado es exactamente el valor de la cuota mensual
+\item El estado del préstamo permite realizar el pago.
+\end{itemize} 
 
         \begin{lstlisting}[language=Solidity, caption={Función para pagar mensualidad},label={lst:funcionpagarmensualidad}]
             function pagarMensualidad() payable public {
@@ -659,20 +710,15 @@ Tal y como se puede ver en la función \ref{lst:funcionpagarmensualidad} del \te
                 deudaRestante -= cuotaMensual;
                 cuotasRestantes--;
 
-            
-                if(cuotasRestantes == 1){
-                    cuotaMensual = calculoCuotaMensual();
-                }
+                if(cuotasRestantes == 1){   cuotaMensual = calculoCuotaMensual(); }
 
-                if(cuotasRestantes == 0){
-                state = State.FINALIZADO;
-                }
-                transferirFondosAFactory(msg.value);
-                
-            }
+                if(cuotasRestantes == 0){  state = State.FINALIZADO;  }
+                transferirFondosAFactory(msg.value);  }
         \end{lstlisting}
-A través de las lineas \begin{lstlisting}[language=Solidity] require \end{lstlisting} aseguramos que el prestatario es el único que puede realizar el pago de la mensualidad, que el importe enviado es exactamente el valor de la cuota mensual y que el estado del préstamo permite realizar el pago.
 
+
+
+        
 Para evitar la creación de varios tipos de \textit{contrato prestamo} para distintos tipos de préstamo, se ha optado por crear un único contrato que pueda ser parametrizado en el momento de su creación.
 En el contrato \textit{factory} se define un \textit{struct} que contiene los parámetros de cada tipo de préstamo, como el importe, los intereses, la penalización por impago y el número de cuotas. 
             \begin{lstlisting}[language=Solidity, caption={struct TipoContrato},label={lst:structtipocontrato}] 
@@ -701,7 +747,6 @@ En el contrato \textit{factory} se define un \textit{struct} que contiene los pa
                     ultimoCheckeo = block.timestamp;
                 }
             \end{lstlisting}
-
 \subsubsection{Direcciones como identificación}
 En un sistema basado en \gls{ethereum} no es necesario generar un identificador centralizado para identificar a un usuario.
 La dirección pública de su cartera constituye un identificador único dentro de la red.
@@ -803,7 +848,7 @@ Los resultados se podrán ver a lo largo de la sección y se puedrá apreciar qu
 Para la validación de resultados del \gls{op} 1 se pueden evalúar los distintos objetivos secundarios:
 \begin{enumerate}
     \item \textbf{\gls{os} 1:} Una de las preocupaciones que puede suponer el desarrollo de un sistema de préstamos en una blockchain es la naturaleza anónima de este tipo de red. Por ello se ve en la figura 3.6 el uso de la plataforma Metamask como agente identificador externo para acceder a la aplicación.
-    \begin{figure}[h]
+    \begin{figure}[H]
     \centering
     \caption{Ejemplo de login con Metmask}
     \includegraphics[width=\textwidth]{figures/resultados/metamask.jpg}
@@ -839,14 +884,14 @@ Es importante para comprender las siguientes imagenes es importante conocer los 
     Estas propiedades de nuestro sistema se pueden ver reflejadas en la figura 3.7 y tras la comprobación mensual del sistema en la figura 3.8 
 \end{enumerate}
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \caption{Información de contratos previa a la comprobación mensual en el recuadro amarillo y balance de la entidad financiera en el recuadro blanco.}
     \includegraphics[width=\textwidth]{figures/resultados/prechequeo.jpg}
     \label{fig:prechequeo}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \caption{Información de contratos posterior a la comprobación mensual en el recuadro amarillo y balance de la entidad financiera en el recuadro blanco.}
     \includegraphics[width=\textwidth]{figures/resultados/postchequeo.jpg}
@@ -864,7 +909,7 @@ De momento existe la posibildad de Definir nuevos préstamos contratables en el 
 \end{enumerate}
 
 Para terminar de validar el \gls{op} 2 se adjunta captura de pantalla del panel de control del usuario en la figura 3.9.
-        \begin{figure}[h]
+        \begin{figure}[H]
     \centering
     \caption{Panel de control usuario.}
     \includegraphics[width=\textwidth]{figures/resultados/paneluser.jpg}
@@ -884,7 +929,7 @@ Se realiza la petición de un prestamo por parte de un usuario con una cantidad 
         \item Aunque debido al redondeo de la página aparezca otra transacción de 0 ETH, viendo el balance se puede comprobar que es de 1000 wei transferidos a la dirección del usuario de la figura 3.9   
     \end{itemize}
 
-            \begin{figure}[h]
+            \begin{figure}[H]
     \centering
     \caption{Información Etherscan del registro en la red SepoliaETH del SmartContract principal}
     \includegraphics[width=\textwidth]{figures/resultados/createcontract.jpg}
