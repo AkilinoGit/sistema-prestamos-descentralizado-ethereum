@@ -22,16 +22,19 @@ estos se dividen en dos objetivos principales  (\gls{op}) y
 distintos objetivos secundarios (\gls{os}) los cuales surgen en el desarrollo 
 de los objetivos principales.
 
+\newcounter{objetivoprincipal}
+\newcounter{objetivosecundario}
+
 \subsection{Objetivos principales}
 
 \begin{itemize}
-    \item \textbf{\gls{op} 1}: Desarrollo de un sistema de préstamos automatizado 
+    \item \refstepcounter{objetivoprincipal}\label{op:1}\textbf{\gls{op} 1}: Desarrollo de un sistema de préstamos automatizado 
     sin una entidad centralizada controladora, de acceso libre y cumpliendo 
     los requisitos básicos de un proceso de prestamo, como pueden ser, la seguridad, 
     historial de cuotas, seguimiento, gestión de morosidad y personalización 
     del usuario.
     
-    \item \textbf{\gls{op}  2}: Desarrollar una interfaz unificada que permita a los usuarios, 
+    \item \refstepcounter{objetivoprincipal}\label{op:2}\textbf{\gls{op} 2}: Desarrollar una interfaz unificada que permita a los usuarios, 
     con o sin conocimientos técnicos, interactuar con el sistema de manera fácil e 
     intuitiva. La interfaz garantizará que todas las funcionalidades sean accesibles 
     desde un solo punto, y facilitando la experiencia del usuario.
@@ -39,31 +42,31 @@ de los objetivos principales.
 
 \subsection{Objetivos secundarios}
 \begin{itemize}
-    \item \textbf{\gls{os} 1}: Explorar la viabilidad de los sistemas de identificación 
+    \item \refstepcounter{objetivosecundario}\label{os:1}\textbf{\gls{os} 1}: Explorar la viabilidad de los sistemas de identificación 
     en aplicaciones \gls{defi}.
 
-    \item \textbf{\gls{os} 2}: Crear una solución segura y eficiente.  
+    \item \refstepcounter{objetivosecundario}\label{os:2}\textbf{\gls{os} 2}: Crear una solución segura y eficiente.  
     Almacenar únicamente la información estrictamente necesaria para el funcionamiento 
     correcto de la aplicación evitando así la exposición de datos sensibles, y el procesamiento 
     innecesario.
 
-    \item \textbf{\gls{os} 3}: Optimizar eficiencia de ejecución de código en 
+    \item \refstepcounter{objetivosecundario}\label{os:3}\textbf{\gls{os} 3}: Optimizar eficiencia de ejecución de código en 
     la red blockchain para reducir la cantidad de \gls{gas} 
     necesario para el correcto funcionamiento del sistema.
 
-    \item \textbf{\gls{os} 4}: Crear mecanismos de control de  cumplimiento de contrato 
+    \item \refstepcounter{objetivosecundario}\label{os:4}\textbf{\gls{os} 4}: Crear mecanismos de control de  cumplimiento de contrato 
     y penalización  automatizado.
     
-    \item \textbf{\gls{os} 5}: Explorar la flexibilidad y personalización de 
+    \item \refstepcounter{objetivosecundario}\label{os:5}\textbf{\gls{os} 5}: Explorar la flexibilidad y personalización de 
     contratos inteligentes en productos financieros. 
     Se investigarán maneras en las que el sistema sea capaz de ofrecer 
     distintos productos financieros en función de la información que el sistema tenga 
     del cliente como por ejemplo su situación financiera. 
     
-    \item \textbf{Os 6}: Optimizar el equilibrio entre la natuaraleza pública y transparente
+    \item \refstepcounter{objetivosecundario}\label{os:6}\textbf{\gls{os} 6}: Optimizar el equilibrio entre la natuaraleza pública y transparente
     de una red \gls{blockchain} y la privacidad necesaria para los usuarios. 
     
-    \item \textbf{Os 7}: Analizar cómo se puede gestionar la liquidez en sistemas 
+    \item \refstepcounter{objetivosecundario}\label{os:7}\textbf{\gls{os} 7}: Analizar cómo se puede gestionar la liquidez en sistemas 
     \gls{defi} y cómo se  puede coordinar la transferencia de fondos en un sistema 
     de préstamos en una red \gls{blockchain}.
 \end{itemize}

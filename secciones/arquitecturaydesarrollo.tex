@@ -569,8 +569,7 @@ préstamo disponibles y el registro de los préstamos asociados a cada usuario.
 Para ello, mantiene un conjunto de atributos que identifican al propietario del 
 sistema, definen las condiciones de los productos y 
 relacionan a los usuarios con sus contratos de préstamo. 
-La tabla~\ref{fig:atributosfactory} recoge estos atributos, 
-sus tipos de datos y su finalidad.
+La tabla~\ref{fig:atributosfactory} recoge estos atributos.
     \begin{table}[H]
     \centering
     \caption{Descripción de atributos del Contrato Contract Factory}
@@ -632,6 +631,13 @@ a un mismo usuario& \\ \hline
 
 \subsubsection{Préstamo Contract } 
 
+El \gls{smartcontract} \texttt{PrestamoCursando} representa un préstamo
+individual contratado por un usuario. 
+Almacena las condiciones del préstamo, permite el pago de las
+cuotas y mantiene actualizado su estado tras el chequeo de mensualidad.
+A continuación, en la tabla~\ref{fig:atributosprestamo} se describen
+los atributos implicados.
+
 \begin{table}[H]
 \centering
 \caption{Descripción de atributos del Contrato Préstamo Contract }
@@ -643,16 +649,17 @@ a un mismo usuario& \\ \hline
     ID & Int & Identificador único \\ \hline
     Estado&ENUMERADO& {CUOTA PAGADA, PLAZO ABIERTO, FINALIZADO}
 \\ \hline
-   CuotasRestantes &Int&Informa el tiempo límite acordado para devolver el
-préstamo\\ \hline
-    Prestatario&\gls{addresstype}&Cuenta que ha contratado el préstamo\\ \hline
+   CuotasRestantes &Int&Cantidad de pagos mensuales restantes\\ \hline
+    Prestatario&\gls{addresstype}&Dirección del usuario que ha contratado el préstamo\\ \hline
     Deuda Restante&Float&Deuda restante del préstamo\\ \hline
     Cuota Mensual&Float&Cantidad de la deuda a pagar mensualmente\\ \hline
     Porcentaje penalización&Int& Porcentaje de penalización a la deuda en caso de impago\\ \hline
 \end{tabular}
 \end{table}
 
-\textbf{Funciones:}
+El encargado de las operaciones de actualización de importes del \textit{Contrato Préstamo} 
+es el propio \gls{smartcontract} a traves de las funciones explicadas en la figura~\ref{fig:funcionesprestamo}
+
 \begin{table}[H]
 \centering
 \caption{Descripción de funciones del Contrato Préstamo Contract }
@@ -684,16 +691,21 @@ la cuota. \\ \hline
 
 \subsection{Decisiones de implementación en el sistema}
 
-%INTRODUCCIÓN Y METER CON CALZADOR LAS EXSITENTES
+Durante el desarrollo de los \gls{smartcontract} se han tomado diversas
+decisiones técnicas reservar responsabilidades a la red, controlar la 
+identificación del sistema o realizar correctamente el registro de las 
+transacciones. A continuación,
+se presentan las principales decisiones adoptadas:
+
+\paragraph{Controles de acceso reflejados en la propia red}
 Al contar cada \textit{Contrato Préstamo} con su propia información, 
 se garantiza que 
-cada préstamo es independiente y puede ser gestionado de manera casi autónoma, 
-mientras que el \textit{Contract Factory} centraliza la creación y supervisión 
-de todos los préstamos.
+cada préstamo es independiente y el sistema de control de acceso puede 
+ser gestionado de manera casi autónoma si está reflejado en la \gls{blockchain}. 
 
 Se puede ver un ejemplo de gestión autónoma en la función~\ref{lst:funcionpagarmensualidad} 
  del 
-\textit{Contrato Préstamo}, enl a que a través de las lineas que comienzan por 
+\textit{Contrato Préstamo}, en la que a través de las lineas que comienzan por 
 \lstinline[language=Solidity]|require|, aseguramos que:
 \begin{itemize}
     \item El 
@@ -720,9 +732,14 @@ prestatario sea el único que puede realizar el pago de la mensualidad.
 
 
 
-        
-Para evitar la creación de varios tipos de \textit{contrato prestamo} para distintos tipos de préstamo, se ha optado por crear un único contrato que pueda ser parametrizado en el momento de su creación.
-En el contrato \textit{factory} se define un \textit{struct} que contiene los parámetros de cada tipo de préstamo, como el importe, los intereses, la penalización por impago y el número de cuotas. 
+\paragraph{Contrato préstamo \textit{abstracto}}
+Para que la creación de varios tipos de \textit{contrato prestamo}  sea dinámica 
+y se puedan definir desde la \gls{dapp} 
+se ha optado por crear un único contrato que pueda ser parametrizado en el 
+momento de su creación.
+En el contrato \textit{factory} se define un \textit{struct}~\ref{lst:structtipocontrato} que contiene los 
+parámetros de cada tipo de préstamo, como el importe, los intereses, 
+la penalización por impago y el número de cuotas. 
             \begin{lstlisting}[language=Solidity, caption={struct TipoContrato},label={lst:structtipocontrato}] 
                 struct TipoContrato {
                     uint256 index;
@@ -733,7 +750,11 @@ En el contrato \textit{factory} se define un \textit{struct} que contiene los pa
                     uint256 penalizacionImpago;
                 }
             \end{lstlisting}
-            Cuando un usuario solicita un préstamo, se pasa el tipo de préstamo seleccionado al constructor del contrato préstamo \ref{lst:constructorprestamo}, que inicializa sus variables con los valores correspondientes.
+            
+Cuando un usuario solicita un préstamo, 
+se pasa el tipo de préstamo seleccionado al constructor del 
+\textit{Contract Préstamo}~\ref{lst:constructorprestamo}, 
+que inicializa sus variables con los valores correspondientes.
             \begin{lstlisting}[language=Solidity, caption={struct TipoContrato},label={lst:constructorprestamo}] 
                 constructor(uint256 _index, address _prestatario, address _entidad, uint256 _cuotasRestantes, uint256 _cantidad, uint256 _deudaTotal, uint256 _penalizacion){
                     index = _index;
@@ -753,10 +774,11 @@ En el contrato \textit{factory} se define un \textit{struct} que contiene los pa
 En un sistema basado en \gls{ethereum} no es necesario generar un identificador centralizado para identificar a un usuario.
 La dirección pública de su cartera constituye un identificador único dentro de la red.
 Cada solicitud de producto solicitada al \gls{smartcontract} factory genera un nuevo contrato préstamo en la red con su correspondiente
-dirección en ella quedando registrado en la variable \textit{prestamosCursando},
-Esta variable relaciona la dirección del usuario solicitante con un array de direcciones de los contratos de préstamo que tiene en curso.
-De esta forma se puede registrar las direcciones de los contratos creados, proporcionando un mecanismo centralizado para su administración,
- por ejemplo a través de la función \ref{lst:funcionvercontratos}
+dirección en ella quedando registrado en la variable \textit{prestamosCursando}.
+Esta variable relaciona la dirección del usuario solicitante con un \textit{array} de direcciones de los contratos de préstamo que tiene en curso.
+De esta forma se puede registrar las direcciones de los contratos creados y 
+proporcionar mecanismo centralizado para su administración, 
+por ejemplo a través de la función \ref{lst:funcionvercontratos}
 
 \begin{lstlisting}[language=Solidity, caption={Función que devuelve los contratos de un usuario},label={lst:funcionvercontratos}]
      function verContratos(address _prestatario) public view returns (PrestamoCursando[] memory){
@@ -765,19 +787,27 @@ De esta forma se puede registrar las direcciones de los contratos creados, propo
     }
 \end{lstlisting}
 
-\subsubsection{Utilización de la plataforma \gls{metamask}enta de identificación en el sistema}
-Debido a que la identificación de los usuarios en la red se realiza a través de sus direcciones públicas, es necesario que los usuarios dispongan de una cartera digital que les permita interactuar con la red Ethereum
-de una manera mas amigable. Para ello se ha optado por utilizar la extensión de navegador \gls{metamask} a los usuarios hacer login en la plataforma con una simple extensión del navegador,
-así como firmar transacciones de manera segura.
-El uso de \gls{metamask} hace que la aplicación no se haga responsable de la generación, almacenamiento ni gestión de las claves privadas de los usuarios.
-\subsubsection{Representación de cantidades monetarias} Debido a que la  versión
-estable del lenguaje \textit{solidity} para los Smart Contractsen el momento del desarrollo del proyecto puede tener ciertos
-errores a la hora de tratar decimales, la mejor decisión es tratar todas las cifras monetarias como enteros de la únidad mínima (\gls{wei}) evitando así los distintos
+\subsubsection{Representación de cantidades monetarias} 
+Debido a que la  versión
+estable del lenguaje \textit{solidity} para los \glspl{smartcontract} 
+en el momento del desarrollo del proyecto puede tener ciertos
+errores a la hora de tratar decimales, 
+la mejor decisión es tratar todas las cifras monetarias como enteros de 
+la únidad mínima (\gls{wei}) evitando así los distintos
 problemas que puedan surgir con los decimales
-\subsubsection{Reducción del consumo de gas} Siempre que una operación no requiere necesariamente modificar el estado de la blockchain,
-    esta se ejecuta en la aplicación web del cliente. De esta manera se evita utilizar Gas para operaciones puramente relacionadas con la visualización de información,
-    como el recorrido de los contratos de un usuario para mostrar su estado. En este sistema se recupera la información de todos los contratos y es la aplicación web la que filtra y muestra la información de cada contrato,
-    tal y como se puede ver en las siguientes lineas de código \ref{lst:funcionvercontratos} y \ref{lst:funcionvercontratosweb}, la primera recupera la infromación de la red y la segunda muestra por pantalla
+
+\subsubsection{Reducción del consumo de gas} 
+Siempre que una operación no requiere necesariamente modificar el estado de 
+la blockchain, esta se ejecuta en la aplicación web del cliente. 
+De esta manera se evita utilizar \gls{gas} para operaciones puramente 
+relacionadas con la visualización de información, como el recorrido de los 
+contratos de un usuario para mostrar su estado. 
+En este sistema se recupera la información de todos los contratos~\ref{lst:funcionvercontratos} 
+ y es la 
+aplicación web la que filtra y muestra la información de cada contrato~\ref{lst:funcionvercontratosweb}, 
+El primer fragmento de código recupera la infromación de la red 
+y el segundo la muestra por pantalla al usuario.
+
     \begin{lstlisting}[language=TypeScript, caption={Recuperacion de informacion de contratos},label={lst:funcionvercontratos}] 
         async iniciarVistaContratados(){
     this.direccionesContratados = await this.factoryContract.methods
@@ -794,46 +824,50 @@ problemas que puedan surgir con los decimales
   }
 \end{lstlisting}
     \begin{lstlisting}[language=HTML, caption={Muestra de informacion de contratos},label={lst:funcionvercontratosweb}] 
- <ion-col *ngFor="let prestamo of listaContratados;" size="3.1"  >
+<ion-col *ngFor="let prestamo of listaContratados;" size="3.1"  >
       <ion-card >
         <ion-card-content >
           <ion-list >
-  
-            <ion-item >
-              <ion-label  class = "ion-text-center" >Estado: {{ prestamo._state.toString() }}</ion-label>
-            </ion-item>
-
-            <ion-item >
-              <ion-label  class = "ion-text-center" >Deuda Restante: {{ prestamo._deudaRestante.toString() }}</ion-label>
-            </ion-item>
-    
-            <ion-item >
-              <ion-label class = "ion-text-center" >Cuotas Restantes: {{ prestamo._cuotasRestantes.toString() }} </ion-label>
-            </ion-item>
-
-            <ion-item >
-              <ion-label class = "ion-text-center" >Cantidad Próxima Cuota: {{ prestamo._cuotaMensual.toString() }} </ion-label>
-            </ion-item>
-
-            <ion-item >
-              <ion-label class = "ion-text-center">Fin plazo acutal: {{ prestamo._ultimoCheckeo }}</ion-label>
-            </ion-item>
-
-            <ion-item>
-              <ion-label class = "ion-text-center">Penalización por Impago: {{ prestamo._penalizacionImpago.toString() }}%</ion-label>
-            </ion-item>
-              
-            
+            <ion-item > <ion-label  class = "ion-text-center" >Estado: {{ prestamo._state.toString() }}</ion-label> </ion-item>
+            <ion-item > <ion-label  class = "ion-text-center" >Deuda Restante: {{ prestamo._deudaRestante.toString() }}</ion-label> </ion-item>
+            <ion-item > <ion-label class = "ion-text-center" >Cuotas Restantes: {{ prestamo._cuotasRestantes.toString() }} </ion-label> </ion-item>
+            <ion-item > <ion-label class = "ion-text-center" >Cantidad Próxima Cuota: {{ prestamo._cuotaMensual.toString() }} </ion-label> </ion-item>
+            <ion-item > <ion-label class = "ion-text-center">Fin plazo acutal: {{ prestamo._ultimoCheckeo }}</ion-label> </ion-item> 
+            <ion-item> <ion-label class = "ion-text-center">Penalización por Impago: {{ prestamo._penalizacionImpago.toString() }}%</ion-label> </ion-item>  
           </ion-list>
           <ion-button (click)="pagarCuota(prestamo._direccion, prestamo._cuotaMensual)">PAGAR CUOTA ({{prestamo._cuotaMensual.toString()}})</ion-button>
         </ion-card-content>
-        
       </ion-card>
-    </ion-col>
+</ion-col>
 \end{lstlisting}
-\subsubsection{Registro del estado antes de realizar transferencias} En solidity es una buena práctica actualizar el estado de las variables antes de realizar transferencias de fondos, ya que esto ayuda a prevenir ataques  en los que se 
-    reutiliza la misma transacción mas de una vez debido a la reentrada y garantiza que el estado del contrato refleje la situación actual antes de cualquier movimiento de fondos.
-    Esto se puede ver en ref{lst:funcionpagarmensualidad} donde se actualiza el estado del contrato antes de transferir los fondos al contrato \textit{factory}
+
+%%Hablar de forma correcta del riesgo de reentrada de código
+\subsubsection{Registro del estado antes de realizar transferencias} 
+En solidity es una buena práctica actualizar realizar un conjunto de 
+validaciones en las condiciones de la operación y modificar 
+el estado de las variables y saldos 
+de las cuentas antes de realizar transferencias de fondos.
+Existe un tipo de ataque llamado \textit{Ataque por reentrada}.
+En este ataque el riesgo se produce cuando un \gls{smartcontract} transfiere 
+fondos a otro contrato y este aprovecha la ejecución de su código para volver a 
+invocar una función del contrato original antes de que termine la operación 
+inical. Si todavía no se han actualizado las variables de saldos, el atacante 
+podría repetir una retirada utilizando un estado de las variables desactualizado y
+llegar a extraer fondos indebidamente. 
+
+Se puede ver como se realiza en este proyecto una transferencia de saldo en 
+el fragmento de código~\ref{lst:funcionpagarmensualidad}.
+
+
+Para un mayor entendimiento de este tipo de ataques se añade la 
+figura~\ref{fig:ataque-reentrada}
+con un gráfico poniendo un ejemplo con una transferencia de 10 \gls{eth}.
+\begin{figure}[H]
+    \centering
+    \caption{Diagrama de un ataque de reentrada}
+    \includegraphics[width=\textwidth]{figures/ataqueReentrada-diagram.png}
+    \label{fig:ataque-reentrada}
+\end{figure}
 
 
 
@@ -842,14 +876,47 @@ problemas que puedan surgir con los decimales
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Validación de resultados}
 \subsection{Validación a través del uso de la aplicación del sistema}
-Tras el desarrollo del sistema de préstamos descentralizado, es necesario comprobar si cumple con los objetivos planteados y cubre los casos de uso definidos. Para ello, se presentan pruebas mediante capturas de pantalla de la interfaz y registros en Etherscan, validando la ejecución de transacciones y el correcto funcionamiento de los contratos inteligentes en la blockchain de Ethereum.
+Tras el desarrollo del sistema de préstamos descentralizado, es necesario 
+comprobar si cumple con los objetivos planteados y cubre los casos de uso 
+definidos. 
+Para ello, se ha realizado manualmente un flujo de uso de la interfaz de usuario y
+se presentan pruebas mediante capturas de pantalla de la interfaz 
+y registros en la herramienta \textit{Etherscan} para validar la ejecución de 
+als transacciones y el correcto funcionamiento de los \gls{smartcontract} 
+en la \gls{blockchain} de \gls{ethereum}.
+Para comprender las siguientes imágenes es importante conocer 
+los siguientes conceptos:
 
-El \gls{op} 2 consiste en la unificación de las distintas funcionalidades del proyecto en una interfaz accesible a cualquier sujeto independiente de la formación.
-Los resultados se podrán ver a lo largo de la sección y se puedrá apreciar que la interfaz aunque si reúne todas las funcionalidades del sistema, no se ha recalcado en la accesibilidad e intuitividad. Durante el desarrollo del proyecto se ha decidido aportar más esfuerzo en la funcionalidad dejando la optimización de la interfaz de usuario para un posible trabajo futuro.
-
-Para la validación de resultados del \gls{op} 1 se pueden evalúar los distintos objetivos secundarios:
 \begin{enumerate}
-    \item \textbf{\gls{os} 1:} Una de las preocupaciones que puede suponer el desarrollo de un sistema de préstamos en una blockchain es la naturaleza anónima de este tipo de red. Por ello se ve en la figura 3.6 el uso de la plataforma Metamask como agente identificador externo para acceder a la aplicación.
+    \item \textbf{Wei:} En la red \gls{ethereum} es la unidad más pequeña de valor 
+    para su criptomoneda \gls{eth}. Un \gls{eth} está compuesto por un total de 
+    $10^{18}$ wei.
+    \item Las cadenas de caracteres que comienzan por \texttt{'0x'} en la red 
+    \gls{ethereum} están reservadas como direcciones que pueden apuntar a 
+    usuarios, entidades o \glspl{smartcontract}.
+    
+\end{enumerate}
+
+
+El \gls{op}~\ref{op:2} consiste en la unificación de las distintas funcionalidades 
+del proyecto en una interfaz accesible a cualquier sujeto independiente de la formación.
+Los resultados se podrán ver a lo largo de la sección y se podrá apreciar que, aunque la 
+interfaz si reúne todas las funcionalidades del sistema, no se ha recalcado en la 
+accesibilidad e intuitividad. 
+Durante el desarrollo del proyecto se ha decidido aportar más esfuerzo en la funcionalidad 
+dejando la evolución de la interfaz de usuario a un estado mas \textit{amigable} para 
+trabajo futuro.
+
+Para la validación de resultados del \gls{op}~\ref{op:1} se pueden evalúar los distintos objetivos secundarios:
+\begin{enumerate}
+    \item \textbf{\gls{os}~\ref{os:1}:} Una de las preocupaciones que puede 
+    suponer para 
+    el desarrollo de un sistema de préstamos en una \gls{blockchain} es la
+    correcta identificadión de los usuarios cuando la naturaleza de la red 
+    es puramente anónima. 
+   Como se ve en la figura~\ref{fig:metamask} este proyecto hace uso de la 
+   plataforma 
+    \gls{metamask} como agente identificador externo para acceder a la aplicación.
     \begin{figure}[H]
     \centering
     \caption{Ejemplo de login con Metmask}
@@ -857,34 +924,54 @@ Para la validación de resultados del \gls{op} 1 se pueden evalúar los distinto
     \label{fig:metamask}
 \end{figure}
 
-
-    \item La utilización de Metamask no solo nos sirve para delegar la identificación 
-    sino también para delegar en una empresa externa la información que identifica a 
+    \item La utilización de \gls{metamask} no solo nos sirve para delegar 
+    la identificación 
+    sino también para delegar en una empresa externa la información que 
+    identifica a 
     nuestros clientes, de forma que  no hace falta grabarla en la red.
-    Esto nos ayuda con el el \gls{os} 6 el cual busca este punto de unión. 
-    Gracias a Metamask aunque existan cientos de operaciones económicas reflejadas 
-    en la red, sólo es posible conocer la identidad de los participantes de estas operaciones 
-    a través de Metamask y las claves privadas de cada usuario.
+    Esto nos ayuda con el el \gls{os}~\ref{os:6} el cual busca este punto 
+    de unión. 
+    Gracias a \gls{metamask} aunque existan cientos de operaciones económicas 
+    reflejadas 
+    en la red, sólo es posible comprobar la identidad de los participantes 
+    de estas operaciones 
+    a través de \gls{metamask} y las claves privadas de cada usuario.
 
-    \item En el \gls{os} 2 se busca la eficiencia en la información y las funciones del sistema para evitar el alto consumo de energía a la hora de ejcutar las ordendes:
-Todas las funciones que tienen relación con la red son funciones muy atómicas y sencillas evitando los grandes procesamientos de datos en la red aunque es posible que la función que se encarga de comprobar los pagos de los contratos de forma mensual, para actualizar el estado o aplicar penalización, puede suponer una alta inversión por parte de la entidad financiera en caso de que tengo un volumen alto de préstamos, lo cual nos lleva a una posible decisión futura que sea la de limitar el número de préstamos en curso para mantener la rentabilidad el proyecto.
+    \item En el \gls{os}~\ref{os:2} 2 se busca la eficiencia en la información y 
+    las funciones del sistema para evitar el alto consumo de energía y \gls{gas} 
+    a la hora 
+    de ejcutar las transacciones en la red:
 
-    \item Haciendo referencia al \gls{os} 3 se adjuntan las siguientes imágenes del panel de control de la entidad financiera en el que se muestran 3 contratos de un usuario en curso  antes y después de  la comprobación mensual de los pagos de las cutoas. En ellas se pueden observar los distintos detalles:
+    Todas las funciones que tienen relación con la red son funciones muy atómicas 
+    y sencillas evitando los grandes procesamientos de datos en la red aunque es 
+    posible que la función que se encarga de comprobar los pagos de los contratos 
+    de forma mensual, puede suponer una alta inversión por parte de la entidad 
+    financiera en caso de que tengo un volumen alto de préstamos, lo cual nos 
+    lleva a una posible actuación futura para limitar la cantidad de procesamiento 
+    en esta acción.
+
+    \item Haciendo referencia al \gls{os}~\ref{os:3} se adjuntan las siguientes 
+    imágenes del panel de control de la entidad financiera en el que se muestran 
+    3 contratos de un usuario en curso antes y después de  la comprobación 
+    mensual de los pagos de las cutoas. 
+    En ellas se pueden observar los distintos detalles:
     
     \begin{enumerate}
-        \item El balance de la entidad posterior al pago aumenta debido al corecto funcionamiento del pago 
-        \item Uno de los contratos no ha sido pagado y se le ha aplicado auomáticamente la penalización por impago
-        \item Uno de los contratos correctamente pagado ha reducido su deuda restante y el número de cuotas restantes.
-        \item En el caso de contrato que solo tenía una cuota restante se ha dejado de mostrar en la aplicación ya que no es necesario replicar más esta información pudiendose acceder mas adelante a ella ya que en la red todo queda grabado.
+        \item El balance de la entidad despés del pago de cuota del usuario 
+        aumenta correctamente
+        \item Uno de los contratos no ha pagado correctamente la cuota 
+        y se le ha aplicado auomáticamente la penalización por impago.
+        \item Uno de los contratos correctamente pagado ha reducido su deuda 
+        restante y el número de cuotas restantes.
+        \item En el caso del contrato que solo tenía una cuota restante, 
+    ya no se muestra en la \gls{dapp} ya que no es necesario 
+        replicar más esta información.
     \end{enumerate}
+    Estas comprobaciones se pueden ver reflejadas con el cambio de información 
+    correspondiente en la figura que muestra la información previa a la 
+    comprobación mensual~\ref{fig:prechequeo} y tras la comprobación mensual 
+    en la figura~\ref{fig:postchequeo}
 
-Es importante para comprender las siguientes imagenes es importante conocer los siguientes conceptos:
-
-\begin{enumerate}
-    \item \textbf{Wei:} En la red Ethereum es la unidad más pequeña de valor. Un \gls{ether} (ETH) está compuesto por un total de $10^18$ wei.
-    \item Las cadenas de caracteres que comienzan por \texttt{'0x'} en la red ethereum están reservadas como direcciones en la red que pueden apuntar a usuarios, entidades o \glspl{smartcontract}.
-    Estas propiedades de nuestro sistema se pueden ver reflejadas en la figura 3.7 y tras la comprobación mensual del sistema en la figura 3.8 
-\end{enumerate}
 
 \begin{figure}[H]
     \centering
@@ -900,17 +987,29 @@ Es importante para comprender las siguientes imagenes es importante conocer los 
     \label{fig:postchequeo}
 \end{figure}
 
+%%TEXTACOOOOOO
 
-Las últimas características declaradas junto con la posibilidad de que el dueño del sistema pueda recibir los wei del balance del sistema a través de la función "Recoger Fondos" nos llevan al alcance del \gls{os} 7 el cuál busca encontrar la liquidez en este sistema.
-También es cierto que, de momento, este proyecto no cubre la opción en el que un usuario no pague sus cuotas indefinidamente aunque para ello se definió el Caso de Uso 12 en el que se define la posibilidad de añadir distintos tipos de colaterales como puede ser un \gls{nft} el cual sea transferido al sistema en caso de que el impago sea recurrente.
+Las últimas características declaradas junto con la posibilidad de que la 
+organización del sistema pueda recibir los \gls{wei} del balance del sistema 
+a través de la función \textit{Recoger Fondos} nos llevan al alcance del 
+\gls{os}\ref{os:7} el cuál busca encontrar la liquidez en este sistema.
 
 
-\item En el \gls{os} 5  se contempla la posibilidad de personalizar los contratos accesibles para distintos usuarios, esto, se puede clasificar como inalcanzable para este proyecto debido a la necesidad existente en procesar grandes cantidades de datos de clientes para poder crear un algoritmo y un sistema que cubra esta necesidad.
-De momento existe la posibildad de Definir nuevos préstamos contratables en el panel de control de la entidad financiera
+\item En el \gls{os}~\ref{os:5} se contempla la posibilidad de personalizar 
+los contratos accesibles para los distintos usuarios, esto se puede clasificar 
+como inalcanzable para este proyecto debido a la necesidad existente en procesar 
+grandes cantidades de datos de clientes para poder crear un algoritmo y un 
+sistema que cubra esta necesidad.
+
+De momento existe la posibildad de definir nuevos préstamos contratables en 
+el panel de control de la entidad financiera.
+
 
 \end{enumerate}
 
-Para terminar de validar el \gls{op} 2 se adjunta captura de pantalla del panel de control del usuario en la figura 3.9.
+Para terminar de validar el \gls{op}~\ref{op:2} se adjunta captura de pantalla 
+del panel de control del usuario en la figura~\ref{fig:paneluser} demostrando 
+una interfaz unificada para el usuario.
         \begin{figure}[H]
     \centering
     \caption{Panel de control usuario.}
@@ -919,36 +1018,68 @@ Para terminar de validar el \gls{op} 2 se adjunta captura de pantalla del panel 
 \end{figure}
 
 
-Como última prueba de validación de este proyecto se realiza un ejemplo de contratación de préstamo adjuntado distintas capturas de la web \href{https://sepolia.etherscan.io/}{Etherscan Sepolia} en las que se puede comprobar distintos items que corroboran la veracidad del préstamo a través de la red. \href{https://sepolia.dev/}{ Sepolia}.
+Como última prueba de validación manual de este proyecto se realiza un ejemplo de 
+contratación de préstamo adjuntado distintas capturas de la web 
+\href{https://sepolia.etherscan.io/}{Etherscan Sepolia} 
+con las que se puede comprobar distintos items relacionados con el proceso 
+que corroboran la veracidad del préstamo a través de la red 
+\href{https://sepolia.dev/}{ Sepolia}.
 
-Se realiza la petición de un prestamo por parte de un usuario con una cantidad de 1000 wei:
- \textbf{Contrato principal:} En la anterior figura 3.8 se puede comprobar que el balance del contrato principal es de 2585 wei.
- Después de la contratación del usuario,  se puede ver a través de \href{https://sepolia.etherscan.io/}{Etherscan Sepolia}, y tal y como se muestra en la figura 3.10, que:
+\paragraph{Ejecución de préstamo de 1000~\gls{wei}}
+\textbf{Contrato principal:} En la anterior figura\ref{fig:postchequeo} 
+se puede comprobar que el balance del contrato principal es de 2585~\gls{wei}.
+
+\textbf{Balance del usuario}: Después de la contratación del usuario,  
+se puede ver a través de \href{https://sepolia.etherscan.io/}{Etherscan Sepolia}, 
+tal y como se muestra en la figura~\ref{fig:Etherscan smart contract principal}, 
+que:
 
     \begin{itemize}
-        \item El balance del contrato ha disminuido 1000 wei
-        \item Se ha creado una nueva transacción relacionada con el contrato principal tipo 'Contract Creation' el cual es el contrato generado para el préstamo.
-        \item Aunque debido al redondeo de la página aparezca otra transacción de 0 ETH, viendo el balance se puede comprobar que es de 1000 wei transferidos a la dirección del usuario de la figura 3.9   
+        \item El balance del contrato ha disminuido 1000~\gls{wei}
+        \item Se ha creado una nueva transacción relacionada con el contrato 
+        principal tipo \textit{Contract Creation} el cual es el contrato 
+        generado para el préstamo.
+        \item Aunque debido al redondeo de la página aparezca otra transacción 
+        de 0 \gls{eth}, viendo el balance se puede comprobar que es de 
+        1000~\gls{wei} y han sido transferidos a la dirección del usuario . 
     \end{itemize}
 
-            \begin{figure}[H]
+\begin{figure}[H]
     \centering
     \caption{Información Etherscan del registro en la red SepoliaETH del SmartContract principal}
     \includegraphics[width=\textwidth]{figures/resultados/createcontract.jpg}
     \label{fig:Etherscan smart contract principal}
 \end{figure}
 
-Se adjunta también otra captura de pantalla en la figura 3.11 de la información del contrato generado con el pago de una cuota realizado cuyo valor coincide con las cuotas definidas del préstamo contratado. Con esta comprobación de función de pago en \href{https://sepolia.etherscan.io/}{Etherscan Sepolia} se da por validado que todas las funciones del proyecto se reflejan en la red otorgando veracidad al proyecto.
-\begin{figure}
+Se adjunta también otra captura de pantalla en la 
+figura~\ref{fig:Etherscan comprobante de pago} de la información 
+de la instancia generada del \gls{smartcontract} \textit{Prestamo Contract}
+
+En la figur~\ref{fig:Etherscan comprobante de pago} también se pude observar
+dentro del recuadro amarillo la primera transferencia recibida por parte del 
+usuario con la cuota mensual. Esta cantidad de 366\gls{wei} coincide correctamente 
+con el atributo \textit{Cantidad próxima cuota} del tercer préstamo contratado 
+en el panel de usuario de la figura~\ref{fig:paneluser}.
+
+Con esta comprobación de función de pago en 
+\href{https://sepolia.etherscan.io/}{Etherscan Sepolia} 
+se da por validado que todas las funciones del proyecto se reflejan en la red 
+otorgando veracidad e inmutabilidad al proyecto.
+\begin{figure}[H]
     \centering
     \caption{Registro en Sepolia en el que se puede ver una transacción o comprobante de pago Etherscan}
     \includegraphics[width=\textwidth]{figures/resultados/pagoprestamo.jpg}
     \label{fig:Etherscan comprobante de pago}
 \end{figure}
+
+
 \subsection{Mocha test}
-Ya se ha visto el correcto funcionamiento de la aplicación a traves de la interfaz de usuario y la verficación de las transacciones en la red. 
-Pero para garantizar el correcto funcionamiento de los smart contracts en situaciones distintas al correcto uso de la aplicación, 
-se han desarrollado distintos test unitarios utilizando la herramienta \hyperref[sec:mochasection]{Mocha test Framework}
+Ya se ha visto el correcto funcionamiento de la aplicación a traves de la 
+interfaz de usuario y la verficación de las transacciones en la red. 
+Pero para garantizar el correcto funcionamiento de los smart contracts en 
+situaciones distintas al correcto uso de la aplicación, 
+se han desarrollado distintos test unitarios utilizando la herramienta 
+\hyperref[sec:mochasection]{Mocha test Framework}
 
 Estos tests tienen como objetivo:
 \begin{enumerate}
@@ -970,15 +1101,16 @@ Se han utilizado 3 cuentas para realizar los test unitarios:
     \item Dos cuentas de usuario que solicitan el préstamo
 \end{enumerate}
 \paragraph{Contratos inteligentes puestos a prueba}
-Los test se han hecho sobre el motor de este sistema, es decir, sobre los smart contracts que definen el funcionamiento del sistema de préstamos.
-Estos contratos se pueden ver en el anexo ~\ref{anexo:smartcontracts} y son los siguientes:
-\begin{enumerate}
-    \item Contract Factory: Contrato principal que gestiona la creación de los contratos de préstamo
-    \item Prestamo Cursando: Contrato que representa un préstamo individual y gestiona su estado
-\end{enumerate}
+Los test se han hecho sobre el motor de este sistema, es decir, sobre los 
+\glspl{smartcontract} que definen el funcionamiento del sistema de préstamos.
+Estos contratos se pueden ver en el anexo ~\ref{anexo:smartcontracts} y son los 
+ya comentados \textit{Contract Factory} y \textit{Prestamo Contract}
+
 \paragraph{Tecnología de los test}
-Los test se han desarrollado utilizando JavaScript y el framework Mocha y la librería Chai para las aserciones.
-Estos test se pueden encontrar en el anexo ~\ref{anexo:mochatest}
+Los test se han desarrollado utilizando JavaScript y el framework Mocha y 
+la librería Chai para las aserciones.
+Estos test se pueden encontrar en el anexo~\ref{anexo:mochatest}
+
 \paragraph{Desarrollo de los test: Variables previas y condiciones iniciales}
 Previo al desarrollo puro de los test, antes de cada ejecución se deben dar las condiciones iniciales para que los test puedan ejecutarse correctamente.
 El proceso de preparación de los test consiste en desplegar los contratos en la red local y establecer las condiciones iniciales para cada prueba.
