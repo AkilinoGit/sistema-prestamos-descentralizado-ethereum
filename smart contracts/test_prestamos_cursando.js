@@ -27,7 +27,7 @@ describe('Prestamos Cursando test', async () => {
         //Definir préstamo
         await factory.methods.definirPrestamo(10,1000,2,10).send({from: accounts[0],
             gas: web3.utils.toHex(2000000)});
-        //Contratar prestamos
+        //Contratar préstamos
         await factory.methods.contratarPrestamo(accounts[1],0).send({from: accounts[1],
             gas: web3.utils.toHex(2000000)});
         await factory.methods.contratarPrestamo(accounts[2],0).send({from: accounts[2],
@@ -72,12 +72,12 @@ describe('Prestamos Cursando test', async () => {
             _penalizacionImpago: '10',
             _ultimoCheckeo: '1702318784'};
 
-        var acutalInfo = await prestamo1.methods.mostrarInfo().call({from: accounts[1]});
-        assert.equal(expected._cantidadPrestada,acutalInfo._cantidadPrestada);
-        assert.equal(expected._state,acutalInfo._state);
-        assert.equal(expected._cuotaMensual,acutalInfo._cuotaMensual);
-        assert.ok(acutalInfo._prestatario);
-        assert.ok(acutalInfo._direccion);
+        var actualInfo = await prestamo1.methods.mostrarInfo().call({from: accounts[1]});
+        assert.equal(expected._cantidadPrestada,actualInfo._cantidadPrestada);
+        assert.equal(expected._state,actualInfo._state);
+        assert.equal(expected._cuotaMensual,actualInfo._cuotaMensual);
+        assert.ok(actualInfo._prestatario);
+        assert.ok(actualInfo._direccion);
             
             
     });
@@ -105,9 +105,9 @@ describe('Prestamos Cursando test', async () => {
 
     it('Transferir fondos a factory', async() => {
         //Inversión inicial : 10000 wei
-        //Cantidad prestada : dos prestamos de 1000 wei = 2000 wei
+        //Cantidad prestada : dos préstamos de 1000 wei = 2000 wei
         //Cantidad devuelta :  Una cuota pagada del prestamo1 = 550 wei
-        //El contrato prestamo debe de tener 0 wei y el contrato factory 10000-2000+550 = 8550 wei
+        //El contrato préstamo debe de tener 0 wei y el contrato factory 10000-2000+550 = 8550 wei
 
         var balanceFactory = await factory.methods.getBalance().call({from: accounts[0],
             gas: web3.utils.toHex(2000000)});
@@ -121,12 +121,12 @@ describe('Prestamos Cursando test', async () => {
         //Realizo chequeo
         await prestamo1.methods.checkeoMensual().send({from: accounts[0],
             gas: web3.utils.toHex(2000000)});
-         //Compruebo que el estado del prestamo ha pasado de 'PAGADO'  a 'PRESTAMO'
+         //Compruebo que el estado del préstamo ha pasado de 'PAGADO'  a 'ABIERTO'
         var expectedState = 1;
         var actualState = await prestamo1.methods.mostrarEstado().call();
         assert.equal(actualState, expectedState);
         
-        //Compruebo la penalización del prestamo no pagado
+        //Compruebo la penalización del préstamo no pagado
         var expectedDeudaRestante = 1000 + (1000 * 0.1);
         var prestamoNoPagado = await prestamo2.methods.mostrarInfo().call({from: accounts[2]});
         assert.equal(prestamoNoPagado._deudaRestante, expectedDeudaRestante);
@@ -146,7 +146,7 @@ describe('Prestamos Cursando test', async () => {
         await prestamo1.methods.checkeoMensual().send({from: accounts[0],
             gas: web3.utils.toHex(2000000)});
         
-        //Compruebo que no existe ni el préstamo finalizado ni su usuario el cual no tiene más prestamos en el sistema
+        //Compruebo que no existe ni el préstamo finalizado ni su usuario el cual no tiene más préstamos en el sistema
         
         var vacio = await factory.methods.verContratos(accounts[1]).call({from: accounts[1],
             gas: web3.utils.toHex(2000000)});

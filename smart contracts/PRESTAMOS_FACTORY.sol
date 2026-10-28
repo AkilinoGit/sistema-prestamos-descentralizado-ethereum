@@ -7,7 +7,7 @@ contract PrestamosFactory {
     using SafeMath for uint256;
 
     address payable private owner;
-    //Posibles prestamos a contratar
+    //Posibles préstamos a contratar
     TipoContrato[] tiposContrato;
     
     mapping(address => PrestamoCursando[])  prestamosCursando;
@@ -110,8 +110,15 @@ contract PrestamosFactory {
         //Guardo index para facilitar acceso
         uint256 _indexNuevoPrestamo = prestamosCursando[_prestatario].length;
         // Genero un nuevo contrato Prestamo asociado a la dirección msg.sender
-        PrestamoCursando newPrestamo = new PrestamoCursando(_indexNuevoPrestamo, _prestatario, owner, tipoPrestamo.cuotas, tipoPrestamo.cantidad,
-                                                            tipoPrestamo.deudaTotal, tipoPrestamo.penalizacionImpago);
+        PrestamoCursando newPrestamo = new PrestamoCursando(
+            _indexNuevoPrestamo,
+            _prestatario,
+            owner,
+            tipoPrestamo.cuotas,
+            tipoPrestamo.cantidad,
+            tipoPrestamo.deudaTotal,
+            tipoPrestamo.penalizacionImpago
+        );
 
         //Enviar dinero a usuario
         emit NuevoPrestamoCursando(address(newPrestamo), _prestatario);                                                
@@ -236,8 +243,7 @@ contract PrestamoCursando {
     }
 
     function calculoCuotaMensual() private view returns (uint256){
-        //Debido a problemas con el tratamiento de decimales de solidity puede resultar el caso que
-        // deudarestante/cuotasrestantes no dé un número entero
+        //La división entera deudaRestante/cuotasRestantes puede dejar un resto
         //Esto implica que quede deuda después de pagar todas las cuotas por lo que este resto se añade a la cuota final
         if(cuotasRestantes == 1) {
             return  deudaRestante;

@@ -564,3 +564,16 @@ Estas observaciones se basan en comparaciones dentro del propio PDF. No constitu
 - Revisar la nueva paginación si las reformulaciones cambian los saltos de página.
 
 **Conclusión editorial:** la memoria necesita una corrección formal adicional. Las erratas no se limitan a unas pocas tildes: también hay frases rotas, referencias incompletas y desajustes entre tablas, texto y código. La relación anterior permite resolverlos de forma localizada antes de generar la versión definitiva.
+
+## 8. Aplicación sobre los fuentes actuales — 28 de octubre de 2026
+
+Se han contrastado las observaciones con los fuentes actualizados y se han aplicado las correcciones pendientes de redacción, puntuación, terminología, tablas, listados, bibliografía y glosario. Las referencias de página del informe original identifican la versión revisada inicialmente y pueden diferir de la memoria regenerada.
+
+- Las tablas documentan ahora los nombres, parámetros, resultados y tipos presentes en los contratos del anexo. Se han completado las descripciones y distinguido la creación de productos de la contratación de préstamos.
+- Se ha precisado el papel de la entidad prestamista, corregido CU10 y CU11, reasignado la evidencia de pagos y penalizaciones al OS 4 y explicado el alcance de la evidencia del OS 3.
+- Se han contrastado MiCA, PoS, las cuentas de MetaMask, la aritmética entera de Solidity y los NFT con las fuentes oficiales incorporadas a la bibliografía. Los umbrales del artículo 35 de MiCA se distinguen de los requisitos de los proveedores de servicios.
+- Se han corregido las referencias a `assert`, a `setIndex` y al estado `ABIERTO`. El identificador `acutalInfo` se ha renombrado consistentemente a `actualInfo`. La lógica de los contratos y de las pruebas se conserva.
+- La captura de CoinMarketCap carece de fecha visible: se ha retirado la fecha que no puede confirmarse. La bibliografía duplicada de Ethereum se ha unificado; los números impresos se regeneran automáticamente.
+- Se ha cargado el glosario antes de los resúmenes para permitir compilar desde cero y se han retirado las inclusiones de archivos inexistentes cuyo contenido ya está en la introducción.
+
+**Límites de la evidencia disponible:** esta copia no contiene una salida de Mocha vinculada a una versión identificada de los contratos, los artefactos compilados utilizados por las pruebas ni un archivo de dependencias que confirme la versión de Web3.js. La memoria describe estas limitaciones y no presenta resultados automáticos nuevos ni versiones supuestas. Para documentar una ejecución reproducible harían falta esos materiales; la comprobación editorial y la compilación de LaTeX no los sustituyen.

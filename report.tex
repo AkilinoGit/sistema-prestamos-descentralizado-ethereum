@@ -6,6 +6,11 @@
 \usepackage{listings}
 \usepackage{xcolor}
 \usepackage{hyperref}
+\usepackage{xurl}
+\usepackage{needspace}
+\BeforeBeginEnvironment{lstlisting}{\Needspace{8\baselineskip}}
+\setlength{\emergencystretch}{3em}
+\AtBeginBibliography{\small}
 
 \lstdefinelanguage{Solidity}{
     keywords={
@@ -23,11 +28,16 @@
 }
 \lstset{
     language=Solidity,
-    basicstyle=\ttfamily\small,
+    basicstyle=\ttfamily\footnotesize,
     numbers=left,
     numberstyle=\tiny,
     frame=single,
     breaklines=true,
+    breakatwhitespace=false,
+    columns=fullflexible,
+    keepspaces=true,
+    breakautoindent=false,
+    breakindent=1em,
     showstringspaces=false,
     tabsize=4
 }
@@ -64,7 +74,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % TÍTULO, AUTORES Y DIRECTORES
 %
-\title{Sistema de préstamos descentralizado basado en la red Blockchain de Ethereum}
+\title{Sistema de préstamos descentralizado basado en la red blockchain de Ethereum}
 \author{Aquilino Pascual Sanz}
 \bibauthor{Pascual-Sanz, A.}
 \director{Alberto Díaz Álvarez \and Guillermo Sánchez Gutiérrez-Cabello}
@@ -76,9 +86,8 @@
     Este \acrlong{pfg} nace con el objetivo de desarrollar un sistema financiero 
     descentralizado que ofrezca transparencia, seguridad y automatización en la 
     gestión de préstamos. La motivación principal para realizar este proyecto 
-    radica en la necesidad de eliminar intermediarios innecesarios, reducir costos 
-    operativos y garantizar la trazabilidad de cada operación mediante contratos 
-    inteligentes (\glspl{smartcontract}) en una red \gls{blockchain}. 
+    radica en la necesidad de eliminar intermediarios innecesarios, reducir costes
+    operativos y garantizar la trazabilidad de cada operación mediante \glspl{smartcontract} en una red \gls{blockchain}.
     Este enfoque brinda mayor confianza a los usuarios y permite una gestión 
     eficiente de los préstamos \textbf{sin depender de entidades centralizadas.}
 
@@ -142,12 +151,9 @@
 
 \usepackage{colortbl}
 
+\input{secciones/glosarioyAbreviaturas}
 \begin{document}
-\include{secciones/glosarioyAbreviaturas}
 \include{secciones/introduccion}
-\include{secciones/objetivos}
-\include{secciones/motivacion}
-\include{secciones/estructura}
 \include{secciones/estadodelacuestion}
 \include{secciones/arquitecturaydesarrollo}
 \include{secciones/resultadosdeldesarrollo}

@@ -26,8 +26,8 @@ El protocolo \gls{aave} es el protocolo más parecido a la solución que ofrece 
 La principal diferencia es que los usuarios finales no solo solicitan los préstamos, sino que
  también pueden ofrecer sus fondos para que otros usuarios puedan solicitar préstamos.
 
-El proceso consiste en una \gls{pool} de liquidez.
-Esta \gls{pool} es alimentada por los usuarios que ofrecen sus fondos y estos pueden ser pedidos
+El proceso consiste en un \gls{pool}.
+Este \gls{pool} es alimentado por los usuarios que ofrecen sus fondos y estos pueden ser pedidos
 como préstamo por otros usuarios.
 La definición del tipo de préstamo y sus intereses viene definida por la garantía que puede aportar 
 la persona que solicita el préstamo. Dependiendo del valor ofrecido como garantía se le asignará un tipo de interés y un límite de préstamo.
@@ -46,13 +46,13 @@ Para obtener más información se puede consultar la documentación oficial del 
 \subsection{Uniswap}
 Este protocolo es un intercambio descentralizado de criptomonedas, no es un protocolo orientado a 
  préstamos aunque también se obtiene comisión a través de dejar prestados tus
-propios fondos en una \gls{pool} de liquidez.
-El funcionamiento consiste en aportar fondos a una \gls{pool}. En esta \gls{pool} se definen dos criptomonedas 
-de tal forma que los usuarios aprovechan la liquidez de esos activos que se encuentran en la \gls{pool} 
+propios fondos en un \gls{pool}.
+El funcionamiento consiste en aportar fondos a un \gls{pool}. En este \gls{pool} se definen dos criptomonedas
+de tal forma que los usuarios aprovechan la liquidez de esos activos que se encuentran en el \gls{pool}
 para realizar intercambios de criptomonedas sin necesidad de un intermediario.
 
 Por ejemplo, si un usuario quiere intercambiar \gls{eth} por \gls{bitcoin}, el protocolo \gls{uniswap} 
-utiliza la liquidez de la \gls{pool} para realizar la transacción de manera automática y sin necesidad 
+utiliza la liquidez del \gls{pool} para realizar la transacción de manera automática y sin necesidad
 de conseguir un comprador que tenga exactamente \gls{bitcoin} y quiera exactamente \gls{eth}.
 En el contrato de intercambio se desglosa la comisión que obtiene la plataforma y el prestatario 
 para la realización del intercambio.
@@ -67,7 +67,7 @@ y también se definirán las claves por las que se han seleccionado dichas tecno
 desde la decisión inicial de utilizar una red blockchain hasta pequeñas decisiones de 
 diseño como la selección del \gls{framework} para la \gls{UI}.
 
-\section{¿Por qué Blockchain y por qué Ethereum?}
+\section{¿Por qué blockchain y por qué Ethereum?}
 
 \subsection{Blockchain}
 
@@ -95,7 +95,7 @@ Este diseño y estructura presentan características innovadoras que posicionan 
 aunque su aplicación se está extendiendo a diversas industrias tal y como se habla en el paper de 
 la Universitat Politècnica de Catalunya~\cite{[4]}.
 
-\subsubsection{Componentes en las transacciones Blockchain}
+\subsubsection{Componentes en las transacciones blockchain}
 
 Para comprender en profundidad el funcionamiento y la seguridad de una red blockchain, 
 es fundamental analizar sus componentes clave, su estructura de datos, los mecanismos de consenso para 
@@ -145,7 +145,7 @@ La siguiente información se ha obtenido a través del siguiente paper:
           proporcionales a la cantidad de criptomonedas que tienen participando. 
           Si el validador elegido obtiene el \gls{hash} de forma correcta recibe la recompensa,
           y si actúa de manera malicionsa puede perder su participación.
-        \end{enumerate}
+\end{enumerate}
 
     \item \textbf{Libro mayor distribuido}: La \gls{blockchain} en conjunto actúa como un libro 
     de contabilidad digital distribuido. Este libro mayor es inmutable, lo que significa que una 
@@ -187,7 +187,7 @@ A través de la figura~\ref{fig:transaction} se representa un diagrama simplific
     \label{fig:transaction}
 \end{figure}
       
-\subsubsection{Seguridad en Blockchain } 
+\subsubsection{Seguridad en blockchain }
 La seguridad de la blockchain depende de varias capas de tecnología criptográfica y del diseño 
 descentralizado de la red. 
 Los elementos clave de su seguridad incluyen:
@@ -206,7 +206,7 @@ Los elementos clave de su seguridad incluyen:
         miles de nodos (en el caso de las redes más importantes), \gls{blockchain} elimina los 
         puntos de fallo únicos. Esto significa que, incluso si un nodo es comprometido o hackeado, 
         la seguridad del resto de la red se mantiene. La tolerancia a nodos comprometidos depende del mecanismo de consenso y de los criterios de seguridad de cada red.
-        \item \textbf{Criptografía de clave pública y privada}: Cada usuario de la red tiene una 
+\item \textbf{Criptografía de clave pública y privada}: Cada usuario de la red tiene una
         clave pública y una clave privada. La clave pública funciona como una dirección visible 
         para recibir activos e identificarse en la red ante otros usuarios, mientras que la clave 
         privada permite firmar transacciones y verificar la identidad del usuario, 
@@ -269,12 +269,8 @@ fecha de 14-03-2024 y en tiempo real en la web de \citetitle{[35]} \cite{[35]}.
 
 \begin{figure}[H]
     \centering
-    \caption{
-        Información del valor de las criptomonedas a fecha de 14-03-2024,
-    especialmente de  \citetitle{[9]}~\cite{[9]}, \citetitle{[10]}~\cite{[10]}, 
-    \citetitle{[7]}~\cite{[7]} las cuales sí permiten la integración de 
-    \glspl{smartcontract}.
-    }
+    \caption{Captura de información de mercado de Bitcoin, Ethereum, Tether,
+    XRP, BNB y Solana. Fuente: CoinMarketCap~\cite{[35]}.}
     \includegraphics[width=.4\textwidth]{figures/coinmarket.jpg}
     \label{fig:criptovalues}
 \end{figure}
@@ -285,12 +281,12 @@ proyecto son:
 \begin{enumerate}   
     \item \textbf{ Contratos Inteligentes y Máquina Virtual de Ethereum (\gls{evm})}
         Como se ha comentado antes, esta es la característica más importante de 
-        Ethereum. Los \gls{smartcontract} son programas autoejecutables con
+        Ethereum. Los \glspl{smartcontract} son programas autoejecutables con
         condiciones predefinidas, que permiten automatizar una amplia variedad 
         de procesos y acuerdos entre partes sin necesidad de intermediarios. 
         La Máquina Virtual de Ethereum (\gls{evm}) es la infraestructura que hace 
-        posible la ejecución de estos \gls{smartcontract}. Esta consiste en un 
-        entorno virtual que permite que el código de los Smart Contract se ejecute 
+        posible la ejecución de estos \glspl{smartcontract}. Esta consiste en un
+        entorno virtual que permite que el código de los \glspl{smartcontract} se ejecute
         por igual y de manera segura en todos los nodos de la red Ethereum, lo que 
         garantiza consistencia e inmutabilidad. La \gls{evm} es compatible 
         con varios lenguajes de programación, siendo \gls{solidity} el más 
@@ -298,7 +294,7 @@ proyecto son:
         utilizado en este proyecto.
 
         \item \textbf{Plataforma para \glspl{dapp}:} A partir del desarrollo de los
-        \gls{smartcontract}, Ethereum fue la primera 
+        \glspl{smartcontract}, Ethereum fue la primera
         \gls{blockchain} en introducir el concepto de aplicaciones descentralizadas 
         (\glspl{dapp}). Las \glspl{dapp} son aplicaciones que funcionan en redes 
         descentralizadas, permitiendo que los usuarios interactúen de manera directa 
@@ -418,7 +414,7 @@ puede usarse para toda la experiencia de desarrollo de  \glspl{smartcontract}.
 Ofrece todo tipo de herramientas para la depuración de código, despliegue en redes 
 tanto públicas como privadas, compilación de \gls{smartcontract}, etc.
 
-\subsection{Test unitarios: Mocha Framework}
+\subsection{Pruebas unitarias con Mocha}
 \label{sec:mochasection}
 Marco de pruebas en \gls{javascript} diseñado para ejecutar pruebas unitarias y 
 de integración en aplicaciones Node.js. 
@@ -427,7 +423,7 @@ la comprobación de permisos de usuario, ingreso y retirada de fondos.
 
 Tiene funciones para esperar operaciones asíncronas, muy importante a la hora de 
 esperar acciones provenientes de la \gls{evm}, además de las funciones comunes
-a cualquier otro entorno de trabajo para tests.
+a cualquier otro entorno de trabajo para pruebas.
 
 \subsection{Node.js}
 
@@ -459,14 +455,14 @@ es clave en un entorno , en el que como durante el desarrollo de este proyecto,
  las herramientas de inteligencia artificial aún no estaban tan extendidas.
 
 \subsection{Angular}
-\citetitle{[33]} es un framework de código abierto basado en TypeScript.
+\citetitle{[33]} es un entorno de trabajo de código abierto basado en TypeScript.
 Sus herramientas hacen más sencillas las tareas comunes al desarrollo web como
 la gestión de rutas de dirección,
 organización de código a través de elementos llamados \enquote{componentes}, 
 recogida de datos de usuario, etc.
 
 \subsection{Ionic}
-\citetitle{[32]} es un framework de código abierto orientado al desarrollo
+\citetitle{[32]} es un entorno de trabajo de código abierto orientado al desarrollo
 de los componentes visuales en una
 aplicación web. 
 En combinación con \citetitle{[33]} se convierte en una herramienta que facilita 

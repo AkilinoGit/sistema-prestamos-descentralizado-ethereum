@@ -14,10 +14,9 @@ Gracias al registro de estas transacciones y cierta lógica aplicada
 a esta información, se puede componer un sistema de creación y control de préstamos 
 digitales en el que la contratación de nuevos préstamos queda totalmente automatizada.
 
-     \item Es posible unificar todas las herramientas de gestión dentro de una interfaz de
-usuario cubriendo todas las conexiones necesarias con la red de \gls{ethereum} 
-y capaz de ordenar la ejecución en la red de las operaciones necesarias para la
-gestión de un sistema de préstamos digitales.
+     \item Es posible reunir las herramientas de gestión en una única interfaz
+de usuario, capaz de conectarse con \gls{ethereum} y solicitar las operaciones necesarias
+para administrar los préstamos.
 
      \item Aunque para un sistema aplicado en la vida real hiciera falta 
      la implementación de distintos desarrollos, los \glspl{smartcontract} 
@@ -28,7 +27,7 @@ gestión de un sistema de préstamos digitales.
      proporciona al sistema las características de seguridad, inmutabilidad y 
      veracidad necesarias para un sistema de esta índole.
 
-     \item Existe un plan de validación que verifica las capacidades descritas
+     \item Existe un plan de validación que define escenarios para comprobar las capacidades descritas
      para este sistema.
 
      \item Tras un estudio del impacto social se puede concluir que la adopción 
@@ -47,11 +46,11 @@ descentralizado es posible, pero, para que un proyecto como este llegue a una si
 de producción real es necesario realizar una serie de desarrollos para cumplir con 
 necesidades básicas en un sistema de préstamo real.
 
-Se considera la más importante la adopción de garantías de impago, esta carencia del 
-proyecto se tiene en cuenta en el Caso de uso futuro \hyperlink{cu:garantia}{CU12}:  Garantía de devolución en
-caso de impago,
-aunque actualmente el sistema sea capaz de penalizar los impagos, no se garantiza recuperar
-el capital prestado, para ello se pueden desarrollar dos casos de uso:
+La mejora prioritaria es incorporar garantías de devolución en caso de impago,
+como se recoge en el caso de uso futuro \hyperlink{cu:garantia}{CU12}.
+Aunque el sistema aplica penalizaciones, estas no garantizan por sí mismas la
+recuperación del capital prestado. Se plantean dos posibles desarrollos:
+
 \begin{itemize}
      \item Creación de sistema de colaterales: en un futuro será de obligado 
      cumplimiento que el usuario que solicite un préstamo añada al sistema
@@ -65,10 +64,10 @@ el capital prestado, para ello se pueden desarrollar dos casos de uso:
 \end{itemize}
 
 El nuevo sistema de garantías también deberá incluir un sistema de validación de
-solvencia, tal y como se habla en el Caso de uso futuro \hyperlink{cu:garantia}{CU14}, lo que aportará 
+solvencia, tal y como se habla en el Caso de uso futuro \hyperlink{cu:solvencia}{CU14}, lo que aportará
 mayor solidez a la garantía de devolución.
 
-Durante los tests de funcionamiento del sistema se pudieron comprobar las ineficiencias
+Durante los pruebas de funcionamiento del sistema se pudieron comprobar las ineficiencias
 de código en la red. Sobre todo, se debe evitar recorrer todos los contratos existentes
 una vez al mes para comprobar si han sido pagados o no. 
 
@@ -91,7 +90,7 @@ unificada, fácil e intuitiva. Aunque sí se ha desarrollado una interfaz unific
 sería necesario crear una interfaz más intuitiva para el usuario.
 
 Con menos prioridad se deberán desarrollar sistemas que utilicen \glspl{oraculo}
-tal y como se habla en el Caso de uso Futuro \hyperlink{cu:garantia}{CU13}, este sistema junto a la comprobación 
+tal y como se habla en el Caso de uso Futuro \hyperlink{cu:euribor}{CU13}, este sistema junto a la comprobación
 de solvencia económica pueden servir para una correcta definición de  los tipos de 
 préstamo y condiciones disponibles en el sistema.
 
@@ -119,13 +118,12 @@ y de los mecanismos de protección disponibles~\cite{oecd2024defi}.
 \begin{enumerate}
      \item La posibilidad de otorgar préstamos sin la necesidad de bancos tradicionales
       podría beneficiar a millones de personas no bancarizadas en economías emergentes.
-       Sin embargo, la \acrfull{ocde} señala que el acceso a estos servicios dependería del
-        conocimiento en el uso de criptomonedas, \gls{wallet} digitales y 
-        plataformas \gls{defi}, lo que podría aumentar la brecha digital 
-        entre quienes dominan estas herramientas
-          y quienes no. Además, la \acrfull{ocde} también señala que la 
-          responsabilidad del usuario
-          sobre sus propios activos dificulta la utilización de estos.
+       Sin embargo, la \acrfull{ocde} señala que el acceso a estos servicios
+       requiere conocimientos sobre criptomonedas, carteras digitales y plataformas
+       \gls{defi}, lo que podría ampliar la brecha digital. Además, la responsabilidad
+       de los usuarios sobre la gestión de sus propios activos puede dificultar la
+       utilización de estas herramientas~\cite{oecd2024defi}.
+
           Por tanto,
     el acceso técnico a una plataforma no equivale a una inclusión
     financiera efectiva. En el sistema desarrollado, sería necesario
@@ -161,7 +159,7 @@ y de los mecanismos de protección disponibles~\cite{oecd2024defi}.
         lo que requeriría soluciones de eficiencia energética y compensación de emisiones.
  \end{enumerate}
 
- Si bien un sistema de préstamos descentralizado tiene el potencial de democratizar el acceso financiero y reducir costos,
+ Si bien un sistema de préstamos descentralizado tiene el potencial de democratizar el acceso financiero y reducir costes,
   también presenta desafíos sociales y ambientales que deben abordarse antes de una implementación a gran escala.
    Para mitigar estos impactos, sería fundamental desarrollar estrategias de educación digital y
     establecer mecanismos de regulación equilibrados para  mejorar la eficiencia energética del sistema.
@@ -178,7 +176,7 @@ Estos objetivos buscan equilibrar el desarrollo social, económico y ambiental, 
 
    \begin{figure}[H]
     \centering
-    \caption{Objetivos de desarrollo sostenible de la agenda europea para 2030}
+    \caption{Objetivos de desarrollo sostenible de la Agenda 2030 de las Naciones Unidas}
     \includegraphics[width=\textwidth]{figures/2030.jpg}
     \label{fig:2030}
 \end{figure}

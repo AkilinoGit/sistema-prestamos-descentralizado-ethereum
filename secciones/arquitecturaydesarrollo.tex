@@ -1,9 +1,9 @@
-\chapter{Arquitectura y Desarrollo}
+\chapter{Arquitectura y desarrollo}
 \label{ch:arquitecturaydesarrollo}
 \section{Solución propuesta}
 
 Este proyecto propone una \gls{dapp} que gestiona préstamos de \gls{eth} dentro 
-de la red \gls{ethereum} a través de \gls{smartcontract} desplegados en dicha 
+de la red \gls{ethereum} a través de \gls{smartcontract} desplegados en dicha
 red.
 
 Como se ha explicado en la comparación con otros protocolos \gls{defi}, 
@@ -11,10 +11,9 @@ la diferenciación de este sistema es que solo una entidad, poseedora del proyec
 está autorizada a ofrecer los préstamos, configurar los tipos de préstamos
 disponibles y gestionar los fondos.
 
-El sistema principalmente se basa en el diseño de los \glspl{smartcontract} que
-junto a las propiedades de inmutabilidad y veracidad de una \gls{blockchain} deja
-escrita en la red la información necesaria para llevar un libro contable de 
-un sistema de préstamos de forma casi automatizada.
+El sistema se basa en \glspl{smartcontract} que registran en la red la
+información necesaria para gestionar los préstamos. Estos contratos permiten
+automatizar parte de la gestión y conservar un historial de las operaciones.
 
 El usuario de la \gls{dapp} interactúa con el sistema a través de una interfaz web
 en la que conectando su cartera con \gls{metamask} puede gestionar sus propios 
@@ -84,7 +83,7 @@ a aprovisionar las cantidades definidas en la normativa.
 
 El sistema desarrollado presenta una serie de limitaciones técnicas derivadas 
 tanto del alcance definido para el proyecto como de las características propias de 
-una solución basada en \gls{smartcontract}. Las principales
+una solución basada en \glspl{smartcontract}. Las principales
 limitaciones identificadas son las siguientes:
 
 \begin{enumerate}
@@ -108,8 +107,7 @@ limitaciones identificadas son las siguientes:
     número de préstamos activos implica un mayor número de operaciones que deben
     ser procesadas y registradas en la \gls{blockchain}. En consecuencia, el coste
     acumulado de \gls{gas} puede aumentar a medida que crece el volumen de
-    préstamos gestionados. Esta situación no tiene por qué invalidar el proyecto 
-    pero sí exige un desarrollo enfocado en la escalabilidad.
+    préstamos gestionados. Esta situación no tiene por qué invalidar el proyecto, pero sí exige un desarrollo orientado a mejorar su escalabilidad.
     \end{enumerate}
 
 Estas limitaciones deben tenerse en cuenta al valorar una posible aplicación del
@@ -124,9 +122,9 @@ el flujo del sistema.
 Los actores que pueden participar en el sistema son:
 
 \begin{itemize}
-    \item \textbf{Usuario prestatario (User)} Usuario que accede al servicio de 
+    \item \textbf{Usuario prestatario (User):} Usuario que accede al servicio de
     préstamos.
-    \item \textbf{Entidad prestamista (Owner)} Entidad que ofrece los distintos 
+    \item \textbf{Entidad prestamista (Owner):} Entidad que ofrece los distintos
     tipos de préstamos.
 \end{itemize}
 
@@ -177,11 +175,11 @@ Estos casos de uso se definen en las tablas ~\ref{tab:casos-uso-sistema} y
 ~\ref{tab:casos-uso-posteriores}.
 
 \subsubsection{Pantallas del sistema}
-Para un mayor entendimiento de los casos de uso se realiza una declaración 
-de las posibles pantallas que participan en el sistema son:
+Para facilitar la comprensión de los casos de uso, se enumeran las principales
+pantallas del sistema:
 
 \begin{itemize}
-    \item \textbf{Pantalla principal común} Pantalla de inicio común a todos los
+    \item \textbf{Pantalla principal común:} Pantalla de inicio común a todos los
     usuarios, principalmente para identificarse en el sistema.
     \item \textbf{Pantalla principal del prestamista.}
     \item \textbf{Pantalla principal del prestatario.}
@@ -192,21 +190,22 @@ de las posibles pantallas que participan en el sistema son:
 \centering
 \caption{Casos de uso del sistema}
 \label{tab:casos-uso-sistema}
+\small
 \begin{tabular}{|c|l|c|c|}
     \hline
     \rowcolor[HTML]{D0E7FF}
     Código  & Descripción   & Prioridad & Dependencia  \\ \hline
-    CU1     & Login usuario        & 10   &   \\ \hline
+    CU1     & Inicio de sesión usuario        & 10   &   \\ \hline
     CU2     & Creación nuevo tipo de préstamo     & 9   &   \\ \hline
     CU3     & Contratación nuevo préstamo        & 8   &  CU2 \\ \hline
     CU4     & Consulta estado préstamos contratados        & 7   & CU3   \\ \hline
     CU5     & Pago cuota préstamo       & 6   & CU3 \\ \hline
-    CU6     & Consulta préstamos en curso (Entidad financiera)        & 5   & CU3 \\ \hline
+    CU6     & Consulta préstamos en curso (Entidad prestamista)        & 5   & CU3 \\ \hline
     CU7     & Chequeo mensual de estado de contratos        & 4   &   \\ \hline
     CU8     & Penalización por impago de cuota mensual       & 3   &CU7   \\ \hline
     CU9     & Cálculo de importe de próxima cuota mensual         & 2   &  CU3  \\ \hline
-    CU10     & Recoger fondos del prestatario        & 1   &   \\ \hline
-    CU11     & Transferir fondos al prestamista        & 1   &   \\ \hline
+    CU10     & Retirar fondos del sistema        & 1   &   \\ \hline
+    CU11     & Ingresar fondos en el sistema        & 1   &   \\ \hline
 \end{tabular}
 \end{table}
 
@@ -241,13 +240,13 @@ en la sección de trabajo futuro se comentarán los casos de uso futuros.
 \begin{tabular}{|c|p{12cm}|}
     \hline
     \rowcolor[HTML]{D0E7FF}
-    CU1 & \gls{login} usuario. \\ \hline
-    Descripción   & Los usuarios se identificarán en el sistema a través de MetaMask  \\ \hline
-    Pantalla     & Pantalla inicial. (Se redirecciona a esta página si no se ha realizado el \gls{login})   \\ \hline
-    Rol     & Cualquier usuario \\ \hline
+    CU1 & \gls{login} del usuario. \\ \hline
+    Descripción   & Los usuarios se identificarán en el sistema a través de MetaMask.  \\ \hline
+    Pantalla     & Pantalla inicial. (Se redirecciona a esta página si no se ha realizado el \gls{login}).   \\ \hline
+    Rol     & Cualquier usuario. \\ \hline
     Flujo     &    - El usuario, al acceder a la página web, recibirá una notificación
     por parte de MetaMask  para poder acceder al
-                           servicio \newline
+                           servicio. \newline
                    - La extensión de MetaMask permite la autenticación del          usuario y la página se redirige a la página correspondiente a su rol.
     \\ \hline
 \end{tabular}
@@ -260,9 +259,9 @@ en la sección de trabajo futuro se comentarán los casos de uso futuros.
     \hline
     \rowcolor[HTML]{D0E7FF}
     CU2 & Creación nuevo tipo de préstamo. \\ \hline
-    Descripción   & La entidad prestamista puede crear nuevos productos tipo “préstamo”  \\ \hline
+    Descripción   & La entidad prestamista puede crear nuevos productos tipo \enquote{préstamo}.  \\ \hline
     Pantalla     & Pantalla principal de la entidad prestamista.  \\ \hline
-    Rol     & Owner \\ \hline
+    Rol     & Owner. \\ \hline
     Flujo     &    - El usuario owner tiene un formulario en su página principal para
 rellenar la información necesaria para la creación de un nuevo tipo de
 préstamo.\newline
@@ -278,17 +277,15 @@ préstamo.\newline
     \hline
     \rowcolor[HTML]{D0E7FF}
     CU3 & Contratación nuevo préstamo. \\ \hline
-    Descripción   & Los usuarios prestatarios pueden seleccionar el préstamo que desean contratar  \\ \hline
+    Descripción   & Los usuarios prestatarios pueden seleccionar el préstamo que desean contratar.  \\ \hline
     Pantalla     & Pantalla principal de usuarios prestatarios.   \\ \hline
-    Rol     & User \\ \hline
+    Rol     & User. \\ \hline
     Flujo     &    - En la página principal el usuario podrá visualizar los posibles préstamos que
 puede contratar. \newline
                    - El usuario contrata un nuevo préstamo pinchando en el botón de
-“Contratar”.
-                 \newline
+\enquote{Contratar}. \newline
                                  Tan pronto como se procese la transacción, la \gls{dapp} llamará al \gls{smartcontract} desplegado en la red el cual genera otro \gls{smartcontract} que refleja el estado del préstamo en
-cada momento.
-                 \newline
+cada momento. \newline
                                 Al mismo tiempo, las unidades de \gls{eth} solicitadas en el préstamo serán transferidas
 automáticamente desde los fondos del \gls{smartcontract} que conserva el balance del sistema a la dirección del
 usuario.
@@ -302,13 +299,13 @@ usuario.
 \begin{tabular}{|c|p{12cm}|}
     \hline
     \rowcolor[HTML]{D0E7FF}
-    CU4 & Consulta estado préstamos contratados \\ \hline
+    CU4 & Consulta estado préstamos contratados. \\ \hline
     Descripción   & Los usuarios del servicio podrán consultar el estado de sus préstamos contratados
-visualizándolos en su página principal  \\ \hline
-    Pantalla     & Pantalla principal usuario   \\ \hline
-    Rol     & User \\ \hline
-    Flujo     &    En el momento en que el usuario hace log in ya puede visualizar los contratos
-que tiene contratados \\ \hline
+visualizándolos en su página principal.  \\ \hline
+    Pantalla     & Pantalla principal usuario.   \\ \hline
+    Rol     & User. \\ \hline
+    Flujo     &    En el momento en que el usuario hace inicio de sesión ya puede visualizar los contratos
+que tiene contratados. \\ \hline
                  
 \end{tabular}
 \end{table}
@@ -321,9 +318,9 @@ que tiene contratados \\ \hline
     \rowcolor[HTML]{D0E7FF}
     CU5 & Pago cuota préstamo. \\ \hline
     Descripción   & Los usuarios del servicio de préstamo realizan el pago de sus 
-    mensualidades a través de la \gls{dapp} del proyecto  \\ \hline
-    Pantalla     & Pantalla principal de usuarios prestatarios   \\ \hline
-    Rol     & User \\ \hline
+    mensualidades a través de la \gls{dapp} del proyecto.  \\ \hline
+    Pantalla     & Pantalla principal de usuarios prestatarios.   \\ \hline
+    Rol     & User. \\ \hline
     Flujo     &    - En la página principal del usuario aparecen los distintos préstamos que
 tiene contratados y sus respectivos estados, junto a esto, existe un botón para
 cada contrato que transfiere la mensualidad calculada previamente desde la
@@ -338,12 +335,12 @@ cuenta del usuario a la dirección del \gls{smartcontract} de préstamo.
 \begin{tabular}{|c|p{12cm}|}
     \hline
     \rowcolor[HTML]{D0E7FF}
-    CU6 & Consulta préstamos en curso (Entidad financiera). \\ \hline
-    Descripción   & La entidad financiera puede consultar el estado de cada préstamo en
-curso \\ \hline
-    Pantalla     &Pantalla principal de la entidad financiera  \\ \hline
-    Rol     & Owner \\ \hline
-    Flujo     &    - En la página principal del propietario aparecen los contratos en curso
+    CU6 & Consulta préstamos en curso (Entidad prestamista). \\ \hline
+    Descripción   & La entidad prestamista puede consultar el estado de cada préstamo en
+curso. \\ \hline
+    Pantalla     &Pantalla principal de la entidad prestamista.  \\ \hline
+    Rol     & Owner. \\ \hline
+    Flujo     &    - En la página principal del propietario aparecen los contratos en curso.
                  \\ \hline
 \end{tabular}
 \end{table}
@@ -355,10 +352,10 @@ curso \\ \hline
     \hline
     \rowcolor[HTML]{D0E7FF}
     CU7 & Chequeo mensual de estado de contratos. \\ \hline
-    Descripción   & La entidad financiera ejecuta la orden de comprobar qué mensualidades no
+    Descripción   & La entidad prestamista ejecuta la orden de comprobar qué mensualidades no
 han sido pagadas ese mes.  \\ \hline
-    Pantalla     & Pantalla principal de entidad financiera \\ \hline
-    Rol     & Owner \\ \hline
+    Pantalla     & Pantalla principal de entidad prestamista. \\ \hline
+    Rol     & Owner. \\ \hline
     Flujo     &    Desde la página principal del propietario se tiene acceso al botón que lanza
 esa orden siempre y cuando hayan pasado 30 días desde la última orden.
                  \\ \hline
@@ -371,13 +368,13 @@ esa orden siempre y cuando hayan pasado 30 días desde la última orden.
 \begin{tabular}{|c|p{12cm}|}
     \hline
     \rowcolor[HTML]{D0E7FF}
-    CU8 & Penalización por impago de cuota mensual \\ \hline
+    CU8 & Penalización por impago de cuota mensual. \\ \hline
     Descripción   & Los contratos en estado de impago generan una penalización de deuda, esta
 penalización solo puede suceder una vez al mes.  \\ \hline
-    Pantalla     & Pantalla principal de entidad financiera  \\ \hline
-    Rol     & Owner \\ \hline
+    Pantalla     & Pantalla principal de entidad prestamista.  \\ \hline
+    Rol     & Owner. \\ \hline
     Flujo     &    Cuando el propietario genera la orden de chequeo mensual los contratos
-que tengan estado de \enquote{impago} aumentarán su valor de deuda
+que tengan estado de \enquote{impago} aumentarán su valor de deuda.
                  \\ \hline
 \end{tabular}
 \end{table}
@@ -388,15 +385,15 @@ que tengan estado de \enquote{impago} aumentarán su valor de deuda
 \begin{tabular}{|c|p{12cm}|}
     \hline
     \rowcolor[HTML]{D0E7FF}
-    CU9 & Cálculo de importe de próxima cuota mensual \\ \hline
+    CU9 & Cálculo de importe de próxima cuota mensual. \\ \hline
     Descripción   & El importe de la próxima cuota mensual es un valor dinámico sujeto a
-penalizaciones  \\ \hline
-    Pantalla     & Pantalla principal usuario  \\ \hline
-    Rol     & User \\ \hline
+penalizaciones.  \\ \hline
+    Pantalla     & Pantalla principal usuario.  \\ \hline
+    Rol     & User. \\ \hline
     Flujo     &    - Tras el chequeo mensual la cuota del próximo pago se podrá ver
-modificada en caso de penalización \newline
+modificada en caso de penalización. \newline
                    - En la información de los préstamos contratados aparecerá la cantidad de la
-cuota del mes en curso
+cuota del mes en curso.
                  \\ \hline
 \end{tabular}
 \end{table}
@@ -407,13 +404,13 @@ cuota del mes en curso
 \begin{tabular}{|c|p{12cm}|}
     \hline
     \rowcolor[HTML]{D0E7FF}
-    CU10 & Recoger fondos del contrato de préstamos \\ \hline
-    Descripción   & La entidad bancaria propietaria  del sistema de préstamos puede disponer de los fondos almacenados en el sistema
-cuando desee  \\ \hline
-    Pantalla     & Pantalla principal de Owner   \\ \hline
-    Rol     & Owner \\ \hline
-    Flujo     &    La entidad bancaria tendrá una casilla en su página principal para escribir y recibir el
-importe desde la dirección del \gls{smartcontract} con el balance a su dirección de la red
+    CU10 & Retirar fondos del sistema. \\ \hline
+    Descripción   & La entidad prestamista propietaria  del sistema de préstamos puede disponer de los fondos almacenados en el sistema
+cuando desee.  \\ \hline
+    Pantalla     & Pantalla principal de Owner.   \\ \hline
+    Rol     & Owner. \\ \hline
+    Flujo     &    La entidad prestamista tendrá una casilla en su página principal para escribir y recibir el
+importe desde la dirección del \gls{smartcontract} con el balance a su dirección de la red.
                  \\ \hline
 \end{tabular}
 \end{table}
@@ -424,12 +421,12 @@ importe desde la dirección del \gls{smartcontract} con el balance a su direcci�
 \begin{tabular}{|c|p{12cm}|}
     \hline
     \rowcolor[HTML]{D0E7FF}
-    CU11 & Transferir fondos al sistema de préstamos \\ \hline
-    Descripción   & La entidad bancaria  puede transferir cualquier cantidad de \gls{eth} 
+    CU11 & Ingresar fondos en el sistema. \\ \hline
+    Descripción   & La entidad prestamista  puede transferir cualquier cantidad de \gls{eth}
     al sistema de préstamos para mantener
- un saldo positivo y poder realizar estos préstamos\\ \hline
-    Pantalla     & Pantalla principal Owner   \\ \hline
-    Rol     & Owner \\ \hline
+ un saldo positivo y poder realizar estos préstamos.\\ \hline
+    Pantalla     & Pantalla principal Owner.   \\ \hline
+    Rol     & Owner. \\ \hline
     Flujo     &    La entidad tendrá una casilla en su página principal para escribir y transferir el
 importe deseado a la dirección del sistema de préstamos.
                  \\ \hline
@@ -450,39 +447,39 @@ habilitarán las funciones del sistema propuesto.
     1 & Usuario. \\ \hline
     Descripción   & Usuario que accede al servicio de préstamos.  \\ \hline
     Atributos     & Dirección pública de la red.   \\ \hline
-    Acciones     &- Pedir préstamo  \newline
-                    - Pagar préstamo\\ \hline   
+    Acciones     &- Pedir préstamo.  \newline
+                    - Pagar préstamo.\\ \hline
 
     \hline
     \rowcolor[HTML]{D0E7FF}
     2 & Propietario. \\ \hline
-    Descripción   & Propietario del sistema, único capaz de recolectar los fondos del sistema. Normalmente una entidad financiera  \\ \hline
+    Descripción   & Propietario del sistema, único capaz de recolectar los fondos del sistema. Normalmente una entidad prestamista.  \\ \hline
     Atributos     & Dirección pública de la red.   \\ \hline
-    Acciones     &- Transferir unidades al sistema \newline
-                    - Recoger unidades del sistema\\ \hline
+    Acciones     &- Transferir unidades al sistema. \newline
+                    - Recoger unidades del sistema.\\ \hline
    
 
     \hline
     \rowcolor[HTML]{D0E7FF}
-    3 & Sistema de préstamos     \\ \hline
-    Descripción   & Conjunto de \gls{smartcontract} que definen los elementos del sistema y cuya ejecución valida las transacciones del sistema  \\ \hline
-    Atributos     &- Dirección de propietario \newline
-                    - Lista de préstamos contratables \newline
-                    - Lista de usuarios junto con sus préstamos en curso\\ \hline
-    Acciones     & - Ejecutar las transacciones ordenadas por los usuarios del sistema  \newline
+    3 & Sistema de préstamos.     \\ \hline
+    Descripción   & Conjunto de \glspl{smartcontract} que definen los elementos del sistema y cuya ejecución valida las transacciones del sistema.  \\ \hline
+    Atributos     &- Dirección de propietario. \newline
+                    - Lista de préstamos contratables. \newline
+                    - Lista de usuarios junto con sus préstamos en curso.\\ \hline
+    Acciones     & - Ejecutar las transacciones ordenadas por los usuarios del sistema.  \newline
                     - Registrar en la red \gls{ethereum} la información del sistema.\\ \hline
    
 \end{tabular}
 \end{table}
 
 \clearpage
-\subsubsection{Diagrama entidad relación}
+\subsubsection{Diagrama de entidad-relación}
 El  diagrama  representado en la figura~\ref{fig:er} pretende 
 definir mediante relaciones entre las entidades las funciones que 
 definen el sistema.
 \begin{figure}[H]
     \centering
-    \caption{Diagrama entidad relación }
+    \caption{Diagrama de entidad-relación.}
     \includegraphics[width=\textwidth]{figures/E-R.jpg}
     \label{fig:er}
 \end{figure}
@@ -494,24 +491,24 @@ En esta sección se define la arquitectura de diseño utilizada para los
 funciones (tablas~\ref{fig:funcionesfactory} y \ref{fig:funcionesprestamo}) de 
 cada uno de ellos.
 
-\subsection{Diagrama Entidad - Relación de Smart Contracts}
+\subsection{Diagrama de entidad-relación de contratos inteligentes}
 
 Aunque no sean entidades del sistema, para explicar detalladamente la arquitectura 
-de diseño se define otro diagrama entidad - relación en la
+de diseño se define otro diagrama de entidad-relación en la
 figura~\ref{fig:ersmartcontract}.
 
 \begin{figure}[H]
     \centering
-    \caption{Diagrama entidad relación que representa las relaciones y funciones entre los Smart contracts.}
+    \caption{Diagrama de entidad-relación que representa las relaciones y funciones entre los contratos inteligentes.}
     \includegraphics[width=\textwidth]{figures/E-R-smartcontracts.jpg}
     \label{fig:ersmartcontract}
 \end{figure}
-\subsubsection{Contract Factory}
+\subsubsection{PrestamosFactory}
 La figura~\ref{fig:ersmartcontract} también define gráficamente el
-patrón de diseño utilizado en el desarrollo de los \glspl{smartcontract}, a este
-patrón se le denomina \textit{'Contract Factory'}.
+patrón de diseño utilizado en el desarrollo de los \glspl{smartcontract}. A este
+patrón se le denomina \enquote{Factory}.
 
-El diseño de \textit{'Contract Factory'} encaja perfectamente en el desarrollo 
+El diseño de \enquote{Factory} encaja perfectamente en el desarrollo
 de este proyecto ya 
 que nos permite crear los distintos contratos de préstamo
 de forma dinámica y automática.
@@ -522,19 +519,18 @@ las necesidades de los usuarios o la aplicación.
 Dentro de este contrato se definen los distintos tipos de préstamos que pueden 
 ser contratados por los usuarios,
 así como las distintas funcionalidades de gestión y monitorización.
-Para ello este contrato cuenta con variables como:
-\begin{lstlisting}[language=Solidity, caption={Variable que contiene los 
-    préstamos en curso},label={lst:prestamoscursando}]
+Para ello este contrato cuenta con variables como las del fragmento de código siguiente:
+\begin{lstlisting}[language=Solidity, caption={Registro de préstamos en curso por usuario},label={lst:prestamoscursando}]
     mapping(address => PrestamoCursando[])  prestamosCursando;
     address[] clientes;
 \end{lstlisting}
 En el fragmento de código del listado~\ref{lst:prestamoscursando} se observa 
 la variable \textit{prestamosCursando} perteneciente al \gls{smartcontract} principal
-\textit{Contract Factory}, la cual guarda en la red \gls{blockchain} el 
+\textit{PrestamosFactory}, la cual guarda en la red \gls{blockchain} el
 conjunto de direcciones correspondientes a un contrato tipo \textit{Préstamo} 
 pertenecientes al sistema.
 
-Por otra parte, cada contrato creado por \textit{Contract Factory}, es decir, cada contrato de préstamo, mantiene información específica como la dirección
+Por otra parte, cada contrato creado por \textit{PrestamosFactory}, es decir, cada contrato de préstamo, mantiene información específica como la dirección
 del prestatario, la deuda restante, el número de cuotas pendientes, 
 el estado del préstamo o el porcentaje de penalización aplicable, tal y como 
 se muestra en el fragmento de código~\ref{lst:prestamovariables}.
@@ -560,9 +556,9 @@ se muestra en el fragmento de código~\ref{lst:prestamovariables}.
 
 
 
-\subsection{Análisis de Smart Contracts}
-\subsubsection{Contract Factory } 
-El contrato \textit{Contract Factory} centraliza la gestión de los tipos de 
+\subsection{Análisis de contratos inteligentes}
+\subsubsection{PrestamosFactory }
+El contrato \textit{PrestamosFactory} centraliza la gestión de los tipos de
 préstamo disponibles y el registro de los préstamos asociados a cada usuario. 
 Para ello, mantiene un conjunto de atributos que identifican al propietario del 
 sistema, definen las condiciones de los productos y 
@@ -570,61 +566,53 @@ relacionan a los usuarios con sus contratos de préstamo.
 La tabla~\ref{fig:atributosfactory} recoge estos atributos.
     \begin{table}[H]
     \centering
-    \caption{Descripción de atributos del Contrato Contract Factory}
+    \caption{Descripción de atributos del Contrato PrestamosFactory}
         \label{fig:atributosfactory}
-    \begin{tabular}{|c|p{5cm}|p{6cm}|}
+    \small
+    \begin{tabular}{|p{3cm}|p{4.1cm}|p{6.1cm}|}
         \hline
         \rowcolor[HTML]{D0E7FF}
         Nombre & Tipo de dato & Descripción\\ \hline
         Owner&\gls{addresstype}&Dirección de la red \gls{ethereum} perteneciente a la 
         propietaria del sistema.\\ \hline
-        Tipos de préstamo&Mapping ((Uint => Struct) “tipo préstamo” )&Mapping que guarda los distintos tipos
-    de préstamo contratables por el usuario. \newline
+        Tipos de préstamo&\texttt{TipoContrato[]}&Array que guarda los tipos de préstamo contratables por el usuario. \newline
     Esta variable solo puede ser editada si el usuario se identifica con la dirección del propietario.\\ \hline
     TipoPréstamo&Struct&Conjunto de variables que definen un tipo de préstamo (importe, intereses, deuda total, penalización de impago y  cuotas)\\ \hline
-    Préstamos en curso&Mapping
-    (Address => Address[])&Mapping que relaciona la dirección de un
+    Préstamos en curso&\texttt{mapping(address =>}\newline\texttt{Prestamo\allowbreak{}Cursando[])}&Mapping que relaciona la dirección de un
     usuario con las direcciones de sus
     préstamos en curso. \newline
-    Esta variable solo puede ser editada si el usuario se identifica con la dirección del propietario.\\ \hline
+    El contrato principal actualiza este registro al contratar o eliminar un préstamo.\\ \hline
     \end{tabular}
     \end{table}
 
 
 A continuación, la tabla~\ref{fig:funcionesfactory} presenta las funciones del contrato
-\textit{Contract Factory}, sus parámetros de entrada y salida y una
+\textit{PrestamosFactory}, sus parámetros de entrada y salida y una
 descripción de su finalidad.
 
 \begin{table}[H]
 \centering
-\caption{Descripción de funciones del Contrato Contract Factory}
+\caption{Descripción de funciones del Contrato PrestamosFactory}
 \label{fig:funcionesfactory}
-\begin{tabular}{|c|p{3cm}|p{3cm}|p{4cm}|}
-    \hline
-    \rowcolor[HTML]{D0E7FF}
-    Nombre & Parámetro entrada & Parámetro salida & Descripción\\ \hline
-    
-    crearTipoPrestamo   & Importe,\newline interesTotal,\newline penalización impago, \newline número cuotas & & Añade un nuevo tipo de préstamo al mapping tipos de préstamo.\\ \hline
-    
-    crearPrestamo&Tipo de préstamo,\newline Address de usuario&&Añade un nuevo tipo de préstamo al mapping tipos de préstamo \\ \hline
-    
-    chequeoMensual & & & Actualiza los estados de los contratos y calcula la nueva
-    cuota mensual \\ \hline
-
-    consultarContratos& & Mapping de préstamos en curso & Devuelve el listado de
-    préstamos en curso \\ \hline
-    recuperarFondos &Cantidad &&Transfiere unidades desde el \textit{Contract Factory}
-    a la dirección del Owner \\ \hline
-    invertirFondos & Cantidad &&Transfiere fondos al \textit{Contract Factory}. \\ \hline
-    consultarPrestamosUsuario&Dirección de usuario a consultar&Conjunto de de Direcciones
-de \textit{Contrato Préstamo} asociados
-a un mismo usuario& \\ \hline
- 
+\small
+\begin{tabular}{|p{3.5cm}|p{3cm}|p{2.1cm}|p{4.4cm}|}
+\hline
+\rowcolor[HTML]{D0E7FF}
+Nombre & Entrada & Salida & Descripción \\ \hline
+\texttt{definir\allowbreak{}Prestamo} & Interés, importe, cuotas y penalización & --- & Crea un tipo de préstamo y emite el evento correspondiente. Solo puede ejecutarla el propietario. \\ \hline
+\texttt{contratar\allowbreak{}Prestamo} & Prestatario e índice del tipo & --- & Crea un contrato individual, lo registra y transfiere el importe al prestatario. \\ \hline
+\texttt{get\allowbreak{}Clientes} & --- & Direcciones & Devuelve las direcciones de los clientes registrados. Solo puede consultarlas el propietario. \\ \hline
+\texttt{recolectar\allowbreak{}Fondos} & Importe & --- & Transfiere fondos del contrato principal al propietario. \\ \hline
+\texttt{invertir} & Valor de la transacción & --- & Recibe fondos en el contrato principal y emite un evento. \\ \hline
+\texttt{ver\allowbreak{}Contratos} & Dirección del prestatario & Contratos de préstamo & Devuelve los contratos asociados al usuario. Solo pueden consultarlos el propietario o el prestatario. \\ \hline
+\texttt{ver\allowbreak{}Tipos\allowbreak{}Contrato} & --- & Tipos de préstamo & Devuelve los productos disponibles. \\ \hline
+\texttt{get\allowbreak{}Balance} & --- & Saldo & Devuelve el saldo del contrato principal al propietario. \\ \hline
+\texttt{eliminar\allowbreak{}Prestamo\allowbreak{}Finalizado} & Usuario e índice & --- & Elimina del registro un préstamo finalizado y actualiza los índices. \\ \hline
 \end{tabular}
 \end{table}
 
 
-\subsubsection{Préstamo Contract } 
+\subsubsection{PrestamoCursando }
 
 El \gls{smartcontract} \texttt{PrestamoCursando} representa un préstamo
 individual contratado por un usuario. 
@@ -635,71 +623,58 @@ los atributos implicados.
 
 \begin{table}[H]
 \centering
-\caption{Descripción de atributos del Contrato Préstamo Contract }
+\caption{Descripción de atributos del Contrato PrestamoCursando }
 \label{fig:atributosprestamo}
-\begin{tabular}{|c|p{3cm}|p{4cm}|}
-    \hline
-    \rowcolor[HTML]{D0E7FF}
-    Nombre & Tipo de dato & Descripción\\ \hline
-    ID & Int & Identificador único \\ \hline
-    Estado&ENUMERADO& {CUOTA PAGADA, PLAZO ABIERTO, FINALIZADO}
-\\ \hline
-   CuotasRestantes &Int&Cantidad de pagos mensuales restantes\\ \hline
-    Prestatario&\gls{addresstype}&Dirección del usuario que ha contratado el préstamo\\ \hline
-    Deuda Restante&Float&Deuda restante del préstamo\\ \hline
-    Cuota Mensual&Float&Cantidad de la deuda a pagar mensualmente\\ \hline
-    Porcentaje penalización&Int& Porcentaje de penalización a la deuda en caso de impago\\ \hline
+\small
+\begin{tabular}{|p{3.4cm}|p{2.5cm}|p{7cm}|}
+\hline
+\rowcolor[HTML]{D0E7FF}
+Nombre & Tipo de dato & Descripción \\ \hline
+\texttt{index} & \texttt{uint} & Posición del préstamo en el registro del usuario. \\ \hline
+\texttt{state} & \texttt{State} & Estado: \texttt{PAGADO}, \texttt{ABIERTO} o \texttt{FINALIZADO}. \\ \hline
+\texttt{cuotas\allowbreak{}Restantes} & \texttt{uint256} & Número de mensualidades pendientes. \\ \hline
+\texttt{prestatario} & \texttt{address} & Dirección de la cuenta que contrata el préstamo. \\ \hline
+\texttt{deudaRestante} & \texttt{uint256} & Deuda pendiente, expresada en wei. \\ \hline
+\texttt{cuotaMensual} & \texttt{uint256} & Importe de la próxima cuota, expresado en wei. \\ \hline
+\texttt{penalizacion} & \texttt{uint256} & Porcentaje aplicado a la deuda en caso de impago. \\ \hline
 \end{tabular}
 \end{table}
 
-El encargado de las operaciones de actualización de importes del \textit{Contrato Préstamo} 
+El encargado de las operaciones de actualización de importes del \textit{contrato de préstamo}
 es el propio \gls{smartcontract} a través de las funciones explicadas en la tabla~\ref{fig:funcionesprestamo}.
 
 \begin{table}[H]
 \centering
-\caption{Descripción de funciones del Contrato Préstamo Contract }
+\caption{Descripción de funciones del Contrato PrestamoCursando }
     \label{fig:funcionesprestamo}
-\begin{tabular}{|c|p{3cm}|p{3cm}|p{4cm}|}
-    \hline
-    \rowcolor[HTML]{D0E7FF}
-    Nombre & Parámetro entrada & Parámetro salida & Descripción\\ \hline
-    
-    pagoCuota  & & & Transfiere al contrato la cuota
-previamente calculada, este importe es
-transferido directamente al contract
-factory después de dejar reflejado que
-se ha pagado la cuota.\\ \hline
-    
-    aplicarPenalización&&Nuevo valor de
-deuda&Añade el porcentaje de penalización del
-contrato a la deuda total \\ \hline
-    
-    calculoCuotaMensual & &Valor de la cuota
-mensual & A partir de la deuda restante y el
-número de cuotas restantes calcula la cuota. \\ \hline
-
-  
-
+\small
+\begin{tabular}{|p{4.2cm}|p{2cm}|p{2cm}|p{4.8cm}|}
+\hline
+\rowcolor[HTML]{D0E7FF}
+Nombre & Entrada & Salida & Descripción \\ \hline
+\texttt{pagarMensualidad} & Valor de la cuota & --- & Comprueba el pago, actualiza deuda y estado y envía los fondos al contrato principal. \\ \hline
+\texttt{penalizarPrestamo} & --- & --- & Función privada que aumenta la deuda por impago y recalcula la cuota. \\ \hline
+\texttt{calculo\allowbreak{}Cuota\allowbreak{}Mensual} & --- & Cuota en wei & Función privada que calcula la cuota; incorpora el resto de la división a la última mensualidad. \\ \hline
+\texttt{checkeoMensual} & --- & --- & Actualiza el estado y aplica la penalización o elimina el préstamo finalizado. Exige el plazo y la cuenta de la entidad prestamista. \\ \hline
 \end{tabular}
 \end{table}
 
 \subsection{Decisiones de implementación en el sistema}
 
-Durante el desarrollo de los \gls{smartcontract} se han tomado diversas
-decisiones técnicas para asignar responsabilidades a la red, controlar la
-identificación del sistema o realizar correctamente el registro de las 
-transacciones. A continuación,
-se presentan las principales decisiones adoptadas:
+Durante el desarrollo de los \glspl{smartcontract} se han tomado decisiones
+técnicas sobre la distribución de responsabilidades entre la aplicación y la red,
+el control de acceso y el registro de las transacciones. A continuación, se
+presentan las principales decisiones adoptadas.
 
-\paragraph{Controles de acceso reflejados en la propia red}
-Al contar cada \textit{Contrato Préstamo} con su propia información, 
+\paragraph{Controles de acceso reflejados en la propia red:}
+Al contar cada \textit{contrato de préstamo} con su propia información,
 se garantiza que 
 cada préstamo es independiente y el sistema de control de acceso puede 
 ser gestionado de manera casi autónoma si está reflejado en la \gls{blockchain}. 
 
 Se puede ver un ejemplo de gestión autónoma en la función del fragmento de código~\ref{lst:funcionpagarmensualidad}
  del 
-\textit{Contrato Préstamo}, en la que a través de las líneas que comienzan por
+\textit{contrato de préstamo}, en la que a través de las líneas que comienzan por
 \lstinline[language=Solidity]|require|, aseguramos que:
 \begin{itemize}
     \item El 
@@ -766,12 +741,11 @@ que inicializa sus variables con los valores correspondientes.
 \subsubsection{Direcciones como identificación}
 En un sistema basado en \gls{ethereum} no es necesario generar un identificador centralizado para identificar a un usuario.
 La dirección pública de su cartera constituye un identificador único dentro de la red.
-Cada solicitud de préstamo al \gls{smartcontract} factory genera un nuevo contrato préstamo en la red con su correspondiente
-dirección en ella quedando registrado en la variable \textit{prestamosCursando}.
-Esta variable relaciona la dirección del usuario solicitante con un \textit{array} de direcciones de los contratos de préstamo que tiene en curso.
-De esta forma se pueden registrar las direcciones de los contratos creados y
-proporcionar un mecanismo centralizado para su administración,
-por ejemplo a través de la función\ref{lst:funcionvercontratos}.
+Cada solicitud de préstamo genera un nuevo contrato con una dirección propia.
+El contrato principal registra su asociación con el prestatario en la variable
+\texttt{prestamosCursando}. De este modo, se pueden consultar y administrar los
+préstamos vinculados a cada usuario mediante la función del
+fragmento de código~\ref{lst:funcionvercontratos}.
 
 \begin{lstlisting}[language=Solidity, caption={Función que devuelve los contratos de un usuario},label={lst:funcionvercontratos}]
      function verContratos(address _prestatario) public view returns (PrestamoCursando[] memory){
@@ -781,13 +755,11 @@ por ejemplo a través de la función\ref{lst:funcionvercontratos}.
 \end{lstlisting}
 
 \subsubsection{Representación de cantidades monetarias} 
-Debido a que la  versión
-estable del lenguaje \textit{Solidity} para los \glspl{smartcontract}
-en el momento del desarrollo del proyecto puede tener ciertos
-errores a la hora de tratar decimales, 
-la mejor decisión es tratar todas las cifras monetarias como enteros de 
-la unidad mínima (\gls{wei}) evitando así los distintos
-problemas que puedan surgir con los decimales
+Las cantidades monetarias se almacenan como enteros sin signo de tipo
+\texttt{uint256}, expresados en \gls{wei}. La división entre enteros en Solidity
+trunca el resultado hacia cero~\cite{solidityTipos}. Por ello, el cálculo de una
+cuota puede dejar un resto; el contrato incorpora ese resto a la última cuota.
+
 
 \subsubsection{Reducción del consumo de gas} 
 Siempre que una operación no requiere necesariamente modificar el estado de 
@@ -834,10 +806,9 @@ y el segundo la muestra por pantalla al usuario.
 \end{lstlisting}
 
 \subsubsection{Registro del estado antes de realizar transferencias} 
-En Solidity es una buena práctica realizar un conjunto de
-validaciones en las condiciones de la operación y modificar 
-el estado de las variables y saldos 
-de las cuentas antes de realizar transferencias de fondos.
+En Solidity es una buena práctica validar las condiciones de una operación y
+actualizar el estado del contrato antes de realizar transferencias de fondos.
+
 Existe un tipo de ataque llamado \textit{Ataque por reentrada}.
 En este ataque el riesgo se produce cuando un \gls{smartcontract} transfiere 
 fondos a otro contrato y este aprovecha la ejecución de su código para volver a 
@@ -870,7 +841,7 @@ definidos.
 Para ello, se ha realizado manualmente un flujo de uso de la interfaz de usuario y
 se presentan pruebas mediante capturas de pantalla de la interfaz 
 y registros en la herramienta \textit{Etherscan} para validar la ejecución de 
-las transacciones y el correcto funcionamiento de los \gls{smartcontract} 
+las transacciones y el correcto funcionamiento de los \glspl{smartcontract}
 en la \gls{blockchain} de \gls{ethereum}.
 Para comprender las siguientes imágenes es importante conocer 
 los siguientes conceptos:
@@ -897,17 +868,14 @@ trabajo futuro.
 
 Para la validación de resultados del \gls{op}~\ref{op:1} se pueden evaluar los distintos objetivos secundarios:
 \begin{enumerate}
-    \item \textbf{\gls{os}~\ref{os:1}:} Una de las preocupaciones que puede 
-    suponer para 
-    el desarrollo de un sistema de préstamos en una \gls{blockchain} es la
-    correcta identificación de los usuarios cuando la naturaleza de la red
-    es puramente anónima. 
-   Como se ve en la figura~\ref{fig:metamask} este proyecto hace uso de la 
-   plataforma 
-    \gls{metamask} como agente identificador externo para acceder a la aplicación.
+    \item \textbf{\gls{os}~\ref{os:1}:} La aplicación solicita a \gls{metamask} la
+    conexión de una cuenta y la autorización de las operaciones. La dirección
+    permite asociar los préstamos a una cuenta. La figura~\ref{fig:metamask} muestra
+    este acceso a la aplicación.
+
     \begin{figure}[H]
     \centering
-    \caption{Ejemplo de login con MetaMask}
+    \caption{Ejemplo de inicio de sesión con MetaMask}
     \includegraphics[width=\textwidth]{figures/resultados/metamask.jpg}
     \label{fig:metamask}
 \end{figure}
@@ -933,13 +901,13 @@ Para la validación de resultados del \gls{op}~\ref{op:1} se pueden evaluar los 
     Todas las funciones que tienen relación con la red son funciones muy atómicas 
     y sencillas evitando los grandes procesamientos de datos en la red aunque es 
     posible que la función que se encarga de comprobar los pagos de los contratos 
-    de forma mensual, pueda suponer una alta inversión por parte de la entidad
+    de forma mensual pueda suponer una alta inversión por parte de la entidad
     financiera en caso de que tenga un volumen alto de préstamos, lo cual nos
     lleva a una posible actuación futura para limitar la cantidad de procesamiento 
     en esta acción.
 
-    \item Haciendo referencia al \gls{os}~\ref{os:3} se adjuntan las siguientes 
-    imágenes del panel de control de la entidad financiera en el que se muestran 
+    \item Haciendo referencia al \gls{os}~\ref{os:4} se adjuntan las siguientes
+    imágenes del panel de control de la entidad prestamista en el que se muestran
     3 contratos de un usuario en curso antes y después de  la comprobación 
     mensual de los pagos de las cuotas.
     En ellas se pueden observar los distintos detalles:
@@ -963,14 +931,14 @@ Para la validación de resultados del \gls{op}~\ref{op:1} se pueden evaluar los 
 
 \begin{figure}[H]
     \centering
-    \caption{Información de contratos previa a la comprobación mensual en el recuadro amarillo y balance de la entidad financiera en el recuadro blanco.}
+    \caption{Información de contratos previa a la comprobación mensual en el recuadro amarillo y balance de la entidad prestamista en el recuadro blanco.}
     \includegraphics[width=\textwidth]{figures/resultados/prechequeo.jpg}
     \label{fig:prechequeo}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \caption{Información de contratos posterior a la comprobación mensual en el recuadro amarillo y balance de la entidad financiera en el recuadro blanco.}
+    \caption{Información de contratos posterior a la comprobación mensual en el recuadro amarillo y balance de la entidad prestamista en el recuadro blanco.}
     \includegraphics[width=\textwidth]{figures/resultados/postchequeo.jpg}
     \label{fig:postchequeo}
 \end{figure}
@@ -990,7 +958,7 @@ grandes cantidades de datos de clientes para poder crear un algoritmo y un
 sistema que cubra esta necesidad.
 
 De momento existe la posibilidad de definir nuevos préstamos contratables en
-el panel de control de la entidad financiera.
+el panel de control de la entidad prestamista.
 
 
 \end{enumerate}
@@ -1041,7 +1009,7 @@ que:
 
 Se adjunta también otra captura de pantalla en la 
 figura~\ref{fig:Etherscan comprobante de pago} de la información 
-de la instancia generada del \gls{smartcontract} \textit{Prestamo Contract}
+de la instancia generada del \gls{smartcontract} \textit{PrestamoCursando}
 
 En la figura~\ref{fig:Etherscan comprobante de pago} también se puede observar
 dentro del recuadro amarillo la primera transferencia recibida por parte del 
@@ -1064,7 +1032,7 @@ otorgando veracidad e inmutabilidad al proyecto.
 \subsection{Pruebas con Mocha}
 Ya se ha visto el correcto funcionamiento de la aplicación a través de la
 interfaz de usuario y la verificación de las transacciones en la red.
-Pero para garantizar el correcto funcionamiento de los smart contracts en 
+Pero para garantizar el correcto funcionamiento de los \glspl{smartcontract} en
 situaciones distintas al correcto uso de la aplicación, 
 se han desarrollado distintas pruebas unitarias utilizando la herramienta
 \hyperref[sec:mochasection]{entorno de pruebas Mocha}.
@@ -1077,40 +1045,40 @@ Estas pruebas tienen como objetivo:
     \item Comprobar las restricciones de acceso y los cambios de estado.
 \end{enumerate}
 
-\paragraph{Red de pruebas local}
+\paragraph{Red de pruebas local:}
 Para evitar utilizar una red pública se han desplegado los contratos sobre una red local utilizando la herramienta Ganache~\cite{[19]}.
 Esto evita que aparezcan transacciones de prueba exponiendo información sensible del funcionamiento del  sistema en la red pública y 
 permite la repetición de escenarios que son difíciles de reproducir en un entorno real, como que un usuario no pague su cuota mensual y se le aplique la penalización correspondiente.
-\paragraph{Cuentas utilizadas para las pruebas}
+\paragraph{Cuentas utilizadas para las pruebas:}
 La herramienta de creación de red local virtual es la encargada de generar distintas cuentas con las que interactuar en la red.
 Se han utilizado 3 cuentas para realizar las pruebas unitarias:
 \begin{enumerate}
     \item Una cuenta propietaria del sistema
     \item Dos cuentas de usuario que solicitan el préstamo
 \end{enumerate}
-\paragraph{Contratos inteligentes puestos a prueba}
+\paragraph{Contratos inteligentes puestos a prueba:}
 Las pruebas se han hecho sobre el motor de este sistema, es decir, sobre los
 \glspl{smartcontract} que definen el funcionamiento del sistema de préstamos.
 Estos contratos se pueden ver en el anexo ~\ref{anexo:smartcontracts} y son los 
-ya comentados \textit{Contract Factory} y \textit{Prestamo Contract}.
+ya comentados \textit{PrestamosFactory} y \textit{PrestamoCursando}.
 
-\paragraph{Tecnología de las pruebas}
-Las pruebas se han desarrollado utilizando JavaScript y el framework Mocha y
-la librería Chai para las aserciones.
+\paragraph{Tecnología de las pruebas:}
+Las pruebas se han desarrollado utilizando JavaScript, el entorno de pruebas Mocha y
+el módulo \texttt{assert} de Node.js para las aserciones.
 Estas pruebas se pueden encontrar en el anexo~\ref{anexo:mochatest}.
 
-\paragraph{Desarrollo de las pruebas: Variables previas y condiciones iniciales}
+\paragraph{Desarrollo de las pruebas: Variables previas y condiciones iniciales:}
 Previo al desarrollo puro de las pruebas, antes de cada ejecución se deben dar las condiciones iniciales para que las pruebas puedan ejecutarse correctamente.
 El proceso de preparación de las pruebas consiste en desplegar los contratos en la red local y establecer las condiciones iniciales para cada prueba.
 Para ello se han realizado los siguientes pasos:
 \begin{enumerate}
-    \item \textbf{Compilación en local de los smart contracts} A través de la 
+    \item \textbf{Compilación en local de los contratos inteligentes:} A través de la
     herramienta \textit{Truffle} se compilan los \glspl{smartcontract} 
     previamente para que la red sea capaz de entender sus funciones.
     Esta compilación genera un archivo .json con las funciones del \gls{smartcontract} 
     parametrizadas para que la red sea capaz de interactuar con él.
-    \item \textbf{Obtención de cuentas} Se obtienen las cuentas necesarias para realizar las pruebas.
-    \item \textbf{Despliegue del contrato en la red} En el desarrollo de las pruebas se hace uso del archivo .json de la compilación y se despliega el contrato a testear en la red local de pruebas.
+    \item \textbf{Obtención de cuentas:} Se obtienen las cuentas necesarias para realizar las pruebas.
+    \item \textbf{Despliegue del contrato en la red:} En el desarrollo de las pruebas se hace uso del archivo .json de la compilación y se despliega el contrato a testear en la red local de pruebas.
             \begin{lstlisting}[language=Solidity, caption={Despliegue de contrato en la red local}]
                     describe('Prestamos factory test', () => {
 
@@ -1128,17 +1096,17 @@ Para ello se han realizado los siguientes pasos:
 
                 \end{lstlisting}
 
-    \item \textbf{Establecimiento del estado inicial} En el caso de las pruebas para
-    los \textit{Prestamo Contract}, se establecen primero las variables previas
+    \item \textbf{Establecimiento del estado inicial:} En el caso de las pruebas para
+    los \textit{PrestamoCursando}, se establecen primero las variables previas
     necesarias para la contratación de un préstamo.
     Estas son:
     \begin{enumerate}
-        \item \textbf{Introducción de fondos} El sistema de préstamos necesita 
+        \item \textbf{Introducción de fondos:} El sistema de préstamos necesita
         fondos previos para que se le puedan solicitar préstamos.
-        \item \textbf{Creación de un tipo de préstamo} Se crea un tipo de 
+        \item \textbf{Creación de un tipo de préstamo:} Se crea un tipo de
         préstamo con las características necesarias para la prueba.
         \item \textbf{Creación de contratos de préstamo y obtención de sus
-        direcciones} De esta manera se obtiene la forma de acceder a los 
+        direcciones:} De esta manera se obtiene la forma de acceder a los
         contratos sobre los que se ejecutarán las pruebas.
     \end{enumerate}
     
@@ -1179,13 +1147,13 @@ Para ello se han realizado los siguientes pasos:
     });
     \end{lstlisting}
 
-    \item \textbf{Descripción de las pruebas} El contenido de las pruebas se puede ver en
+    \item \textbf{Descripción de las pruebas:} El contenido de las pruebas se puede ver en
     los dos ficheros del anexo ~\ref{anexo:mochatest} y se describen a 
     continuación:
             \begin{enumerate}
                 \item \textbf{Pruebas del \texttt{PrestamosFactory}}
 
-                En \texttt{test\_prestamos\_factory.js} se comprueba principalmente el \textbf{funcionamiento del contrato Factory y sus restricciones}:
+                En \path{test_prestamos_factory.js} se comprueba principalmente el \textbf{funcionamiento de PrestamosFactory y sus restricciones}:
 
                 \begin{enumerate}
                     \item \textbf{Despliegue del contrato}: se verifica que el \texttt{PrestamosFactory} se despliega correctamente y obtiene una dirección.
@@ -1195,10 +1163,10 @@ Para ello se han realizado los siguientes pasos:
                     \item \textbf{Estado inicial}: se comprueba que inicialmente no existen clientes, tipos de préstamo ni préstamos en curso.
                     \item \textbf{Retirada de fondos}: se verifica que \texttt{recolectarFondos()} reduce correctamente el saldo del Factory.
                     \item \textbf{Validación de parámetros}: se prueban valores incorrectos para los porcentajes de intereses y penalizaciones, comprobando que las operaciones son rechazadas.
-                    \item \textbf{Creación de tipos de préstamo}: se comprueba que \texttt{definirPrestamo()} crea correctamente un nuevo producto y genera el evento correspondiente.
+                    \item \textbf{Creación de tipos de préstamo}: se comprueba que \texttt{definir\allowbreak{}Prestamo()} crea correctamente un nuevo producto y genera el evento correspondiente.
                     \item \textbf{Consulta de tipos de préstamo}: se verifica que los datos almacenados coinciden con los valores introducidos.
                     \item \textbf{Contratación de préstamos}: se comprueba tanto la contratación correcta como situaciones en las que la operación debe fallar.
-                    \item \textbf{Consulta de préstamos de un usuario}: se verifica que \texttt{verContratos()} devuelve los contratos correspondientes.
+                    \item \textbf{Consulta de préstamos de un usuario}: se verifica que \texttt{ver\allowbreak{}Contratos()} devuelve los contratos correspondientes.
                     \item \textbf{Intento de eliminar un préstamo no finalizado}: se comprueba que esta operación no está permitida.
                 \end{enumerate}
 
@@ -1239,24 +1207,23 @@ Para ello se han realizado los siguientes pasos:
             \end{enumerate}
 
     \item \textbf{Comprobación de las pruebas} Tras la ejecución de las pruebas, se comprueba que los resultados obtenidos son los esperados y que el sistema funciona correctamente.
-     Para ello se utilizan las funciones de aserción de la librería Chai, que permiten comparar los resultados obtenidos con los esperados y generar un informe de las pruebas realizadas.
+     Para ello se utilizan las funciones de aserción de Node.js, que permiten comparar los resultados obtenidos con los esperados y generar un informe de las pruebas realizadas.
        \end{enumerate}
     
 \paragraph{Resultados} Tras el desarrollo y ejecución de las pruebas se puede comprobar que el sistema funciona correctamente y que se cumplen los objetivos planteados.
     A su vez se han encontrado 2 situaciones que no se contemplaban en el diseño inicial.
-    \begin{enumerate}
-        \item Existe un método \textit{setIndex(index)} a través del cual
-        el \textit{Factory Contract} crea un índice para controlar los
-        contratos de préstamo en curso de un usuario. 
-        Esta función es pública en la red y únicamente puede ser ejecutada
-        por el contrato \textit{Prestamo Contract}, aunque si un atacante malicioso conociese la dirección del contrato principal y tuviese
+\begin{enumerate}
+    \item La función \texttt{setIndex} actualiza el índice de un préstamo.
+    En el código del anexo está restringida mediante \texttt{onlyContractFactory},
+    que comprueba que el emisor sea el contrato principal y tuviese
         el archivo compilado del contrato podría acceder directamente a esta 
         función y simular que es uno de los contratos en curso 
         y modificar el índice de los contratos de un usuario pudiendo quedar 
         invisibles.
         \item La función que comprueba mensualmente el estado de todos los 
         contratos del sistema se demora más segundos de los que el tiempo de espera de Mocha tiene por defecto por lo que se ha tenido que aumentar.
-    \end{enumerate}
+\end{enumerate}
+
 \subsection{Validación del proyecto después de pruebas}
 Durante la ejecución de las pruebas de este proyecto y la simulación de un entorno real se ha visto que un sistema como este puede llegar a niveles de producción
 en un entorno real. Dejando aparte la necesidad de un desarrollo futuro para
