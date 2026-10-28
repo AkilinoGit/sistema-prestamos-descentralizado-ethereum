@@ -1116,8 +1116,11 @@ Previo al desarrollo puro de los test, antes de cada ejecución se deben dar las
 El proceso de preparación de los test consiste en desplegar los contratos en la red local y establecer las condiciones iniciales para cada prueba.
 Para ello se han realizado los siguientes pasos:
 \begin{enumerate}
-    \item \textbf{Compilación en local de los smart contracts} A través de la herramienta Truffle se compilan los smart contracts previamente para que la red sea capaz de adquirir sus funciones.
-    Esta compilación genera un archivo .json con las funciones del smart contract parametrizadas para que la red sea capaz de interactuar con él.
+    \item \textbf{Compilación en local de los smart contracts} A través de la 
+    herramienta \textit{Truffle} se compilan los \glspl{smartcontract} 
+    previamente para que la red sea capaz de entender sus funciones.
+    Esta compilación genera un archivo .json con las funciones del \gls{smartcontract} 
+    parametrizadas para que la red sea capaz de interactuar con él.
     \item \textbf{Obtención de cuentas} Se obtienen las cuentas necesarias para realizar los test.
     \item \textbf{Despliegue del contrato en la red} En el desarrollo de los test se hace uso del archivo .json de la compilación y se despliega el contrato a testear en la red local de pruebas.
             \begin{lstlisting}[language=Solidity, caption={Despliegue de contrato en la red local}]
@@ -1139,12 +1142,18 @@ Para ello se han realizado los siguientes pasos:
 
                 \end{lstlisting}
 
-    \item \textbf{Establecimiento del estado inicial} En el caso de los test para los Prestamos en curso, se establece primero las variables previas necesarias a la contratación de un prestamo.
+    \item \textbf{Establecimiento del estado inicial} En el caso de los test para 
+    los \textit{Prestamo Contract}, se establece primero las variables previas 
+    necesarias a la contratación de un prestamo.
     Estas son:
     \begin{enumerate}
-        \item \textbf{Introducción de fondos} El sistema de préstamos necesita fondos previos para que se le pueda solicitar prestamos.
-        \item \textbf{Creación de un tipo de préstamo} Se crea un tipo de préstamo con las características necesarias para el test.
-        \item \textbf{Creación de contratos de prestamo y obtención de sus direcciones} De esta manera se obtiene la forma de acceder a los contratos sobre los que se ejecutarán los test.
+        \item \textbf{Introducción de fondos} El sistema de préstamos necesita 
+        fondos previos para que se le pueda solicitar prestamos.
+        \item \textbf{Creación de un tipo de préstamo} Se crea un tipo de 
+        préstamo con las características necesarias para el test.
+        \item \textbf{Creación de contratos de prestamo y obtención de sus 
+        direcciones} De esta manera se obtiene la forma de acceder a los 
+        contratos sobre los que se ejecutarán los test.
     \end{enumerate}
     
 \begin{lstlisting}[language=Solidity, caption={Parametrización de Prestamos cursando}]
@@ -1184,8 +1193,9 @@ Para ello se han realizado los siguientes pasos:
     });
     \end{lstlisting}
 
-    \item \textbf{Descripción test} El contenido de los test se pueden ver en los dos ficheros del anexo ~\ref{anexo:mochatest} y se describen a continuación:
-        ```latex
+    \item \textbf{Descripción test} El contenido de los test se pueden ver en 
+    los dos ficheros del anexo ~\ref{anexo:mochatest} y se describen a 
+    continuación:
             \begin{enumerate}
                 \item \textbf{1. Pruebas del \texttt{PrestamosFactory}}
 
@@ -1227,15 +1237,15 @@ Para ello se han realizado los siguientes pasos:
                     \item \textbf{Restricción temporal}: se comprueba que no se puede realizar el chequeo mensual antes de que haya transcurrido el tiempo establecido.
                     \item \textbf{Pago de una cuota}: se realiza un pago y se comprueba que:
                     \begin{enumerate}
-                        \item disminuye el número de cuotas restantes;
-                        \item disminuye la deuda;
-                        \item cambia el estado del préstamo.
+                        \item[a)] disminuye el número de cuotas restantes;
+                        \item[b)] disminuye la deuda;
+                        \item[c)] cambia el estado del préstamo.
                     \end{enumerate}
                     \item \textbf{Transferencia de fondos}: se verifica que el dinero pagado vuelve correctamente al \texttt{PrestamosFactory} y que su balance es el esperado.
                     \item \textbf{Chequeo mensual}: se simula el paso del tiempo y se comprueba que el chequeo:
                     \begin{enumerate}
-                        \item actualiza el estado del préstamo;
-                        \item aplica una penalización al préstamo que no ha sido pagado.
+                        \item[a)] actualiza el estado del préstamo;
+                        \item[b)] aplica una penalización al préstamo que no ha sido pagado.
                     \end{enumerate}
                     \item \textbf{Finalización del préstamo}: se paga la última cuota y se comprueba que el préstamo pasa al estado de finalizado.
                     \item \textbf{Eliminación de préstamos finalizados}: después del chequeo mensual se comprueba que el contrato finalizado deja de aparecer entre los préstamos activos del usuario y que se actualiza la lista de clientes.
@@ -1249,36 +1259,45 @@ Para ello se han realizado los siguientes pasos:
 \paragraph{Resultados} Tras el desarrollo y ejecución de los test se puede comprobar que el sistema funciona correctamente y que se cumplen los objetivos planteados.
     A su vez se han encontrado 2 situaciones que no se contemplaban en el diseño inicial.
     \begin{enumerate}
-        \item Existe un metodo setIndex(index) a través del cual el contrato Factory crea un indice para controlar los contratos de préstamo en curso de un usuario. 
-        Esta función está publica en la red y únicamente puede ser ejecutada por el contrato PrestamoCursando, aunque si una atacante malicioso conociese la dirección del contrato principal y tuviese el archivo compilado del contrato puediendo 
-        acceder directamente a esta función podria simular que es el contrato PrestamoCursando y modificar el índice de los contratos de un usuario pudiendo quedar invisibles.
-        \item La funcion que chequea el estado de todos los contratos del sistema se demora más segundos de los que el timeOut mocha tiene por defecto por lo que se ha tenido que aumentar.
+        \item Existe un metodo \textit{setIndex(index)} a través del cual 
+        el \textit{Factory Contract} crea un indice para controlar los 
+        contratos de préstamo en curso de un usuario. 
+        Esta función está publica en la red y únicamente puede ser ejecutada 
+        por el contrato \textit{Prestamo Contract}, aunque si una atacante 
+        malicioso conociese la dirección del contrato principal y tuviese 
+        el archivo compilado del contrato podría acceder directamente a esta 
+        función y simular que es uno de los contratos en curso 
+        y modificar el índice de los contratos de un usuario pudiendo quedar 
+        invisibles.
+        \item La función que comprueba mensualmente el estado de todos los 
+        contratos del sistema se demora más segundos de los que el \textit{timeOut}
+        \textit{Mocha} tiene por defecto por lo que se ha tenido que aumentar.
     \end{enumerate}
 \subsection{Validación del proyecto después de pruebas}
 Durante la ejecución de las pruebas de este proyecto y la simulación de un entorno real se ha visto que un sistema como este puede llegar a niveles de producción
-en un entorno real. Dejando a parte la necesidad de un desarrollo futuro para añadir actores y elementos al sistema necesarios para un sistema de prestamos real
-,como pueden ser las garantías de devolucion, a nivel técnico se afirma que la tecnología es viable.
+en un entorno real. Dejando a parte la necesidad de un desarrollo futuro para 
+añadir actores y elementos necesarios para un sistema de préstamos real
+a nivel técnico se afirma que la tecnología es viable.
+
 \subsection{Viabilidad económica}
-Tras estudiar los gastos de \gls{gas} en los registros de \href{https://sepolia.etherscan.io/}{Etherscan Sepolia} se puede comprobar que los gastos de contratar un préstamo
-dependen mucho del precio del \gls{gas} en el momento de contratación, el cual varía de forma muy dinámica dependiendo de la congestión de la red, en el proceso de de validación se han ejecutado
+Tras estudiar los gastos de \gls{gas} en los registros de 
+\href{https://sepolia.etherscan.io/}{Etherscan Sepolia} se puede comprobar 
+que los gastos de contratar un préstamo
+dependen mucho del precio del \gls{gas} en el momento de contratación, 
+el cual varía de forma muy dinámica dependiendo de la congestión de la red.
+En el proceso de de validación se han ejecutado
  transferencias de préstamo con costes desde 0,46 dólares hasta 30,49 dolares.
- Esto puede crear un cuello de botella de entrada de préstamos en caso de que se dependa en exceso de esta variable obligando 
-a la gestión del sistema a retrasar contratos y operaciones cuando el coste sea muy alto o directamente pasar los costes a los clientes.
-Por otro lado, independientemente de esta variable, a nivel técnico se ha comprobado que en el momento en el que se comprueba si todos los préstamos han sido pagados o no,
-la cantidad de procesamiento aumenta linealmente por el número de contratos en el sistema, sumandolo a un alto coste del gas podría crear un bloqueo total del sistema
-por lo que sería obligatorio optimizar la forma en la que se realiza este chequeo aunque manteniendo la viabilidad del sistema.
+ Esto puede crear un cuello de botella de entrada de préstamos en caso de que 
+ se dependa en exceso de esta variable obligando 
+a la gestión del sistema a retrasar contratos y operaciones cuando el coste 
+sea muy alto o directamente pasar los costes a los clientes.
+Por otro lado, independientemente de esta variable, a nivel técnico se ha 
+comprobado que en el momento en el que se comprueba si todos los préstamos
+ han sido pagados o no
+la cantidad de procesamiento aumenta linealmente por el número de contratos 
+en el sistema, suamndo esto a un alto coste del gas se podría crear un bloqueo 
+total del sistema,
+por lo que sería obligatorio optimizar la forma en la que se realiza este 
+chequeo.
 
-
-
-%%Hacer una introducción en condiciones como resumen final
-
-
-
-
-%%\GLS Y \acrfull{pow} para Proff of Work**/
-%%arreglar referencias y tablas, ver referencias de google scholar
-%%referencias y citas
-%%repaso de glosarios
-%%citas antes del punto
-%%\enquote para citas
 
