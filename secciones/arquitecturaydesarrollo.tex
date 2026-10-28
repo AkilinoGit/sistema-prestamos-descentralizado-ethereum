@@ -800,13 +800,13 @@ la blockchain, esta se ejecuta en la aplicación web del cliente.
 De esta manera se evita utilizar \gls{gas} para operaciones puramente 
 relacionadas con la visualización de información, como el recorrido de los 
 contratos de un usuario para mostrar su estado. 
-En este sistema se recupera la información de todos los contratos~\ref{lst:funcionvercontratos} 
+En este sistema se recupera la información de todos los contratos~\ref{lst:recuperacioncontratos} 
  y es la 
 aplicación web la que filtra y muestra la información de cada contrato~\ref{lst:funcionvercontratosweb}, 
 El primer fragmento de código recupera la infromación de la red 
 y el segundo la muestra por pantalla al usuario.
 
-    \begin{lstlisting}[language=TypeScript, caption={Recuperacion de informacion de contratos},label={lst:funcionvercontratos}] 
+    \begin{lstlisting}[language=TypeScript, caption={Recuperacion de informacion de contratos},label={lst:recuperacioncontratos}] 
         async iniciarVistaContratados(){
     this.direccionesContratados = await this.factoryContract.methods
         .verContratos(localStorage.getItem('userAddress'))
