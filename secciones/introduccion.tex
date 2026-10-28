@@ -1,19 +1,57 @@
 \chapter{Introducción}
 \label{ch:introduccion}
-La tecnología blockchain ha transformado la forma en que entendemos las transacciones digitales, brindando un entorno seguro, transparente y, sobre todo, descentralizado, donde no es necesario depender de intermediarios financieros tradicionales y centralizados.
 
-En un contexto económico global en el que algunos países enfrentan tasas de inflación elevadas, la adopción de monedas digitales como reserva de valor ha surgido como una alternativa atractiva para preservar el poder adquisitivo, intentando de algún modo evitar la erosión de valor que sufren las monedas locales.
+En un contexto económico global en el que algunos países enfrentan tasas de 
+inflación elevadas, la adopción de monedas digitales como reserva de valor ha 
+surgido como una alternativa atractiva para preservar el poder adquisitivo, 
+intentando de algún modo, evitar la erosión de valor que sufren las monedas locales.
 
-Las criptomonedas ofrecen una opción descentralizada e internacional, proporcionando a los ciudadanos una alternativa que no está sujeta al control directo de los bancos centrales.
+Las criptomonedas ofrecen una opción descentralizada e internacional, 
+proporcionando a los ciudadanos una alternativa que no está sujeta al control 
+directo de los bancos centrales.
 
-El aumento significativo de la inflación en algunas economías ha llevado a cuestionar el papel de los bancos centrales y sus políticas de control monetario, especialmente en lo que respecta a su influencia sobre la inflación y el valor de la moneda. Como respuesta a estas dinámicas, los criptoactivos han ganado popularidad en los últimos años como una forma de diversificación y preservación de valor en una economía global cada vez más conectada digitalmente. 
+Debido a que la existencia de las criptomonedas no soluciona directamente el 
+problema de la 
+necesidad de que los ciudadanos sigan obligados a depositar su confianza para la 
+financiación en bancos tradicionales y gobiernos centralizados, este proyecto surge 
+para ofrecer una alternativa a esta necesidad.
 
-La proliferación de proyectos \gls{defi} refleja esta búsqueda de soluciones financieras alternativas que permiten a las personas interactuar directamente entre sí para obtener servicios financieros básicos, como préstamos y ahorros, sin intermediarios centralizados. Esta tendencia resalta el interés creciente por explorar formas de independencia económica, haciendo de las plataformas \gls{defi} una propuesta relevante y de creciente adopción.
-A través de un sistema como el que se quiere proponer, que utiliza exclusivamente \gls{eth} y otros criptoactivos dentro de la red Ethereum, los usuarios podrían obtener préstamos respaldados por criptomonedas, sin la necesidad de instituciones financieras tradicionales y sin exponerse al impacto de decisiones de política monetaria centralizadas.
+Hasta ahora, las necesidades de gestión y confianza necesarias para un sistema de 
+préstamos solo las podían cubrir grandes entidades centralizadas, pero gracias 
+a la tecnología \gls{blockchain} y tal y como se explicará más adelante, 
+estas características quedan a la disposición 
+de cualquier ciudadano. 
 
-Este proyecto analiza si un sistema de préstamos descentralizado basado en Ethereum y criptoactivos puede aportar mejoras respecto a los modelos tradicionales. A diferencia de estos, la descentralización permite reducir la intermediación, automatizar procesos mediante contratos inteligentes y ofrecer mayor transparencia en la gestión de los fondos. 
+El presente Proyecto Fin de Grado aborda el diseño, desarrollo y validación 
+de un prototipo de gestión de préstamos basado en la red \gls{ethereum}. 
+La propuesta utiliza \gls{eth} como activo para la concesión y devolución de los 
+préstamos, y \glspl{smartcontract} para la gestión de estos.
 
-Este trabajo pretende ofrecer una visión técnica y práctica de un sistema de préstamos \gls{defi}, destacando sus oportunidades y desafíos, y evaluando su potencial para proporcionar una alternativa viable en el contexto financiero actual.
+Aunque el acceso a la financiación a través de este proyecto sea descentralizada,
+la oferta de esta financiación sí queda centralizada con el objetivo de incentivar 
+la producción de este sistema a una entidad competente.
+
+La solución se organiza mediante un \gls{smartcontract} principal que administra los 
+productos y los fondos disponibles y que genera \glspl{smartcontract} 
+individuales que representan los préstamos contratados. 
+En ellos se recoge la información necesaria para gestionar 
+la deuda, las cuotas pendientes y las penalizaciones por impago. 
+De este modo, la información del sistema que define la situación de los préstamos 
+queda reflejada en la red \gls{ethereum} ofreciendo así las propiedades de 
+veracidad e inmutabilidad necesarias para un sistema de este tipo.
+
+Este proyecto analiza si un sistema de préstamos descentralizado basado en 
+\gls{ethereum} puede ser accesible para los ciudadanos reduciendo la dependencia 
+de financiación con modelos 
+tradicionales.
+
+El trabajo se centrará en la creación de un protipo funcional capaz de 
+comprobar la viabilidad técnica de esta propuesta haciendo uso de pruebas 
+sobre los \glspl{smartcontract} de \gls{ethereum} y validando los flujos 
+de uso de la aplicación.
+
+
+
 
 \section{Objetivos}
 
@@ -74,28 +112,37 @@ de los objetivos principales.
 \section{Motivación}
 \label{s:motivacion}
 
-Demostrar la viabilidad de un sistema de préstamos descentralizado mostrando cómo la 
-tecnología \gls{blockchain} y los \gls{SC} de \gls{ethereum} pueden ofrecer una alternativa 
-sólida y segura frente a los sistemas financieros tradicionales, eliminando intermediarios y 
+Demostrar la viabilidad de un sistema de préstamos descentralizado mostrando 
+cómo la 
+tecnología \gls{blockchain} y los \glspl{smartcontract} de \gls{ethereum} 
+pueden ofrecer una alternativa 
+sólida y segura frente a los sistemas financieros tradicionales, 
+eliminando intermediarios y 
 reduciendo  costos y barreras de acceso.
 
-Explorar y afrontar los desafíos técnicos específicos de desplegar un sistema \gls{defi} 
+Explorar y afrontar los desafíos técnicos específicos de desplegar un sistema 
+\gls{defi} 
 en la red \gls{ethereum}.
 
-Alcanzar la seguridad y eficiencia en los gastos del sistema, suponiendo esto una de las claves
-para conseguir la rentabilidad económica en el proyecto y pudiendose convertir en uno de los 
+Alcanzar la seguridad y eficiencia en los gastos del sistema, suponiendo esto 
+una de las claves
+para conseguir la rentabilidad económica en el proyecto y pudiendose convertir 
+en uno de los 
 puntos débiles del sistema si no se realiza con detalle.
 
-La motivación también radica en el valor social y económico que una solución como esta puede aportar 
-a mundo en el que la inclusión financiera sigue siendo una meta distante para millones de personas. 
-Los sistemas de préstamos descentralizados tienen el potencial de ampliar el acceso a servicios 
-financieros básicos, independientemente del lugar de residencia o de la capacidad de acceso a 
-instituciones tradicionales.
+La motivación también radica en el valor social y económico que una solución 
+como esta puede aportar 
+a mundo en el que la inclusión financiera sigue siendo una meta distante 
+para millones de personas. 
 
-Enrique Dans, doctorado en sistemas de la información, habal en su blog que los 
-proyectos \gls{defi} responden a la creciente demanda de alternativas que no solo sean económicamente 
-accesibles, sino también transparentes y seguras, proporcionando una herramienta que permita a 
-los usuarios mantener una mayor autonomía sobre sus decisiones financieras en un entorno digital 
+
+Enrique Dans, doctorado en sistemas de la información, habla en su blog que los 
+proyectos \gls{defi} responden a la creciente demanda de alternativas que no 
+solo sean económicamente 
+accesibles, sino también transparentes y seguras, proporcionando una herramienta 
+que permita a 
+los usuarios mantener una mayor autonomía sobre sus decisiones financieras en 
+un entorno digital 
 global.~\cite{[3]}
 
 \section{Estructura de la memoria}

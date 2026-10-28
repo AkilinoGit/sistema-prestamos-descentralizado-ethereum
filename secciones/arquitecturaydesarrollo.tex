@@ -213,9 +213,7 @@ de las posibles pantallas que participan en el sistema son:
 
 \subsubsection{Casos de uso para posteriores desarrollos}
 
-%VER CUANDO SE HABLA MÁS DE LOS CASOS DE USO PARA NO REPETIR
-% EN CASO DE QEU NO SE HABLE MÁS DARLE MISMO A  LA EXPLICACIÓN
-% AUNQUE SE HABLE EN OTROS MOMENOTS, DARLE MIMO IGUALMENTE
+
     \begin{table}[H]
     \centering
     \caption{Casos de uso para desarrollos posteriores}
@@ -496,8 +494,7 @@ funciones (tablas~\ref{fig:funcionesfactory} y \ref{fig:funcionesprestamo}) de
 cada uno de ellos.
 
 \subsection{Diagrama Entidad - Relación de Smart Contracts}
-%%Joder, aquí se está representado la estrucutra de diseño de CONTRACT FACTORY y 
-%%no hablas de ella
+
 Aunque no sean entidades del sistema, para explicar detalladamente la arquitectura 
 de de diseño se define otro diagrama entidad - relación en la 
 figura~\ref{fig:ersmartcontract}
@@ -842,7 +839,6 @@ y el segundo la muestra por pantalla al usuario.
 </ion-col>
 \end{lstlisting}
 
-%%Hablar de forma correcta del riesgo de reentrada de código
 \subsubsection{Registro del estado antes de realizar transferencias} 
 En solidity es una buena práctica actualizar realizar un conjunto de 
 validaciones en las condiciones de la operación y modificar 
@@ -872,9 +868,6 @@ con un gráfico poniendo un ejemplo con una transferencia de 10 \gls{eth}.
 
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% VALIDACIÓN DE RESULTADOS %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Validación de resultados}
 \subsection{Validación a través del uso de la aplicación del sistema}
 Tras el desarrollo del sistema de préstamos descentralizado, es necesario 
@@ -883,7 +876,7 @@ definidos.
 Para ello, se ha realizado manualmente un flujo de uso de la interfaz de usuario y
 se presentan pruebas mediante capturas de pantalla de la interfaz 
 y registros en la herramienta \textit{Etherscan} para validar la ejecución de 
-als transacciones y el correcto funcionamiento de los \gls{smartcontract} 
+las transacciones y el correcto funcionamiento de los \gls{smartcontract} 
 en la \gls{blockchain} de \gls{ethereum}.
 Para comprender las siguientes imágenes es importante conocer 
 los siguientes conceptos:
@@ -938,7 +931,7 @@ Para la validación de resultados del \gls{op}~\ref{op:1} se pueden evalúar los
     de estas operaciones 
     a través de \gls{metamask} y las claves privadas de cada usuario.
 
-    \item En el \gls{os}~\ref{os:2} 2 se busca la eficiencia en la información y 
+    \item En el \gls{os}~\ref{os:2} se busca la eficiencia en la información y 
     las funciones del sistema para evitar el alto consumo de energía y \gls{gas} 
     a la hora 
     de ejcutar las transacciones en la red:
@@ -988,7 +981,7 @@ Para la validación de resultados del \gls{op}~\ref{op:1} se pueden evalúar los
     \label{fig:postchequeo}
 \end{figure}
 
-%%TEXTACOOOOOO
+
 
 Las últimas características declaradas junto con la posibilidad de que la 
 organización del sistema pueda recibir los \gls{wei} del balance del sistema 
