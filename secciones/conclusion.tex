@@ -4,7 +4,7 @@
 
 En este Proyecto Fin de Grado se ha desarrollado un sistema de préstamos 
 descentralizado basado en la red \gls{ethereum}. 
-Tras el desarrollo se pueden llegar a las siguientes conclusiones:
+Tras el desarrollo se puede llegar a las siguientes conclusiones:
 \begin{itemize}
      \item Se puede afirmar que se ha obtenido 
 una aplicación capaz de conectarse con una red \gls{blockchain} y de realizar 
@@ -12,28 +12,28 @@ transacciones en ella.
 
 Gracias al registro de estas transacciones y cierta lógica aplicada 
 a esta información, se puede componer un sistema de creación y control de préstamos 
-digitales en el que el contrato de nuevos préstamos queda totalmente automatizado.
+digitales en el que la contratación de nuevos préstamos queda totalmente automatizada.
 
-     \item Es posible unificar todas las herramientas de gestión dentro de la una interfaz de 
+     \item Es posible unificar todas las herramientas de gestión dentro de una interfaz de
 usuario cubriendo todas las conexiones necesarias con la red de \gls{ethereum} 
-y capaz de ordenar la ejecución en la red las operaciones necesarias para la 
+y capaz de ordenar la ejecución en la red de las operaciones necesarias para la
 gestión de un sistema de préstamos digitales.
 
      \item Aunque para un sistema aplicado en la vida real hiciera falta 
      la implementación de distintos desarrollos, los \glspl{smartcontract} 
      desplegados en la red definen correctamente la lógica 
-     aplicada a la información necesaria para la realización de préstamo.
+     aplicada a la información necesaria para la concesión de préstamos.
 
      \item El correcto registro de esta información en la red \gls{blockchain} 
      proporciona al sistema las características de seguridad, inmutabilidad y 
      veracidad necesarias para un sistema de esta índole.
 
-     \item Exite un plan de validación que verifica las capacidades descritas 
+     \item Existe un plan de validación que verifica las capacidades descritas
      para este sistema.
 
      \item Tras un estudio del impacto social se puede concluir que la adopción 
      de tecnologías \gls{defi} y \gls{smartcontract} tiene el potencial de transformar
-     el acceso a servicios financieros y dependiendo del uso que se de a esta 
+     el acceso a servicios financieros y dependiendo del uso que se dé a esta
      tecnología se puede aumentar o disminuir la inclusión financiera.
 \end{itemize}
 
@@ -42,34 +42,34 @@ gestión de un sistema de préstamos digitales.
 
 \section{Trabajo futuro}
 
-En el desarrollo de este proyecto se ha podido comprobar que un sistema de prestamos
+En el desarrollo de este proyecto se ha podido comprobar que un sistema de préstamos
 descentralizado es posible, pero, para que un proyecto como este llegue a una situación
 de producción real es necesario realizar una serie de desarrollos para cumplir con 
 necesidades básicas en un sistema de préstamo real.
 
 Se considera la más importante la adopción de garantías de impago, esta carencia del 
-proyecto se tiene en cuenta en el Caso de uso futuro \hyperlink{cu:garantia}{CU12} :  Garantía de devolución en 
+proyecto se tiene en cuenta en el Caso de uso futuro \hyperlink{cu:garantia}{CU12}:  Garantía de devolución en
 caso de impago,
 aunque actualmente el sistema sea capaz de penalizar los impagos, no se garantiza recuperar
 el capital prestado, para ello se pueden desarrollar dos casos de uso:
 \begin{itemize}
      \item Creación de sistema de colaterales: en un futuro será de obligado 
-     cumplimiento que el usuario que solicite un prestamo añada al sistema 
+     cumplimiento que el usuario que solicite un préstamo añada al sistema
      alguna garantía, la cual puede estar en forma de \gls{nft}, y en caso 
      de que el usuario se declare en situación de impago, este \gls{nft} pasaría 
-     automaticamente a ser propiedad del sistema
-     \item Creación de sistema de avales: En situaciones en los que el usuario 
+     automáticamente a ser propiedad del sistema
+     \item Creación de sistema de avales: En situaciones en las que el usuario
      no pueda añadir esa garantía o colateral se podrá añadir al contrato un tercero 
      capaz de añadir un colateral al contrato e incluso encargarse de las cuotas en 
      caso de que el usuario principal no lo haga
 \end{itemize}
 
-El nuevo sistema de garantías también debera incluir un sistema de validación de 
+El nuevo sistema de garantías también deberá incluir un sistema de validación de
 solvencia, tal y como se habla en el Caso de uso futuro \hyperlink{cu:garantia}{CU14}, lo que aportará 
-mayor solided a la garantía de devolución.
+mayor solidez a la garantía de devolución.
 
-Durante los tests de funcionamiento del sistema se pudo comprobar las ineficencias 
-de código en la red. Sobretodo evitar recorrer todos los contratos existentes 
+Durante los tests de funcionamiento del sistema se pudieron comprobar las ineficiencias
+de código en la red. Sobre todo, se debe evitar recorrer todos los contratos existentes
 una vez al mes para comprobar si han sido pagados o no. 
 
 Para ello el sistema se puede 
@@ -77,24 +77,23 @@ apoyar en elementos externos a la red, como una base de datos temporal en la que
 puede 
 quedar reflejado cada pago de la mensualidad y mensualmente ejecutar las 
 penalizaciones en la red con los contratos que no aparecen en esta base de datos,
-aunque sea una base de datos externa, su uso no rompe con ninguna característica 
-en las que se apoya el sistema ya que solo sería un apoyo técnico, 
+aunque sea una base de datos externa, su uso no rompe con ninguna de las características en las que se apoya el sistema ya que solo sería un apoyo técnico,
 manteniendo siempre 
-reflejado en la red la situación financiera del sistema.
+reflejada en la red la situación financiera del sistema.
 
-Como se pudo ver en la sección de~\ref{subsec:limitaciones-legales}, durante 
-el desarrollo del proyecto, la Unión Europea abrueba un nuevo Reglamento Europeo de 
+Como se pudo ver en la sección~\ref{subsec:limitaciones-legales}, durante
+el desarrollo del proyecto, la Unión Europea aprueba un nuevo Reglamento Europeo de
 criptoactivos, por lo que para una producción real es de obligado cumplimiento 
 cubrir esta normativa.
 
-En el~\ref{op:2} se habla de que este proyecto debe contener una interfaz de usuario 
-unificada, facil e intuitiva. Aunque si se ha desarrollado una interfaz unificada 
-sería necesario crar una intefaz más intuitiva al usuario.
+En el objetivo principal~\ref{op:2} se establece que este proyecto debe contener una interfaz de usuario
+unificada, fácil e intuitiva. Aunque sí se ha desarrollado una interfaz unificada
+sería necesario crear una interfaz más intuitiva para el usuario.
 
-Con menos prioridad se deberán desarrollar sistemas que utilicen \gls{oraculo} 
+Con menos prioridad se deberán desarrollar sistemas que utilicen \glspl{oraculo}
 tal y como se habla en el Caso de uso Futuro \hyperlink{cu:garantia}{CU13}, este sistema junto a la comprobación 
 de solvencia económica pueden servir para una correcta definición de  los tipos de 
-prestamo y condiciones disponibles en el sistema.
+préstamo y condiciones disponibles en el sistema.
 
 
 
@@ -121,10 +120,12 @@ y de los mecanismos de protección disponibles~\cite{oecd2024defi}.
      \item La posibilidad de otorgar préstamos sin la necesidad de bancos tradicionales
       podría beneficiar a millones de personas no bancarizadas en economías emergentes.
        Sin embargo, la \acrfull{ocde} señala que el acceso a estos servicios dependería del
-        conocimiento en el uso de criptomonedas, \gls{wallet} digitales y plataformas \gls{defi}
-         y  lo que podría aumenter la brecha digital entre quienes dominan estas herramientas
-          y quienes no. A demás, la \acrfull{ocde} también señala que la responsabilidad del usuario
-          sobre sus propios activos dificultan la utilización de estos.
+        conocimiento en el uso de criptomonedas, \gls{wallet} digitales y 
+        plataformas \gls{defi}, lo que podría aumentar la brecha digital 
+        entre quienes dominan estas herramientas
+          y quienes no. Además, la \acrfull{ocde} también señala que la 
+          responsabilidad del usuario
+          sobre sus propios activos dificulta la utilización de estos.
           Por tanto,
     el acceso técnico a una plataforma no equivale a una inclusión
     financiera efectiva. En el sistema desarrollado, sería necesario
@@ -182,33 +183,32 @@ Estos objetivos buscan equilibrar el desarrollo social, económico y ambiental, 
     \label{fig:2030}
 \end{figure}
 
-Se puede concluir que este proyecto tiene un gran potential de influir 
-positivamente en los objetivos relacionados en el ámbito financiero como los 
+Se puede concluir que este proyecto tiene un gran potencial de influir
+positivamente en los objetivos relacionados con el ámbito financiero como los
 \gls{ods} 8 y 9 ya que supone la creación de una nueva infraestructura 
 en el desarrollo de actividades económicas favoreciendo nuevas oportunidades de 
 crecimiento económico.
 
 
-El desarrollo de plataforma \gls{defi} tiene un gran potencial en la reducción de 
-desigualdades y la aplicación de justicia social (\gls{ods} 10), la cuestión es
-que el desarrollo de este potencial viene directamente correlacionado con el uso
-que se le dé a esta tecnología pudiendo desarrollarse en una dirección opuesta a estos
-\gls{ods}, si no se combate la brecha digital y se evita la creación de barreras articifiales pueden aumentar
-por parte de los desarrolladores de esta tecnologías, 
-las desigualdades y la injusticia social aumentarían todavía mas en vez de reducirse.
+El desarrollo de plataformas \gls{defi} podría contribuir a reducir las 
+desigualdades y favorecer la justicia social (\gls{ods} 10). Sin embargo, 
+su impacto depende del uso de la tecnología. Si no se combate la brecha digital 
+ni se evitan nuevas barreras de acceso, estas plataformas podrían aumentar las 
+desigualdades en lugar de reducirlas.
+
 
 Algo parecido pasa con el \gls{ods} 16: la transparencia de las transacciones en un 
-entorno descentralizado suponen una clara exposición de injusticias o malversaciones
-realizadas en la red aunque esta característica pierde toda valided cuando se hace
+entorno descentralizado supone una clara exposición de injusticias o malversaciones
+realizadas en la red aunque esta característica pierde toda validez cuando se hace
 un mal uso de la justicia y suceden eventos en los que se aprecia que 
 \enquote{la justicia NO es igual para todos}
 
-En el apartado ambiental (\gls{ods} 11, 12 y 13), aunque, es cierto, que tras el cambio de validación de 
+En el apartado ambiental (\gls{ods} 11, 12 y 13), aunque es cierto que tras el cambio de validación de
 bloques en la red a través de puro procesamiento y consumo eléctrico (\gls{pow})
 por un sorteo en base a las aportaciones de capital en la red (\gls{pos}) se redujo
 de manera drástica el consumo de electricidad, sigue habiendo otros problemas como 
 la gestión de residuos de la infraestructura de la red.
-Aunque volvemos a lo mismo que los apartados anteriores, siempre se puede utilizar
-el aumento de productividad y capital en paliar los efectos adversos que este 
-sistema incide en el ecosistema, todo depende del uso que se quiera dar a la 
+Aunque volvemos a lo mismo que en los apartados anteriores, siempre se puede utilizar
+el aumento de productividad y capital para paliar los efectos adversos que este
+sistema provoca en el ecosistema, todo depende del uso que se quiera dar a la
 tecnología.

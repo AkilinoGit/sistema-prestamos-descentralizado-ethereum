@@ -103,11 +103,11 @@ contract PrestamosFactory {
         TipoContrato memory tipoPrestamo = tiposContrato[indexTipoContrato];
         require(address(this).balance >= tipoPrestamo.cantidad,"Prestamo no disponible");
 
-        //Compruebo si la cuenta tiene otro conrtrato contratado
+        //Compruebo si la cuenta tiene otro contrato contratado
         if(prestamosCursando[_prestatario].length == 0){
             clientes.push(_prestatario);
         }
-        //Guardo index para faciltar acceso
+        //Guardo index para facilitar acceso
         uint256 _indexNuevoPrestamo = prestamosCursando[_prestatario].length;
         // Genero un nuevo contrato Prestamo asociado a la dirección msg.sender
         PrestamoCursando newPrestamo = new PrestamoCursando(_indexNuevoPrestamo, _prestatario, owner, tipoPrestamo.cuotas, tipoPrestamo.cantidad,
@@ -124,13 +124,13 @@ contract PrestamosFactory {
         PrestamoCursando eliminar = prestamosCursando[user][index];
         PrestamoCursando.State state = PrestamoCursando(eliminar).mostrarEstado();
         require( state == PrestamoCursando.State.FINALIZADO , "Contrato no finalizado");
-        //Se copia el ultimo elemento del array y se le cambia el índice
+        //Se copia el último elemento del array y se le cambia el índice
         prestamosCursando[user][index] = prestamosCursando[user][prestamosCursando[user].length - 1];
         prestamosCursando[user][index].setIndex(index);
         //Se elimina el elemento copiado
         prestamosCursando[user].pop();
 
-        //En caso de que el cliente deje de tener contratos con nostros le eliminamos de la lista de clientes
+        //En caso de que el cliente deje de tener contratos con nosotros le eliminamos de la lista de clientes
         if( prestamosCursando[user].length == 0){
             for(uint i = 0 ; i < clientes.length; i ++ ) {
                 if (clientes[i] == user) {
@@ -237,8 +237,8 @@ contract PrestamoCursando {
 
     function calculoCuotaMensual() private view returns (uint256){
         //Debido a problemas con el tratamiento de decimales de solidity puede resultar el caso que
-        // deudarestante/cuotasrestantes no de un numero entero
-        //Esto implica que quede deuda despues de pagar todas las cuotas por lo que este resto se añade a la cuota final
+        // deudarestante/cuotasrestantes no dé un número entero
+        //Esto implica que quede deuda después de pagar todas las cuotas por lo que este resto se añade a la cuota final
         if(cuotasRestantes == 1) {
             return  deudaRestante;
             }
@@ -268,7 +268,7 @@ contract PrestamoCursando {
         PrestamosFactory(prestamosFactory).eliminarPrestamoFinalizado(prestatario, index); 
     }
 
-    //Numero de cuotas se mantiene
+    //Número de cuotas se mantiene
     function penalizarPrestamo() private {
         deudaRestante += deudaRestante.mul(penalizacion).div(100); 
         cuotaMensual = calculoCuotaMensual();

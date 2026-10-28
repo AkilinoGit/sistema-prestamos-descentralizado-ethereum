@@ -114,7 +114,7 @@
     \renewcommand{\schoollogo}{upm-report/images/etsisi-isotipo.pdf}
     \renewcommand{\schoollogoblackbackground}{upm-report/images/etsisi-isotipo-white.pdf}
     \renewcommand{\schooladdress}{%
-        Campus Sur UPM, Carretera de Valencia (A-3), km. 7\\
+        Campus Sur UPM, Carretera de Valencia (A-3), km 7\\
         28031, Madrid, España
     }
     \definecolor{schoolcolor}{RGB}{0,114,206}

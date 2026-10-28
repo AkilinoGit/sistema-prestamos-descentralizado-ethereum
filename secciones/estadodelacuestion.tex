@@ -4,47 +4,45 @@
 \section{Protocolos de referencia en sistemas de  préstamos descentralizados}
 El ecosistema de las finanzas descentralizadas (\gls{defi}) ha experimentado un 
 crecimiento significativo en los últimos años,
-esto ha llevado a la aparación de distintos protocolos que ofrecen servicios 
+esto ha llevado a la aparición de distintos protocolos que ofrecen servicios
 de préstamos tal y como realiza este proyecto pero con distintas características 
 específicas.
-El pequeño analisis que aparece a continuación no se va a centrar en la parte de 
-negocio de estos protocolos sino en la parte tecnológica ya que cada uno de estos 
-protolocos han sido creados por
-distintos equipos privadaos de desarrollo  y no suponen un estándar en la 
+El pequeño análisis que aparece a continuación no se va a centrar en la parte de
+negocio de estos protocolos sino en la parte tecnológica ya que cada uno de estos protocolos ha sido creado por
+distintos equipos privados de desarrollo  y no suponen un estándar en la
 industria de las finanzas descentralizadas. 
-La integridad de estos protocolos se apoyan en las propiedades 
-de las redes \gls{blockchain}, las cuales se hablan en este proyecto, y 
+La integridad de estos protocolos se apoya en las propiedades
+de las redes \gls{blockchain}, de las cuales se habla en este proyecto, y
 en la fuerza empresarial que han obtenido a través de la captación de usuarios 
 y creación de comunidades.
 
 Cabe destacar que estos protocolos se han desarrollado en distintas redes 
-\gls{blockchain} y en el caso de ethereum se puede acceder a los 
-\gls{smartcontract} desplegados en la red
-siendo público y accesible para cualquier usuario.
+\gls{blockchain} y en el caso de \gls{ethereum} se puede acceder a los
+\glspl{smartcontract} desplegados en la red, que son públicos y accesibles para 
+cualquier usuario.
 
 \subsection{AAVE}
 El protocolo \gls{aave} es el protocolo más parecido a la solución que ofrece este proyecto. 
-La principal diferencia es que los usuarios finales no solo solicitan los préstamos si no que
+La principal diferencia es que los usuarios finales no solo solicitan los préstamos, sino que
  también pueden ofrecer sus fondos para que otros usuarios puedan solicitar préstamos.
 
 El proceso consiste en una \gls{pool} de liquidez.
 Esta \gls{pool} es alimentada por los usuarios que ofrecen sus fondos y estos pueden ser pedidos
 como préstamo por otros usuarios.
 La definición del tipo de préstamo y sus intereses viene definida por la garantía que puede aportar 
-la persona que solicita el préstamo,
-Dependiendo del valor ofrecido como garantía se le asignará un tipo de interés y un límite de préstamo.
+la persona que solicita el préstamo. Dependiendo del valor ofrecido como garantía se le asignará un tipo de interés y un límite de préstamo.
 
-Se puede comprobar su estado en la la red \gls{ethereum} en: \citetitle{[26]}~\cite{[26]}
+Se puede comprobar su estado en la red \gls{ethereum} en: \citetitle{[26]}~\cite{[26]}
 
-Para obtener mas información se puede consultar la documentación oficial del protocolo AAVE en: \citetitle{[29]}~\cite{[29]}
+Para obtener más información se puede consultar la documentación oficial del protocolo AAVE en: \citetitle{[29]}~\cite{[29]}
 \subsection{Compound}
-Este protocolo es muy similar al anterior, la principal diferencia es que las garantias de devolución 
+Este protocolo es muy similar al anterior, la principal diferencia es que las garantías de devolución
 están previamente definidas según el tipo de préstamo que se solicita y no se permite la aportación 
 de garantías externas.
 
-Se puede comprobar su estado en la la red \gls{ethereum} en: \citetitle{[27]}~\cite{[27]}
+Se puede comprobar su estado en la red \gls{ethereum} en: \citetitle{[27]}~\cite{[27]}
 
-Para obtener mas información se puede consultar la documentación oficial del protocolo Compound en: \citetitle{[30]}~\cite{[30]}
+Para obtener más información se puede consultar la documentación oficial del protocolo Compound en: \citetitle{[30]}~\cite{[30]}
 \subsection{Uniswap}
 Este protocolo es un intercambio descentralizado de criptomonedas, no es un protocolo orientado a 
  préstamos aunque también se obtiene comisión a través de dejar prestados tus
@@ -59,15 +57,15 @@ de conseguir un comprador que tenga exactamente \gls{bitcoin} y quiera exactamen
 En el contrato de intercambio se desglosa la comisión que obtiene la plataforma y el prestatario 
 para la realización del intercambio.
 
-Se puede comprobar su estado en la la red \gls{ethereum} en: \citetitle{[28]}~\cite{[28]}
+Se puede comprobar su estado en la red \gls{ethereum} en: \citetitle{[28]}~\cite{[28]}
 
-Para obtener mas información se puede consultar la documentación oficial del protocolo AAVE en: \citetitle{[31]}~\cite{[31]}
+Para obtener más información se puede consultar la documentación oficial del protocolo Uniswap en: \citetitle{[31]}~\cite{[31]}
 
 
 A continuación se definirán las tecnologías utilizadas en la solución ofrecida por este proyecto
-y también se definirán las claves por las que se han seleccionado dichas tecnología,
+y también se definirán las claves por las que se han seleccionado dichas tecnologías,
 desde la decisión inicial de utilizar una red blockchain hasta pequeñas decisiones de 
-diseño como la selección del \gls{framework} para la \gls{UI}
+diseño como la selección del \gls{framework} para la \gls{UI}.
 
 \section{¿Por qué Blockchain y por qué Ethereum?}
 
@@ -95,13 +93,13 @@ necesidad de una entidad central de control, de aquí su naturaleza descentraliz
 Este diseño y estructura presentan características innovadoras que posicionan a las redes 
 \gls{blockchain} como una de las tecnologías más prometedoras, sobre todo en el sector financiero, 
 aunque su aplicación se está extendiendo a diversas industrias tal y como se habla en el paper de 
-la Universitat Politécnica de Catalunya~\cite{[4]}
+la Universitat Politècnica de Catalunya~\cite{[4]}.
 
 \subsubsection{Componentes en las transacciones Blockchain}
 
 Para comprender en profundidad el funcionamiento y la seguridad de una red blockchain, 
 es fundamental analizar sus componentes clave, su estructura de datos, los mecanismos de consenso para 
-la aportación de nueva información la red y las técnicas criptográficas que aseguran su integridad.
+la aportación de nueva información a la red y las técnicas criptográficas que aseguran su integridad.
 
 La siguiente información se ha obtenido a través del siguiente paper: 
 \citetitle{[5]}~\cite{[5]}
@@ -109,18 +107,17 @@ La siguiente información se ha obtenido a través del siguiente paper:
 \begin{enumerate}
     \item \textbf{Bloques}: La red \gls{blockchain} se estructura en bloques, que son conjuntos de 
     información agrupada. Cada bloque contiene un conjunto de transacciones y un código de referencia 
-    al bloque anterior \gls{hash}, formando una cadena continua. Los bloques también incluyen una 
+    al bloque anterior, denominado \gls{hash}, formando una cadena continua. Los bloques también incluyen una
     marca de tiempo y un identificador único que garantiza su autenticidad.
 
-    \item \textbf{Hash criptográfico}: Cada bloque y cada transacción dentro de la blockchain está 
-    asegurada por un \gls{hash}, que es un código único generado por los validadores. 
+    \item \textbf{Hash criptográfico}: Cada bloque y cada transacción dentro de la blockchain están protegidos por un \gls{hash}, que es un código único generado por los validadores.
     Este hash permite verificar de forma única el contenido del bloque y protege 
     los datos de cualquier alteración. 
     Si se modificara cualquier información en un bloque, el \gls{hash} cambiaría, alertando al 
-    resto de la red de la alteración
+    resto de la red de la alteración.
     
     \item \textbf{Nodos}: Son las computadoras que participan en la red. Cada nodo contiene una copia 
-    completa o parcial de la \gls{blockchain} y son responsables de verificar y propagar las nuevas transacciones y 
+    completa o parcial de la \gls{blockchain} y es responsable de verificar y propagar las nuevas transacciones y
     bloques. Los nodos se dividen en diferentes tipos:
     \begin{enumerate}
         \item Nodos completos: Guardan la \gls{blockchain} completa y participan en la verificación de bloques.
@@ -129,7 +126,7 @@ La siguiente información se ha obtenido a través del siguiente paper:
             generados por los validadores y ejecutando las transacciones incluidas en los mismos. Estos nodos son
             los que inyectan transacciones en la red, a partir de fuentes externas al blockchain.
             Estos nodos compiten para agregar nuevos bloques a la cadena realizando el proceso de validación de 
-            transacciones y siendo incentivados por su labor
+            transacciones y siendo incentivados por su labor.
     \end{enumerate} 
      
     
@@ -139,14 +136,14 @@ La siguiente información se ha obtenido a través del siguiente paper:
           \item \textbf{\textit{Proof of work} (\gls{pow})}: Forma de validación en la que los nodos 
           mineros compiten por resolver un problema matemático que implica encontrar un \gls{hash} 
           que cumpla ciertos requisitos establecidos por el protocolo. El primer nodo en obtener este \gls{hash}
-          es el que se encarga de incorporar el nuevo bloque a la red y obener la recompensa.
-          Este proceso es dificil de resolver pero facil de verificar para otros nodos.
+          es el que se encarga de incorporar el nuevo bloque a la red y obtener la recompensa.
+          Este proceso es difícil de resolver pero fácil de verificar para otros nodos.
           \item \textbf{\textit{Proof of Stake} (\gls{pos})}: Los participantes de la red depositan 
-          una cantidad de criptomonedas en fomra de \enquote{participación}. 
+          una cantidad de criptomonedas en forma de \enquote{participación}.
           Estos participantes se llaman validadores. Los validadores son seleccionados de forma 
-          pseudo-aleatoria para proponer y validar nuevos bloques, con probabilidades generalmente 
+          pseudoaleatoria para proponer y validar nuevos bloques, con probabilidades generalmente
           proporcionales a la cantidad de criptomonedas que tienen participando. 
-          Si el validador elegido obiene el \gls{hash} de forma correcta recibe la recompensa, 
+          Si el validador elegido obtiene el \gls{hash} de forma correcta recibe la recompensa,
           y si actúa de manera malicionsa puede perder su participación.
         \end{enumerate}
 
@@ -167,12 +164,12 @@ parte de un bloque:
     información como las direcciones del emisor y receptor, el monto de la transferencia y la firma 
     digital generada con la clave privada del emisor.
     \item \textbf{Verificación de la transacción}: Los nodos validadores comprueban que la 
-    transacción es válida mediente \gls{pow} o \gls{pos}.
+    transacción es válida mediante \gls{pow} o \gls{pos}.
     \item \textbf{Difusión a la red}: La transacción es difundida a la red para su verificación. 
     Los nodos recopilan las transacciones válidas y las agrupan en bloques para su posterior 
     validación.
     \item \textbf{Agregación a la blockchain}: El bloque verificado se agrega a la cadena. 
-    Este proceso implica registrar la transacción inicial y todas las demas del bloque y 
+    Este proceso implica registrar la transacción inicial y todas las demás del bloque y
     vincular el nuevo bloque al bloque anterior mediante un \gls{hash}. Esto asegura que la cadena 
     sea inmutable y cronológica.
     \item \textbf{Confirmación de la transacción}: Una vez que un bloque ha sido agregado, 
@@ -208,8 +205,7 @@ Los elementos clave de su seguridad incluyen:
         \item \textbf{Distribución y descentralización}: Al distribuir el control de la red entre 
         miles de nodos (en el caso de las redes más importantes), \gls{blockchain} elimina los 
         puntos de fallo únicos. Esto significa que, incluso si un nodo es comprometido o hackeado, 
-        el resto de la red sigue siendo seguro, de hecho dependiendo de los criterios de cada red, 
-        realmente mientras ente el 51 y 70 \% de nodos siga sin alterarse la red sigue siendo segura.
+        la seguridad del resto de la red se mantiene. La tolerancia a nodos comprometidos depende del mecanismo de consenso y de los criterios de seguridad de cada red.
         \item \textbf{Criptografía de clave pública y privada}: Cada usuario de la red tiene una 
         clave pública y una clave privada. La clave pública funciona como una dirección visible 
         para recibir activos e identificarse en la red ante otros usuarios, mientras que la clave 
@@ -222,7 +218,7 @@ Los elementos clave de su seguridad incluyen:
 
 Con todas estas características se puede afirmar que una red \gls{blockchain} es una herramienta 
 segura para la realización de transacciones monetarias y de reserva de valor. 
-Ahora bien, ¿cómo se puede crear un sistema automatizado?. 
+Ahora bien: ¿Cómo se puede crear un sistema automatizado?
 En redes como \gls{bitcoin} el único tipo de operación que se puede realizar es el de transacción. 
 Este proyecto se apoya en una red con capacidad de ejecutar \glspl{script} o como son 
 llamados dentro de la red de \gls{ethereum}: \glspl{smartcontract}.
@@ -240,9 +236,9 @@ gobernada por su comunidad y con el apoyo de la fundación Ethereum, sin ánimo 
 lucro.
 
 Buterin mostró un talento matemático excepcional a edad temprana y comenzó a escribir 
-artibulos sobre \gls{bitcoin}, llegando a cofundar \enquote{Bitcoin Magazine 2012}.
+artículos sobre \gls{bitcoin}, llegando a cofundar \enquote{Bitcoin Magazine 2012}.
 
-En 2014. publicó el \enquote{Documento técnico de Ethereum}, en el que habla de la nueva 
+En 2014 publicó el \enquote{Documento técnico de Ethereum}, en el que habla de la nueva
 plataforma que iría más allá del \gls{bitcoin} creando una cadena de bloques que podría 
 hacer más que solo pagos.
 
@@ -269,12 +265,12 @@ Aunque existen otras redes \gls{blockchain} con capacidad de despliegue de
 \gls{defi} se ha seleccionado \gls{ethereum} debido a que su moneda es la que 
 tiene mayor valor de mercado. 
 Este se puede visualizar en la figura~\ref{fig:criptovalues} a 
-fecha de 14-03-2024 y a tiempo real en la web de \citetitle{[35]} \cite{[35]}
+fecha de 14-03-2024 y en tiempo real en la web de \citetitle{[35]} \cite{[35]}.
 
 \begin{figure}[H]
     \centering
     \caption{
-        Información a tiempo real del valor de criptomonedas, 
+        Información del valor de las criptomonedas a fecha de 14-03-2024,
     especialmente de  \citetitle{[9]}~\cite{[9]}, \citetitle{[10]}~\cite{[10]}, 
     \citetitle{[7]}~\cite{[7]} las cuales sí permiten la integración de 
     \glspl{smartcontract}.
@@ -289,7 +285,7 @@ proyecto son:
 \begin{enumerate}   
     \item \textbf{ Contratos Inteligentes y Máquina Virtual de Ethereum (\gls{evm})}
         Como se ha comentado antes, esta es la característica más importante de 
-        ethereum. Los \gls{smartcontract} son programas autoejecutables con 
+        Ethereum. Los \gls{smartcontract} son programas autoejecutables con
         condiciones predefinidas, que permiten automatizar una amplia variedad 
         de procesos y acuerdos entre partes sin necesidad de intermediarios. 
         La Máquina Virtual de Ethereum (\gls{evm}) es la infraestructura que hace 
@@ -301,16 +297,16 @@ proyecto son:
         utilizado para desarrollar contratos inteligentes en la red y el que se ha 
         utilizado en este proyecto.
 
-        \item \textbf{Plataforma para \glspl{dapp}} A partir del desarrollo de los
+        \item \textbf{Plataforma para \glspl{dapp}:} A partir del desarrollo de los
         \gls{smartcontract}, Ethereum fue la primera 
         \gls{blockchain} en introducir el concepto de aplicaciones descentralizadas 
         (\glspl{dapp}). Las \glspl{dapp} son aplicaciones que funcionan en redes 
         descentralizadas, permitiendo que los usuarios interactúen de manera directa 
         y sin intermediarios en diferentes servicios, desde finanzas hasta juegos y 
         redes sociales. En este caso, \gls{evm} actúa como una \enquote{\gls{appstore} 
-        descentrelizada} 
+        descentralizada}
     
-        \item \textbf{ Criptoeconomía y Modelo de Tokenización}
+        \item \textbf{Criptoeconomía y Modelo de Tokenización:}
         La existencia de la \gls{criptomoneda} \gls{eth} en Ethereum es clave para 
         el desarrollo de un sistema \gls{defi}, pudiendo ser utilizada para realizar 
         transacciones y pagar comisiones obligatorias.
@@ -318,16 +314,16 @@ proyecto son:
         Además, Ethereum introdujo el concepto de  \enquote{tokenización}, 
         esto permite representar activos o derechos a través de \gls{token}.
         Para facilitar el uso y transferencia de estos, se han creado distintos 
-        estandares como por ejemplo:
+        estándares como por ejemplo:
         \begin{enumerate}
-            \item ERC-20~\cite{erc-20}: tokens fungibles, cuyas unidades son intercambiables entre sí, como puede ser una criptomenda.
-            \item ERC-72~\cite{erc-721} tokens no fungibles, que permiten distinguir cada token individualmente, pudiendose usar para representar
+            \item ERC-20~\cite{erc-20}: tokens fungibles, cuyas unidades son intercambiables entre sí, como puede ser una criptomoneda.
+            \item ERC-721~\cite{erc-721} tokens no fungibles, que permiten distinguir cada token individualmente, pudiéndose usar para representar
                  activos en la vida real o distintos derechos de usuario como una votación.
             \item ERC-1155~\cite{erc-1155}: permite gestionar distintos tipos de tokens en una misma operación,
              tanto fungibles como no fungibles, en un mismo contrato.
         \end{enumerate}
 
-        \item \textbf{Identidad} Ethereum es una red descentralizada, no utiliza 
+        \item \textbf{Identidad:} Ethereum es una red descentralizada, no utiliza
         identificaciones centralizadas como puede ser la centralización estatal del 
         \gls{dni}.
         Aunque no es una característica exclusiva de Ethereum, el sistema de 
@@ -338,7 +334,7 @@ proyecto son:
         Sin embargo, esto también significa que no hay una forma nativa de verificar 
         identidades del mundo real.
         
-        \item \textbf{Oráculos} son servicios externos que alimentan la blockchain 
+        \item \textbf{Oráculos:} son servicios externos que alimentan la blockchain
         con datos de fuentes externas, permitiendo que los contratos inteligentes 
         interactúen con el mundo real. Por ejemplo, en aplicaciones \gls{defi} 
         relacionadas con bienes raíces, un oráculo podría verificar que una propiedad 
@@ -347,15 +343,15 @@ proyecto son:
     
     \end{enumerate}
 
-Se puede concluir que ethereum es un buen  medio para  desarrollar la 
-intencionalidad del proyecto gracias a su \gls{evm} y la posiblidad de definir 
+Se puede concluir que \gls{ethereum} es un buen  medio para  desarrollar la
+intencionalidad del proyecto gracias a su \gls{evm} y la posibilidad de definir
 \gls{smartcontract} en ella, utilizando como moneda de cambio \gls{eth} e incluso 
 añadir avales a los contratos y préstamos utilizando los \gls{nft} e identificándolos 
 en el mundo físico a través de \enquote{oráculos}.
 
 \section{Tecnologías para el desarrollo}
 
-\subsection{Herramienta de identificación: Metamask}
+\subsection{Herramienta de identificación: MetaMask}
 La aplicación web necesita conectarse con la cuenta y dirección \gls{ethereum} 
 del usuario para solicitar la firma de las operaciones de préstamo.
 
@@ -364,41 +360,40 @@ La primera opción podría ser desarrollar a través de herramientas de desarrol
 esta tarea a proyectos ya existentes y consolidados ya que es un punto crítico de 
 seguridad del sistema y de esta manera se evita almacenar claves privadas de usuario.
 
-Existen varias alternativas externas para identifición en \glspl{blockchain}  
+Existen varias alternativas externas para identificación en \glspl{blockchain}
 en el sistema como Coinbase~\cite{[11]} y RabbyWallet~\cite{[12]} aunque simplemente 
-se ha optado por Metamask por su popularidad.
+se ha optado por MetaMask por su popularidad.
 
 Estas herramientas de identificación proporcionan una API para comunicar la 
-\gls{dapp} con la \gls{wallet} pudiendo automatizar a traves de funciones \gls{web3} 
+\gls{dapp} con la \gls{wallet} pudiendo automatizar a través de funciones \gls{web3}
 las peticiones de autorización al usuario que ha entrado en el sistema.
 
-En el caso de Metamask, esta actúa como extensión del navegador y aparece como un 
+En el caso de MetaMask, esta actúa como extensión del navegador y aparece como un
 \gls{pop-up} cada vez que la \gls{dapp} requiere una autorización, también sirve 
-para hacer transferencias directas entre cuentas, y por su puesto sirve de \gls{wallet}
+para hacer transferencias directas entre cuentas, y por supuesto sirve de \gls{wallet}.
 
 \subsection{Herramienta multiusos para despliegue en \gls{evm} Truffle}
 
 Para el desarrollo de una \gls{dapp} en Ethereum Virtual Machine~(\gls{evm}) es 
 necesario realizar distintos procesos de compilación y despliegue para probar el 
-funcioniento del sistema antes de desplegar en la \gls{blockchain}
+funcionamiento del sistema antes de desplegar en la \gls{blockchain}.
 
 Truffle~\cite{[18]} es un conjunto de herramientas para el desarrollo de 
 aplicaciones en \gls{evm}. Principalmente puede compilar \glspl{smartcontract} y 
-reducir el código a la información necesaria la \gls{evm}
+reducir el código a la información necesaria para la \gls{evm}.
 
 Truffle también tiene una herramienta muy poderosa: Ganache~\cite{[19]}, 
 esta es capaz de ejecutar  una \gls{evm} en un entorno local. 
 Perfecto para el desarrollo aunque tiende a fallar.
 
-\paragraph{Red de pruebas Sepholia-ETH}
+\paragraph{Red de pruebas Sepolia}
 
 Aunque de manera muy técnica sea posible crear \gls{blockchain} de manera local,
 debido a la importancia de probar todo desarrollo antes de desplegarlo en la red 
 inmutable, existen alternativas de prueba de la mayoría de las redes \gls{blockchain} 
-públicas, estas actúan exactamente igual que la red original pero si utilizar 
-\glspl{criptomoneda} reales.
+públicas, estas actúan exactamente igual que la red original pero sin utilizar \glspl{criptomoneda} reales.
 Sepolia~\cite{[21]} es la red encargada de simular la red \gls{ethereum}, su moneda
-se denomina \enquote{SepoliaETH} y se puede obtener de manera gratuita en dsitintas
+se denomina \enquote{SepoliaETH} y se puede obtener de manera gratuita en distintas
 plataformas.
 
 \subsection{Explorador de bloques Etherscan}
@@ -414,14 +409,14 @@ actividades en la red Ethereum.
 \subsection{Remix IDE}
 
 Se ha de tener en cuenta que en el desarrollo de esta \gls{dapp} aún no estaban 
-tan extendidas las herramienta de desarrollo centralizado a través de inteligencia 
-articifial, por lo que se encontró una alternativa muy buena para el desarrollo 
+tan extendidas las herramientas de desarrollo centralizado a través de inteligencia
+artificial, por lo que se encontró una alternativa muy buena para el desarrollo
 de \glspl{smartcontract} con \gls{solidity}.
 
-Remix Project~\cite{[16]} es el conjunto de herramientas más exhausitivo que 
+Remix Project~\cite{[16]} es el conjunto de herramientas más exhaustivo que
 puede usarse para toda la experiencia de desarrollo de  \glspl{smartcontract}.
 Ofrece todo tipo de herramientas para la depuración de código, despliegue en redes 
-tanto públicas como privadas, compilación de \gls{smartcontract}, etc\dots
+tanto públicas como privadas, compilación de \gls{smartcontract}, etc.
 
 \subsection{Test unitarios: Mocha Framework}
 \label{sec:mochasection}
@@ -431,7 +426,7 @@ Ofrece la capacidad de comprobar reglas comunes a los \glspl{smartcontract} como
 la comprobación de permisos de usuario, ingreso y retirada de fondos.
 
 Tiene funciones para esperar operaciones asíncronas, muy importante a la hora de 
-esperar acciones provenientes de la \gls{evm}, a demás de las funciones comunes 
+esperar acciones provenientes de la \gls{evm}, además de las funciones comunes
 a cualquier otro entorno de trabajo para tests.
 
 \subsection{Node.js}
@@ -443,9 +438,9 @@ para instalar y utilizar librerías  \gls{web3}.
 \subsection{Web3}
 
 Se le llama web3 a la próxima generación web (actual web2).
-Entre otras cosas buscará la descentralización y sobretodo el uso de \gls{dapp}.
+Entre otras cosas buscará la descentralización y sobre todo el uso de \gls{dapp}.
 A su vez web3 es un \gls{framework} de \gls{javascript} que permite acciones como 
-conectarte a una red bockchain, gestionar cuentas, firmar transacciones, 
+conectarte a una red blockchain, gestionar cuentas, firmar transacciones,
 consultar saldos de las cuentas, interactuar con \glspl{smartcontract}.
 Este framework abstrae la complejidad de las interacciones con la \gls{blockchain}, 
 simplificando el desarrollo de \glspl{dapp}.
@@ -458,19 +453,20 @@ Solidity~\cite{[15]} es un lenguaje de programación diseñado para escribir
 Es similar a JavaScript y C++, con características específicas para gestionar 
 transacciones, almacenamiento en blockchain y lógica descentralizada. 
 
-Aunque existen alternativas para el desarrollo de \gls{smartcontract}, solidity
+Aunque existen alternativas para el desarrollo de \gls{smartcontract}, Solidity
 tiene más comunidad enfocada directamente al desarrollo de \gls{smartcontract}, lo cual
-es clave en un entorno \enquote{pre-Inteligencia Artificial}
+es clave en un entorno , en el que como durante el desarrollo de este proyecto,
+ las herramientas de inteligencia artificial aún no estaban tan extendidas.
 
 \subsection{Angular}
 \citetitle{[33]} es un framework de código abierto basado en TypeScript.
-Sus herramientas hacen más sencillo las tareas comunes al desarrollo web como 
+Sus herramientas hacen más sencillas las tareas comunes al desarrollo web como
 la gestión de rutas de dirección,
 organización de código a través de elementos llamados \enquote{componentes}, 
-recogida de datos de usuario, etc..
+recogida de datos de usuario, etc.
 
 \subsection{Ionic}
-\citetitle{[32]} es un framework de código abierto orientado en el desarrollo 
+\citetitle{[32]} es un framework de código abierto orientado al desarrollo
 de los componentes visuales en una
 aplicación web. 
 En combinación con \citetitle{[33]} se convierte en una herramienta que facilita 

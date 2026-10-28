@@ -71,7 +71,7 @@ describe('Prestamos factory test', () => {
         assert.equal(contratosCursando.length,0);
     });
 
-    it('get error getting contracts from diferrent account', async () => {
+    it('get error getting contracts from different account', async () => {
         try {
             let contratosCursando = await factory.methods.verContratos(accounts[1]).call({from: accounts[0]});
             assert.fail(new TypeError('Top Secret'));
@@ -80,19 +80,19 @@ describe('Prestamos factory test', () => {
         
     });
 
-    it('definir prestamo wrong porcentage penalizacion', async() => {
+    it('definir prestamo wrong percentage penalizacion', async() => {
         try {
              await factory.methods.definirPrestamo(1000,1000,10,10).send({from: accounts[0]});
-             assert.fail(new TypeError('Wrong porentage'));
+             assert.fail(new TypeError('Wrong percentage'));
         }
         catch(error) {}
         
     })
-    it('definir prestamo wrong porcentage interes', async() => {
+    it('definir prestamo wrong percentage interes', async() => {
         try {
             await factory.methods.definirPrestamo(10,1000,10,10000).send({from: accounts[0],
             gas: web3.utils.toHex(20000)});
-            assert.fail(new TypeError('Wrong porentage'));
+            assert.fail(new TypeError('Wrong percentage'));
        }
        catch(error) {}
 

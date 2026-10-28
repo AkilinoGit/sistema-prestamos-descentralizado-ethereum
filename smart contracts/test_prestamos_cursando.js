@@ -104,7 +104,7 @@ describe('Prestamos Cursando test', async () => {
     });
 
     it('Transferir fondos a factory', async() => {
-        //Inversion inicial : 10000 wei
+        //Inversión inicial : 10000 wei
         //Cantidad prestada : dos prestamos de 1000 wei = 2000 wei
         //Cantidad devuelta :  Una cuota pagada del prestamo1 = 550 wei
         //El contrato prestamo debe de tener 0 wei y el contrato factory 10000-2000+550 = 8550 wei
@@ -135,18 +135,18 @@ describe('Prestamos Cursando test', async () => {
     });
 
     it('Eliminación contrato finalizado', async() => {
-        //Pago ultima cuota de prestamo1
+        //Pago la última cuota de prestamo1
         await prestamo1.methods.pagarMensualidad().send({from: accounts[1],
             gas: web3.utils.toHex(2000000), value: web3.utils.toHex(550)});
         prestamoPagado = await prestamo1.methods.mostrarInfo().call({from: accounts[1]});
-        //Compruebo que sus estado está en finalizado
+        //Compruebo que su estado está en finalizado
         assert.equal(prestamoPagado._state,2);
         //Realizo el chequeo mensual y este llama a la función de eliminar
         await esperar10Segundos();
         await prestamo1.methods.checkeoMensual().send({from: accounts[0],
             gas: web3.utils.toHex(2000000)});
         
-        //Compruebo que no existe ni el el prestamo finalizado ni su usuario el cual no tiene más prestamos en el sistema
+        //Compruebo que no existe ni el préstamo finalizado ni su usuario el cual no tiene más prestamos en el sistema
         
         var vacio = await factory.methods.verContratos(accounts[1]).call({from: accounts[1],
             gas: web3.utils.toHex(2000000)});
