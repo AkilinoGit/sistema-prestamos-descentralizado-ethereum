@@ -1,44 +1,46 @@
 \chapter{Conclusiones}
 
-%%HACER CONCLUSIONES
-%%TRABAJO FUTURO
 %%RESUMEN E INTRODUCCIÓN
 
 En este Proyecto Fin de Grado se ha desarrollado un sistema de préstamos 
-descentralizado basado en la red Ethereum. Se puede afirmar que se ha obtenido 
-una aplicación capaz de conectarse con una red blockchain  y realizar transacciones 
-en ella, y que gracias al registro de estas transacciones y cierta lógica aplicada 
+descentralizado basado en la red \gls{ethereum}. 
+Tras el desarrollo se pueden llegar a las siguientes conclusiones:
+\begin{itemize}
+     \item Se puede afirmar que se ha obtenido 
+una aplicación capaz de conectarse con una red \gls{blockchain} y de realizar 
+transacciones en ella.
+
+Gracias al registro de estas transacciones y cierta lógica aplicada 
 a esta información, se puede componer un sistema de creación y control de préstamos 
-digitales.
+digitales en el que el contrato de nuevos préstamos queda totalmente automatizado.
 
-La interfaz de usuario realiza las conexiones necesarias con la red Blockchain y 
-ordena las transacciones necesarias para cubrir las necesidades de creación y 
-control de préstamos digitales.
+     \item Es posible unificar todas las herramientas de gestión dentro de la una interfaz de 
+usuario cubriendo todas las conexiones necesarias con la red de \gls{ethereum} 
+y capaz de ordenar la ejecución en la red las operaciones necesarias para la 
+gestión de un sistema de préstamos digitales.
 
-Los \glspl{smartcontract} desplegados en la red ethereum definen correctamente, 
-dentro de la red, la lógica aplicada a los atributos de las transacciones 
-conformando los mecanismos necesarios para la funcionalidad del sistema.
+     \item Aunque para un sistema aplicado en la vida real hiciera falta 
+     la implementación de distintos desarrollos, los \glspl{smartcontract} 
+     desplegados en la red definen correctamente la lógica 
+     aplicada a la información necesaria para la realización de préstamo.
 
-Las características de seguridad e inmutabilidad que ofrecen las redes 
-descentralizadas aplicadas a la información que el sistema guarda en la red 
-Ethereum confirman la viabilidad técnica de las operaciones financieras de este 
-sistema.
+     \item El correcto registro de esta información en la red \gls{blockchain} 
+     proporciona al sistema las características de seguridad, inmutabilidad y 
+     veracidad necesarias para un sistema de esta índole.
 
-Durante la implementación y validación, se ha demostrado el correcto funcionamiento 
-del sistema mediante pruebas en redes de desarrollo.
+     \item Exite un plan de validación que verifica las capacidades descritas 
+     para este sistema.
 
-Estos resultados confirman que la solución desarrollada cumple con los objetivos 
-iniciales los cuales intentaban crear un sistema capaz de utilizar la tecnología 
-disponible en la actualidad para construir un sistema sólido, confiable, 
-transparente y autónomo para la gestión de préstamos respaldados por criptomonedas.
-Acercando esta tecnología al usuario común y reuniendo las acciones necesarias en 
-una única pantalla de control.
+     \item Tras un estudio del impacto social se puede concluir que la adopción 
+     de tecnologías \gls{defi} y \gls{smartcontract} tiene el potencial de transformar
+     el acceso a servicios financieros y dependiendo del uso que se de a esta 
+     tecnología se puede aumentar o disminuir la inclusión financiera.
+\end{itemize}
 
-Finalmente, se concluye que la adopción de tecnologías \gls{defi} y contratos inteligentes tiene el potencial de transformar el acceso a servicios financieros, reduciendo costos y aumentando la inclusión financiera a nivel global. Sin embargo, persisten desafíos como la volatilidad del valor de las criptomonedas y los costos de transacción en Ethereum.
+
+
 
 \section{Trabajo futuro}
-% HABLAR DEL DESARROLLO OBLIGATORIO DE LA NUEVA NORMATIVA DE 2024
-%HABLAR DEL DESARROLLO AMIGABLE DE LA UI
 
 En el desarrollo de este proyecto se ha podido comprobar que un sistema de prestamos
 descentralizado es posible, pero, para que un proyecto como este llegue a una situación
@@ -67,19 +69,34 @@ solvencia, tal y como se habla en el Caso de uso futuro \hyperlink{cu:garantia}{
 mayor solided a la garantía de devolución.
 
 Durante los tests de funcionamiento del sistema se pudo comprobar las ineficencias 
-de código en la red. Sobretodo evitar recorrer todos los contratos exoistentes 
-una vez al mes para comprobar si han sido pagados o no. Para ello el sistema se puede 
-apoyar en elementos externos a la red como una base de datos temporal en la que puede 
-quedar reflejado cada pago de la mensualidad en red y mensualmente ejecutar las 
+de código en la red. Sobretodo evitar recorrer todos los contratos existentes 
+una vez al mes para comprobar si han sido pagados o no. 
+
+Para ello el sistema se puede 
+apoyar en elementos externos a la red, como una base de datos temporal en la que 
+puede 
+quedar reflejado cada pago de la mensualidad y mensualmente ejecutar las 
 penalizaciones en la red con los contratos que no aparecen en esta base de datos,
 aunque sea una base de datos externa, su uso no rompe con ninguna característica 
-en las que se apoya el sistema ya que solo sería un apoyo técnico, manteniendo siempre 
+en las que se apoya el sistema ya que solo sería un apoyo técnico, 
+manteniendo siempre 
 reflejado en la red la situación financiera del sistema.
 
-Con menos prioridad se deberán desarrollar sitemas que utilicen \gls{oraculo} 
+Como se pudo ver en la sección de~\ref{subsec:limitaciones-legales}, durante 
+el desarrollo del proyecto, la Unión Europea abrueba un nuevo Reglamento Europeo de 
+criptoactivos, por lo que para una producción real es de obligado cumplimiento 
+cubrir esta normativa.
+
+En el~\ref{op:2} se habla de que este proyecto debe contener una interfaz de usuario 
+unificada, facil e intuitiva. Aunque si se ha desarrollado una interfaz unificada 
+sería necesario crar una intefaz más intuitiva al usuario.
+
+Con menos prioridad se deberán desarrollar sistemas que utilicen \gls{oraculo} 
 tal y como se habla en el Caso de uso Futuro \hyperlink{cu:garantia}{CU13}, este sistema junto a la comprobación 
 de solvencia económica pueden servir para una correcta definición de  los tipos de 
 prestamo y condiciones disponibles en el sistema.
+
+
 
 
 
